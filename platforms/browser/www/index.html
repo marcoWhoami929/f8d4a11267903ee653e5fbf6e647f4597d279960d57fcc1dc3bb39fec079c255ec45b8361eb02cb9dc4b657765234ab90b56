@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <!--ESTILOS DE APLICACACIÓN-->
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        <!--ESTILOS DE APLICACACIÓN-->
+
+        <title>CRM-APP</title>
+    </head>
+    <body>
+        <!---HOME--->
+        <div data-role="page" id="home">
+          <div data-role="header">
+            <h1>Recordatorios</h1>
+          </div>
+
+          <div data-role="main" class="ui-content">
+
+              <a target="_blank" href="#add" data-role="button" data-theme="b" id="agregar">Nuevo recordatorio</a>
+              <a target="_blank" href="#pending" data-role="button" data-theme="b" id="pendientes">Pendientes</a>
+              <a target="_blank" href="#all" data-role="button" data-theme="b" id="todos">Todos</a>
+          </div>
+        </div>
+        <!--HOME-->
+        <!--AGREGAR NUEVO RECORDATORIO-->
+        <div data-role="page" id="add">
+          <div data-role="header">
+            <a target="_blank" href="#home" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
+            <h1>Agregar Recordatorio</h1>
+          </div>
+
+          <div data-role="main" class="ui-content">
+            <p>
+              Ingrese el título y el mensaje a recordar:
+              <input type="text" id="title" placeholder="Título">
+              <input type="text" id="message" placeholder="Mensaje">
+              Ingrese la fecha y hora del recordario
+              <input type="date" id="date">
+              <input type="time" id="time">
+              <a  style="text-decoration:none" id="agregarRecordatorio"><button onclick="add_reminder()">Agregar</button></a>
+            </p>
+          </div>
+        </div>
+        <!--AGREGAR NUEVO RECORDATORIO-->
+        <!--VISUALIZAR TODOS LOS RECORDATORIOS-->
+        <div data-role="page" id="all">
+          <div data-role="header">
+            <a target="_blank" href="#home" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
+            <h1>Todos los recordatorios</h1>
+          </div>
+
+          <div data-role="main" class="ui-content">
+            <table data-role="table" data-mode="colum" id="allTable" class="ui-responsive table-stroke">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Titulo</th>
+                    <th>Mensaje</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+          </div>
+        </div>
+        <!--VISUALIZAR TODOS LOS RECORDATORIOS-->
+        <!--VISUALIZAR RECORDATORIOS PENDIENTES-->
+        <div data-role = "page" id="pending">
+          <div data-role="header">
+            <a target="_blank" href="#home" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
+            <h1>Recordatorios Pendientes</h1>
+          </div>
+
+          <div data-role="main" class="ui-content">
+            <table data-role="table" data-mode="column" id="pendingTable" class="ui-responsive table-stroke">
+                <thead>
+                  <tr>
+                    <th>Titulo</th>
+                    <th>Tiempo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+          </div>
+        </div>
+        <!--VISUALIZAR RECORDATORIOS PENDIENTES-->
+        <!--LIBRERIAS DE JAVASCRIPT PARA FUNCIONAMIENTO DE APLICACIÓN-->
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/functions.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/all.min.js"></script>
+    </body>
+</html>
