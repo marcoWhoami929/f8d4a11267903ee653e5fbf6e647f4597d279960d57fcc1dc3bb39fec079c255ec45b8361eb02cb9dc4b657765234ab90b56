@@ -1,277 +1,277 @@
 {
-  "prepare_queue": {
-    "installed": [],
-    "uninstalled": []
-  },
-  "config_munge": {
-    "files": {
-      "res/xml/config.xml": {
-        "parents": {
-          "/*": [
-            {
-              "xml": "<feature name=\"FirebasePlugin\"><param name=\"android-package\" value=\"org.apache.cordova.firebase.FirebasePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"FirebasePlugin\"><param name=\"android-package\" value=\"org.apache.cordova.firebase.FirebasePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FirebaseMessaging\"><param name=\"android-package\" value=\"by.chemerisuk.cordova.firebase.FirebaseMessagingPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
             },
-            {
-              "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest/application": [
+                        {
+                            "xml": "<service android:enabled=\"true\" android:exported=\"false\" android:name=\"com.google.android.gms.measurement.AppMeasurementService\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:name=\"org.apache.cordova.firebase.FirebasePluginMessagingService\"><intent-filter><action android:name=\"com.google.firebase.MESSAGING_EVENT\" /></intent-filter></service>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<receiver android:name=\"org.apache.cordova.firebase.OnNotificationOpenReceiver\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:name=\"by.chemerisuk.cordova.firebase.FirebaseMessagingPluginService\"><intent-filter><action android:name=\"com.google.firebase.MESSAGING_EVENT\" /></intent-filter></service>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"de.appplant.cordova.plugin.notification.util.AssetProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/localnotification_provider_paths\" /></provider>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<receiver android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.TriggerReceiver\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<receiver android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.ClearReceiver\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<activity android:exported=\"false\" android:launchMode=\"singleInstance\" android:name=\"de.appplant.cordova.plugin.localnotification.ClickReceiver\" android:theme=\"@android:style/Theme.Translucent\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
+                            "count": 1
+                        }
+                    ]
+                }
             },
-            {
-              "xml": "<feature name=\"FirebaseMessaging\"><param name=\"android-package\" value=\"by.chemerisuk.cordova.firebase.FirebaseMessagingPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
-              "count": 1
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Badge\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.badge.Badge\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
             }
-          ]
         }
-      },
-      "AndroidManifest.xml": {
-        "parents": {
-          "/*": [
-            {
-              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
-              "count": 1
-            }
-          ],
-          "/manifest/application": [
-            {
-              "xml": "<service android:enabled=\"true\" android:exported=\"false\" android:name=\"com.google.android.gms.measurement.AppMeasurementService\" />",
-              "count": 1
-            },
-            {
-              "xml": "<service android:name=\"org.apache.cordova.firebase.FirebasePluginMessagingService\"><intent-filter><action android:name=\"com.google.firebase.MESSAGING_EVENT\" /></intent-filter></service>",
-              "count": 1
-            },
-            {
-              "xml": "<receiver android:name=\"org.apache.cordova.firebase.OnNotificationOpenReceiver\" />",
-              "count": 1
-            },
-            {
-              "xml": "<service android:name=\"by.chemerisuk.cordova.firebase.FirebaseMessagingPluginService\"><intent-filter><action android:name=\"com.google.firebase.MESSAGING_EVENT\" /></intent-filter></service>",
-              "count": 1
-            },
-            {
-              "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"de.appplant.cordova.plugin.notification.util.AssetProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/localnotification_provider_paths\" /></provider>",
-              "count": 1
-            },
-            {
-              "xml": "<receiver android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.TriggerReceiver\" />",
-              "count": 1
-            },
-            {
-              "xml": "<receiver android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.ClearReceiver\" />",
-              "count": 1
-            },
-            {
-              "xml": "<activity android:exported=\"false\" android:launchMode=\"singleInstance\" android:name=\"de.appplant.cordova.plugin.localnotification.ClickReceiver\" android:theme=\"@android:style/Theme.Translucent\" />",
-              "count": 1
-            }
-          ],
-          "/manifest": [
-            {
-              "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
-              "count": 1
-            }
-          ]
+    },
+    "installed_plugins": {
+        "cordova-plugin-androidx": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-plugin-androidx-adapter": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-plugin-firebase-lib": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-support-android-plugin": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-support-google-services": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-plugin-firebase-messaging": {
+            "FIREBASE_ANALYTICS_VERSION": "17.2.+",
+            "FIREBASE_MESSAGING_VERSION": "20.1.+",
+            "ANDROIDX_CORE_VERSION": "1.0.+",
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-plugin-badge": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-plugin-local-notification": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.sfdk.crmapp"
         }
-      },
-      "config.xml": {
-        "parents": {
-          "/*": [
-            {
-              "xml": "<feature name=\"Badge\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.badge.Badge\" /></feature>",
-              "count": 1
-            }
-          ]
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "id": "cordova-plugin-firebase-lib.FirebasePlugin",
+            "file": "plugins/cordova-plugin-firebase-lib/www/firebase.js",
+            "pluginId": "cordova-plugin-firebase-lib",
+            "clobbers": [
+                "FirebasePlugin"
+            ]
+        },
+        {
+            "id": "cordova-plugin-firebase-messaging.FirebaseMessaging",
+            "file": "plugins/cordova-plugin-firebase-messaging/www/FirebaseMessaging.js",
+            "pluginId": "cordova-plugin-firebase-messaging",
+            "merges": [
+                "cordova.plugins.firebase.messaging"
+            ]
+        },
+        {
+            "id": "cordova-plugin-device.device",
+            "file": "plugins/cordova-plugin-device/www/device.js",
+            "pluginId": "cordova-plugin-device",
+            "clobbers": [
+                "device"
+            ]
+        },
+        {
+            "id": "cordova-plugin-badge.Badge",
+            "file": "plugins/cordova-plugin-badge/www/badge.js",
+            "pluginId": "cordova-plugin-badge",
+            "clobbers": [
+                "cordova.plugins.notification.badge"
+            ]
+        },
+        {
+            "id": "cordova-plugin-local-notification.LocalNotification",
+            "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
+            "pluginId": "cordova-plugin-local-notification",
+            "clobbers": [
+                "cordova.plugins.notification.local"
+            ]
+        },
+        {
+            "id": "cordova-plugin-local-notification.LocalNotification.Core",
+            "file": "plugins/cordova-plugin-local-notification/www/local-notification-core.js",
+            "pluginId": "cordova-plugin-local-notification",
+            "clobbers": [
+                "cordova.plugins.notification.local.core",
+                "plugin.notification.local.core"
+            ]
+        },
+        {
+            "id": "cordova-plugin-local-notification.LocalNotification.Util",
+            "file": "plugins/cordova-plugin-local-notification/www/local-notification-util.js",
+            "pluginId": "cordova-plugin-local-notification",
+            "merges": [
+                "cordova.plugins.notification.local.core",
+                "plugin.notification.local.core"
+            ]
+        },
+        {
+            "id": "cordova-plugin-dialogs.notification",
+            "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+            "pluginId": "cordova-plugin-dialogs",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "id": "cordova-plugin-dialogs.notification_android",
+            "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+            "pluginId": "cordova-plugin-dialogs",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
+        },
+        {
+            "id": "cordova-plugin-splashscreen.SplashScreen",
+            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "pluginId": "cordova-plugin-splashscreen",
+            "clobbers": [
+                "navigator.splashscreen"
+            ]
         }
-      }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-androidx": "2.0.0",
+        "cordova-plugin-androidx-adapter": "1.1.1",
+        "cordova-plugin-firebase-lib": "5.1.1",
+        "cordova-plugin-whitelist": "1.3.4",
+        "cordova-support-android-plugin": "1.0.2",
+        "cordova-support-google-services": "1.4.0",
+        "cordova-plugin-firebase-messaging": "4.0.1",
+        "cordova-plugin-device": "2.0.3",
+        "cordova-plugin-badge": "0.8.8",
+        "cordova-plugin-local-notification": "0.9.0-beta.2",
+        "cordova-plugin-dialogs": "2.0.2",
+        "cordova-plugin-vibration": "3.1.1",
+        "cordova-plugin-inappbrowser": "1.3.0",
+        "cordova-plugin-splashscreen": "3.2.2"
     }
-  },
-  "installed_plugins": {
-    "cordova-plugin-androidx": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-androidx-adapter": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-firebase-lib": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-support-android-plugin": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-support-google-services": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-firebase-messaging": {
-      "FIREBASE_ANALYTICS_VERSION": "17.2.+",
-      "FIREBASE_MESSAGING_VERSION": "20.1.+",
-      "ANDROIDX_CORE_VERSION": "1.0.+",
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-badge": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-local-notification": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-vibration": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    }
-  },
-  "dependent_plugins": {},
-  "modules": [
-    {
-      "id": "cordova-plugin-firebase-lib.FirebasePlugin",
-      "file": "plugins/cordova-plugin-firebase-lib/www/firebase.js",
-      "pluginId": "cordova-plugin-firebase-lib",
-      "clobbers": [
-        "FirebasePlugin"
-      ]
-    },
-    {
-      "id": "cordova-plugin-firebase-messaging.FirebaseMessaging",
-      "file": "plugins/cordova-plugin-firebase-messaging/www/FirebaseMessaging.js",
-      "pluginId": "cordova-plugin-firebase-messaging",
-      "merges": [
-        "cordova.plugins.firebase.messaging"
-      ]
-    },
-    {
-      "id": "cordova-plugin-device.device",
-      "file": "plugins/cordova-plugin-device/www/device.js",
-      "pluginId": "cordova-plugin-device",
-      "clobbers": [
-        "device"
-      ]
-    },
-    {
-      "id": "cordova-plugin-badge.Badge",
-      "file": "plugins/cordova-plugin-badge/www/badge.js",
-      "pluginId": "cordova-plugin-badge",
-      "clobbers": [
-        "cordova.plugins.notification.badge"
-      ]
-    },
-    {
-      "id": "cordova-plugin-local-notification.LocalNotification",
-      "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
-      "pluginId": "cordova-plugin-local-notification",
-      "clobbers": [
-        "cordova.plugins.notification.local"
-      ]
-    },
-    {
-      "id": "cordova-plugin-local-notification.LocalNotification.Core",
-      "file": "plugins/cordova-plugin-local-notification/www/local-notification-core.js",
-      "pluginId": "cordova-plugin-local-notification",
-      "clobbers": [
-        "cordova.plugins.notification.local.core",
-        "plugin.notification.local.core"
-      ]
-    },
-    {
-      "id": "cordova-plugin-local-notification.LocalNotification.Util",
-      "file": "plugins/cordova-plugin-local-notification/www/local-notification-util.js",
-      "pluginId": "cordova-plugin-local-notification",
-      "merges": [
-        "cordova.plugins.notification.local.core",
-        "plugin.notification.local.core"
-      ]
-    },
-    {
-      "id": "cordova-plugin-dialogs.notification",
-      "file": "plugins/cordova-plugin-dialogs/www/notification.js",
-      "pluginId": "cordova-plugin-dialogs",
-      "merges": [
-        "navigator.notification"
-      ]
-    },
-    {
-      "id": "cordova-plugin-dialogs.notification_android",
-      "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
-      "pluginId": "cordova-plugin-dialogs",
-      "merges": [
-        "navigator.notification"
-      ]
-    },
-    {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open",
-        "window.open"
-      ]
-    },
-    {
-      "id": "cordova-plugin-splashscreen.SplashScreen",
-      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-      "pluginId": "cordova-plugin-splashscreen",
-      "clobbers": [
-        "navigator.splashscreen"
-      ]
-    }
-  ],
-  "plugin_metadata": {
-    "cordova-plugin-androidx": "2.0.0",
-    "cordova-plugin-androidx-adapter": "1.1.1",
-    "cordova-plugin-firebase-lib": "5.1.1",
-    "cordova-plugin-whitelist": "1.3.4",
-    "cordova-support-android-plugin": "1.0.2",
-    "cordova-support-google-services": "1.4.0",
-    "cordova-plugin-firebase-messaging": "4.0.1",
-    "cordova-plugin-device": "2.0.3",
-    "cordova-plugin-badge": "0.8.8",
-    "cordova-plugin-local-notification": "0.9.0-beta.2",
-    "cordova-plugin-dialogs": "2.0.2",
-    "cordova-plugin-vibration": "3.1.1",
-    "cordova-plugin-inappbrowser": "1.3.0",
-    "cordova-plugin-splashscreen": "3.2.2"
-  }
 }
