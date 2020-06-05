@@ -27,6 +27,21 @@
     },
     "cordova-plugin-local-notification": {
       "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
     }
   },
   "dependent_plugins": {
@@ -34,9 +49,6 @@
       "PACKAGE_NAME": "com.sfdk.crmapp"
     },
     "cordova-support-google-services": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-device": {
       "PACKAGE_NAME": "com.sfdk.crmapp"
     },
     "cordova-plugin-badge": {

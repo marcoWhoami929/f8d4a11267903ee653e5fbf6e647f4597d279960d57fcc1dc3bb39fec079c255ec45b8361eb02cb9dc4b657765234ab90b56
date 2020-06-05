@@ -57,6 +57,39 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
         "cordova.plugins.notification.local.core",
         "plugin.notification.local.core"
       ]
+    },
+    {
+      "id": "cordova-plugin-dialogs.notification",
+      "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+      "pluginId": "cordova-plugin-dialogs",
+      "merges": [
+        "navigator.notification"
+      ]
+    },
+    {
+      "id": "cordova-plugin-dialogs.notification_android",
+      "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+      "pluginId": "cordova-plugin-dialogs",
+      "merges": [
+        "navigator.notification"
+      ]
+    },
+    {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open",
+        "window.open"
+      ]
+    },
+    {
+      "id": "cordova-plugin-splashscreen.SplashScreen",
+      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+      "pluginId": "cordova-plugin-splashscreen",
+      "clobbers": [
+        "navigator.splashscreen"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -69,6 +102,10 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-firebase-messaging": "4.0.1",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-badge": "0.8.8",
-    "cordova-plugin-local-notification": "0.9.0-beta.2"
+    "cordova-plugin-local-notification": "0.9.0-beta.2",
+    "cordova-plugin-dialogs": "2.0.2",
+    "cordova-plugin-vibration": "3.1.1",
+    "cordova-plugin-inappbrowser": "1.3.0",
+    "cordova-plugin-splashscreen": "3.2.2"
   };
 });
