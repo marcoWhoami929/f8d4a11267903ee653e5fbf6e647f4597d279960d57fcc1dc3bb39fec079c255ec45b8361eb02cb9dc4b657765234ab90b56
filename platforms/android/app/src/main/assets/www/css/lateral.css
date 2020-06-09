@@ -1,0 +1,97 @@
+/*************MENU LATERAL**********/
+* {
+	margin:0;
+	padding:0;
+}
+
+header {
+	width:100%;
+}
+
+header nav {
+	width:70%;
+	margin:20px auto;
+	background:#024959;
+  max-height: 550px;
+ 	overflow:scroll;
+}
+
+.menu_bar {
+	display:none;
+}
+
+header nav ul {
+	list-style:none;
+}
+
+header nav ul li {
+	float:left;
+}
+
+header nav ul li a {
+	color:#fff;
+	padding:20px;
+	display:block;
+	text-decoration:none;
+}
+
+header nav ul li span {
+	margin-right:10px;
+}
+
+header nav ul li a:hover {
+	background: #0cafa9;
+}
+
+section {
+	padding:20px;
+}
+
+@media screen and (max-width:800px ) {
+	header nav {
+		width:60%;
+		height:100%;
+		left:-100%;
+		margin:0;
+		position: fixed;
+	}
+
+	header nav ul li {
+		display:block;
+		float:none;
+		border-bottom:1px solid rgba(255,255,255, .3);
+	}
+  header nav ul li a {
+		font-size: 15px;
+	}
+
+	.menu_bar {
+		display:block;
+		width:100%;
+		background:#ccc;
+	}
+
+	.menu_bar .bt-menu {
+		display:block;
+		padding:20px;
+    height: 60px;
+		background:#024959;
+		color:#fff;
+		text-decoration:none;
+		font-weight: bold;
+		font-size:25px;
+		-webkit-box-sizing:border-box;
+		-moz-box-sizing:border-box;
+		box-sizing:border-box;
+	}
+
+	.menu_bar span {
+		float:right;
+		font-size:20px;
+	}
+  .color-principal{
+    color:#024959;
+  }
+
+}
+/*************MENU LATERAL***********/
