@@ -7,7 +7,7 @@
     <author email="mlopez@sfd.com.mx">
         Marco Antonio López Pérez
     </author>
-    <content src="index.html" />
+    <content src="inicio.html" />
     <access origin="*" />
     <access origin="http://dkmatrizz.ddns.net/* " />
     <allow-intent href="http://*/*" />

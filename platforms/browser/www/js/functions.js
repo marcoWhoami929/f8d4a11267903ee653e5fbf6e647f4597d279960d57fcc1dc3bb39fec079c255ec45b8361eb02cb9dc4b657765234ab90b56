@@ -1,31 +1,34 @@
 /**
  * DESARROLLADOR @MARCO ANTONIO LÓPEZ PEREZ
  */
-
-function editarEvento(valor){
-
-      let id = valor.id;
-      var identificador = $("#"+id+"").attr("identificador");
-      navigator.notification.alert(identificador);
-
-}
-
-/*******************************/
-function eliminarEvento(valor){
-      let id = valor.id;
-      var identificador = $("#"+id+"").attr("identificador");
-      navigator.notification.alert(identificador);
-}
   /***********INICIA SECCION DE CREAR RECORDATORIO**************/
-  var info = null;
+  var infoVisitas = null;
+  var infoCitas = null;
+  var infoLlamadas = null;
+  var infoRecordatorios = null;
+  var infoDemostraciones = null;
   document.addEventListener("deviceready",function(){
-    if (!localStorage.getItem("rp_data")) {
-      var rp_data = {data:[]};
-      localStorage.setItem("rp_data",JSON.stringify(rp_data));
+    if (!localStorage.getItem("rp_data_visitas")) {
+      var rp_data_visitas = {data:[]};
+      var rp_data_citas = {data:[]};
+      var rp_data_llamadas = {data:[]};
+      var rp_data_recordatorios = {data:[]};
+      var rp_data_demostraciones = {data:[]};
+
+      localStorage.setItem("rp_data_visitas",JSON.stringify(rp_data_visitas));
+      localStorage.setItem("rp_data_citas",JSON.stringify(rp_data_citas));
+      localStorage.setItem("rp_data_llamadas",JSON.stringify(rp_data_llamadas));
+      localStorage.setItem("rp_data_recordatorios",JSON.stringify(rp_data_recordatorios));
+      localStorage.setItem("rp_data_demostraciones",JSON.stringify(rp_data_demostraciones));
 
     }
 
-    info = JSON.parse(localStorage.getItem("rp_data"));
+    infoVisitas = JSON.parse(localStorage.getItem("rp_data_visitas"));
+    infoCitas = JSON.parse(localStorage.getItem("rp_data_citas"));
+    infoLlamadas = JSON.parse(localStorage.getItem("rp_data_llamadas"));
+    infoRecordatorios = JSON.parse(localStorage.getItem("rp_data_recordatorios"));
+    infoDemostraciones = JSON.parse(localStorage.getItem("rp_data_demostraciones"));
+
 
   },false);
 
@@ -42,12 +45,18 @@ function eliminarEvento(valor){
   function add_reminder()
   {
 
-    var date = $("#date").val();
-    var time = $("#time").val();
-    var title = $("#title").val();
-    var message =  $("#message").val();
+    var date = $("#fechaRecordatorio").val();
+    var time = $("#horaRecordatorio").val();
+    var title = $("#tituloRecordatorio").val();
+    var mensaje =  $("#descripcionRecordatorio").val();
+    if (localStorage.getItem("accion") != "recordatorio") {
+        var message = "Tienes agendada una "+localStorage.getItem("accion")+" para el dia "+date+"  a las "+time+ " con los siguientes detalles: "+mensaje;
+    }else{
+        var message = "Tienes agendada un "+localStorage.getItem("accion")+" para el dia "+date+"  a las "+time+ " con los siguientes detalles: "+mensaje;
+    }
 
-    if (date == "" || time == "" || title == "" || message == "") {
+
+    if (date == "" || time == "" || title == "") {
       navigator.notification.alert("Porfavor ingrese todos los campos requeridos");
 
       return;
@@ -55,8 +64,26 @@ function eliminarEvento(valor){
 
     var schedule_time =  new Date((date + " " + time).replace(/-/g,"/")).getTime();
     schedule_time = new Date(schedule_time);
+    var evento = localStorage.getItem("accion");
+    switch (evento) {
+      case 'cita':
+        var id = infoCitas.data.length+1;
+        break;
+      case 'llamada':
+        var id = infoLlamadas.data.length+1;
+        break;
+      case 'visita':
+        var id = infoVisitas.data.length+1;
+        break;
+      case 'recordatorio':
+        var id = infoRecordatorios.data.length+1;
+        break;
+      case 'demostracion':
+        var id = infoDemostraciones.data.length+1;
+        break;
 
-    var id = info.data.length;
+    }
+
 
     cordova.plugins.notification.local.hasPermission(function(granted){
       if (granted == true) {
@@ -66,6 +93,51 @@ function eliminarEvento(valor){
         cordova.plugins.notification.local.registerPermission(function(granted){
           if (granted ==  true) {
             schedule(id,title,message,schedule_time);
+          }else{
+            navigator.notification.alert("Recuerda que para poder guardar el recordario debes de conceder los permisos necesarios a la aplicación");
+          }
+        });
+      }
+    });
+
+  }
+
+  function edit_reminder()
+  {
+    var idEvento = localStorage.getItem("idEvento");
+    var date = $("#fechaRecordatorioEdicion").val();
+    var time = $("#horaRecordatorioEdicion").val();
+    var title = $("#tituloRecordatorioEdicion").val();
+    var mensaje =  $("#descripcionRecordatorioEdicion").val();
+
+    if (localStorage.getItem("evento") != "recordatorios") {
+        var message = "Tienes agendada una "+localStorage.getItem("accion")+" para el dia "+date+"  a las "+time+ " con los siguientes detalles: "+mensaje;
+    }else{
+        var message = "Tienes agendada un "+localStorage.getItem("accion")+" para el dia "+date+"  a las "+time+ " con los siguientes detalles: "+mensaje;
+    }
+
+
+    if (date == "" || time == "" || title == "") {
+      navigator.notification.alert("Porfavor ingrese todos los campos requeridos");
+
+      return;
+    }
+
+    var schedule_time =  new Date((date + " " + time).replace(/-/g,"/")).getTime();
+    schedule_time = new Date(schedule_time);
+
+    var id = 2;
+
+    cordova.plugins.notification.local.hasPermission(function(granted){
+      if (granted == true) {
+        scheduleEdit(id,title,message,schedule_time);
+
+      }else{
+
+        cordova.plugins.notification.local.registerPermission(function(granted){
+          if (granted ==  true) {
+            scheduleEdit(id,title,message,schedule_time);
+
           }else{
             navigator.notification.alert("Recuerda que para poder guardar el recordario debes de conceder los permisos necesarios a la aplicación");
           }
@@ -86,52 +158,84 @@ function eliminarEvento(valor){
       title: title,
       message: message,
       foreground: true,
+      icon: 'https://sanfranciscodekkerlab.com/crm/vistas/img/icono.png',
       at: schedule_time,
       text: message
-      /*
-      actions: [
-      { id: 'yes', title: 'Yes' },
-      { id: 'no',  title: 'No' }
-    ]
-    */
+
   });
 
   var array = [id,title,message,schedule_time];
-  info.data[info.data.length] = array;
+  var evento = localStorage.getItem("accion");
+  switch (evento) {
+    case 'cita':
+      infoCitas.data[infoCitas.data.length] = array;
+      localStorage.setItem("rp_data_citas",JSON.stringify(infoCitas));
 
-  localStorage.setItem("rp_data",JSON.stringify(info));
+      break;
+    case 'llamada':
+      infoLlamadas.data[infoLlamadas.data.length] = array;
+      localStorage.setItem("rp_data_llamadas",JSON.stringify(infoLlamadas));
 
-  navigator.notification.alert("Recordatorio agregado exitosamente");
+      break;
+    case 'visita':
+      infoVisitas.data[infoVisitas.data.length] = array;
+      localStorage.setItem("rp_data_visitas",JSON.stringify(infoVisitas));
+      break;
+    case 'recordatorio':
+      infoRecordatorios.data[infoRecordatorios.data.length] = array;
+      localStorage.setItem("rp_data_recordatorios",JSON.stringify(infoRecordatorios));
+      break;
+    case 'demostracion':
+      infoDemostraciones.data[infoDemostraciones.data.length] = array;
+      localStorage.setItem("rp_data_demostraciones",JSON.stringify(infoDemostraciones));
+      break;
+
+  }
+
+
 }
 /*funcion agregar recordatorio*/
-/*funcion visualizar todos los recordatorios*/
-$(document).on("pagebeforeshow","#all",function(){
-  var html = '';
-
-  for (var count = 0; count < info.data.length; count++) {
-
-    html = html + "<tr><td>" + info.data[count][0] + "</td><td>" + info.data[count][1] + "</td><td>" + info.data[count][2] + "</td><td>" + "<button class='botonesEditar' id='"+info.data[count][0]+"' identificador='"+info.data[count][0]+"' onclick='editarEvento(this)'><i class='fas fa-edit'></i></button>" + "<button class='botonesEliminar' id='"+info.data[count][0]+"' identificador='"+info.data[count][0]+"' onclick='eliminarEvento(this)'><i class='fas fa-trash-alt'></i></button>" + "</td></tr>";
-  }
-
-  $("table#allTable tbody").empty();
-  $("table#allTable tbody").append(html).closest("#table#allTable").table("refresh").trigger("create");
-})
-/*funcion visualizar todos los recordatorios*/
-/*funcion visualizar los recordatorios pendientes*/
-$(document).on("pagebeforeshow","#pending",function(){
-
-  var html = '';
-  for (var count = 0; count < info.data.length; count++) {
-
-    var schedule_time = new Date(info.data[count][3]).getTime();
-    var current_time = new Date().getTime();
-
-    if (current_time < schedule_time) {
-      html = html + "<tr><td>" + info.data[count][1] + "</td><td>" + info.data[count][3] + "</td></tr>";
-    }
-  }
-
-  $("table#pendingTable tbody").empty();
-  $("table#pendingTable tbody").append(html).closest("table#pendingTable").table("refresh").trigger("create");
+/*FUNCION EDITAR UN RECORDATORIO********/
+function scheduleEdit(id,title,message,schedule_time){
+  cordova.plugins.notification.local.schedule({
+    id: id,
+    title: title,
+    message: message,
+    foreground: true,
+    at: schedule_time,
+    text: message
 });
-/*funcion visualizar los recordatorios pendientes*/
+
+var array = [id,title,message,schedule_time];
+
+var evento = localStorage.getItem("evento");
+switch (evento) {
+  case 'citas':
+    infoCitas.data[infoCitas.data.length] = array;
+    localStorage.setItem("rp_data_citas",JSON.stringify(infoCitas));
+
+    break;
+  case 'llamada':
+    infoLlamadas.data[infoLlamadas.data.length] = array;
+    localStorage.setItem("rp_data_llamadas",JSON.stringify(infoLlamadas));
+
+    break;
+  case 'visitas':
+    infoVisitas.data[infoVisitas.data.length] = array;
+    localStorage.setItem("rp_data_visitas",JSON.stringify(infoVisitas));
+      alert(JSON.stringify(infoVisitas));
+    break;
+  case 'recordatorios':
+    infoRecordatorios.data[infoRecordatorios.data.length] = array;
+    localStorage.setItem("rp_data_recordatorios",JSON.stringify(infoRecordatorios));
+    break;
+  case 'demostraciones':
+    infoDemostraciones.data[infoDemostraciones.data.length] = array;
+    localStorage.setItem("rp_data_demostraciones",JSON.stringify(infoDemostraciones));
+    break;
+
+}
+
+
+}
+/*FUNCION EDITAR UN RECORDATORIO******/

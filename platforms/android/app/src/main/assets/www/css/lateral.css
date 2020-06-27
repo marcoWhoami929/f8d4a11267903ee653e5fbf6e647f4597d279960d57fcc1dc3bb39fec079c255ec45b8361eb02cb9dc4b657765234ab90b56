@@ -6,12 +6,16 @@
 
 header {
 	width:100%;
+	position: sticky;
+  top: 0;
+	z-index: 1001;
 }
 
 header nav {
 	width:70%;
-	margin:20px auto;
-	background:#024959;
+	padding-top: 50px;
+	margin:100px auto;
+	background:#008B8B;
   max-height: 550px;
  	overflow:scroll;
 }
@@ -75,7 +79,7 @@ section {
 		display:block;
 		padding:20px;
     height: 60px;
-		background:#024959;
+		background:#008B8B;
 		color:#fff;
 		text-decoration:none;
 		font-weight: bold;
@@ -90,7 +94,7 @@ section {
 		font-size:20px;
 	}
   .color-principal{
-    color:#024959;
+    color:#008B8B;
   }
 
 }

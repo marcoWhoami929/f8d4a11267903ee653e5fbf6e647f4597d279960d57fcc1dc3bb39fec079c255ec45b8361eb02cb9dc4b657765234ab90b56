@@ -1,0 +1,194 @@
+body{
+  font-family:"Roboto",sans-serif;
+}
+form {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  z-index:0;
+}
+
+form > input {
+    -webkit-box-flex: 1;
+    flex: 1 1 10ch;
+    margin: .5rem
+  }
+
+form > input[type="email"] {
+      -webkit-box-flex: 3;
+      flex: 3 1 30ch;
+
+}
+form > input[class="perfil"] {
+      -webkit-box-flex: 3;
+      flex: 3 1 50ch;
+
+}
+form >textarea{
+  -webkit-box-flex: 3;
+  flex: 3 1 40ch;
+
+}
+input {
+  border: none;
+  background: hsl(0, 0%, 93%);
+  border-radius: .25rem;
+  padding: .75rem 1rem
+}
+textarea {
+  border: none;
+  background: hsl(0, 0%, 93%);
+  border-radius: .25rem;
+  padding: .75rem 1rem
+}
+
+.comentariosGenerales{
+    margin:10px 10px 10px 10px;
+}
+.buttonEditar{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px 10px 10px 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 30%;
+  margin-left: 20px;
+}
+.buttonEditar:hover{
+  background-color: #024959;
+}
+.buttonEliminar{
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px 10px 10px 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 30%;
+}
+.buttonEliminar:hover{
+  background-color: #c4c3d0;
+}
+.buttonVer{
+  background-color: cyan;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px 10px 10px 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width:25%;
+}
+.buttonVer:hover{
+  background-color: #c4c3d0;
+}
+.buttonUbicacion{
+  background-color: #024959;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px 10px 10px 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 30%;
+}
+.buttonUbicacion:hover{
+  background-color: #024959;
+}
+.buttonGeneral{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px 10px 10px 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 150px;
+  margin-left: 20px;
+}
+.buttonGeneral:hover{
+  background-color: #024959;
+}
+.buttonAcciones{
+  background-color: #E32636;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px 10px 10px 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 150px;
+  margin-left: 20px;
+}
+.buttonAcciones:hover{
+  background-color: #024959;
+}
+
+
+
+/*****SELECT STYLES****/
+.box-select {
+
+   margin:10px 10px 10px 10px;
+   border:1px solid #d9d9d9;
+   height:30px;
+   overflow: hidden;
+   width: 100%;
+   position:relative;
+}
+select {
+   background: transparent;
+   border: none;
+   font-size: 14px;
+   height: 30px;
+   padding: 5px;
+   width: 100%;
+}
+select:focus{ outline: none;}
+
+.caja::after{
+	content:"\025be";
+	display:table-cell;
+	padding-top:7px;
+	text-align:center;
+	width:30px;
+	height:30px;
+	background-color:#d9d9d9;
+	position:absolute;
+	top:0;
+	right:0px;
+	pointer-events: none;
+}
+/****MAPA****/
+#map {
+   width: 100%;
+   height: 400px;
+
+}

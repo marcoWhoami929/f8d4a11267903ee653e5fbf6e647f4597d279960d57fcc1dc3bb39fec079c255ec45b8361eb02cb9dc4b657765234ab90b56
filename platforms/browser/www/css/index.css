@@ -9,7 +9,6 @@ body {
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color:#E4E4E4;
     background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
     font-size:12px;
     height:100vh;
     margin:0px;
@@ -152,9 +151,9 @@ body {
   align-items: center;
   justify-content: center;
   color:white;
-  font-family: 'Lato', sans-serif;
+
   font-weight: 300;
-  background:linear-gradient(45deg, rgba(40,156,104,1) 50%, rgba(9,178,184,1) 81%, rgba(9,178,184,1) 100%);
+  background:linear-gradient(to left, #008B8B, rgba(13, 152, 186, 0.25)), #008B8B;
 }
 .login-div {
   filter: blur(0.4px);
@@ -162,7 +161,7 @@ body {
   height: 850px;
   padding: 60px 35px 35px 35px;
   border-radius: 10px;
-  background: linear-gradient(45deg, rgba(40,156,104,1) 50%, rgba(9,178,184,1) 81%, rgba(9,178,184,1) 100%);
+  background: linear-gradient(to left, #008B8B, rgba(13, 152, 186, 0.25)), #008B8B;
   box-shadow:
   /*bottom shadow*/
   0px 20px 20px rgba(0,0,0,0.2),
@@ -211,7 +210,7 @@ body {
   outline: none;
   background: none;
   font-size: 18px;
-  font-family: 'Lato', sans-serif;
+
   color: white;
   padding: 10px 10px 10px 5px;
 }
@@ -244,14 +243,14 @@ body {
   font-weight: bold;
   text-align: center;
   letter-spacing: 1px;
-  background:radial-gradient(circle, #1da88a, #1ea084, #229c82, #23947b, #238d76);
+  background:linear-gradient(to left, #008B8B, rgba(13, 152, 186, 0.25)), #008B8B;
   box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 .signin-button:hover {
-  background: radial-gradient(circle, #2fdbb6, #32d6b3, #32c9a8, #36c7a7, #38bb9f);
+  background:linear-gradient(to left, #008B8B, rgba(13, 152, 186, 0.25)), #008B8B;
 }
 .signin-button:active {
-  background: radial-gradient(circle, #1da88a, #1ea084, #229c82, #23947b, #238d76);
+  background: linear-gradient(to left, #008B8B, rgba(13, 152, 186, 0.25)), #008B8B;
 }
 .link {
   padding-top: 20px;
@@ -267,5 +266,5 @@ body {
   margin-bottom: -3px;
   margin-right: 10px;
 }
+
 /**************LOGIN****************/
-/**************BARRA FIJA**********/

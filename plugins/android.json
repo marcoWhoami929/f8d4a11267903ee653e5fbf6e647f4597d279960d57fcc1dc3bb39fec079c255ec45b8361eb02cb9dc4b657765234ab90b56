@@ -42,6 +42,19 @@
     },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.sfdk.crmapp"
     }
   },
   "dependent_plugins": {
