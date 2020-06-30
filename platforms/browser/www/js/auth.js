@@ -566,10 +566,12 @@ $(document).ready(function() {
     var certezaOportunidad = $("#certezaOportunidad").val();
     var productosOportunidad = $("#productosOportunidad").val();
     var codigosOportunidad = $("#codigosOportunidad").val();
+    var cantidadesOportunidad = $("#cantidadesOportunidad").val();
+    var preciosOportunidad = $("#preciosOportunidad").val();
     var comentariosOportunidad = $("#comentariosOportunidad").val();
 
 
-    var dataString = "idAgente=" + idAgente + "&idProspecto=" + idProspecto + "&conceptoOportunidad=" + conceptoOportunidad + "&faseOportunidad=" + faseOportunidad + "&montoOportunidad=" + montoOportunidad + "&cierreEstimado=" + cierreEstimado + "&certezaOportunidad=" + certezaOportunidad + "&comentariosOportunidad=" + comentariosOportunidad + "&productosOportunidad=" + productosOportunidad + "&codigosOportunidad=" + codigosOportunidad + "&generarOportunidad=";
+    var dataString = "idAgente=" + idAgente + "&idProspecto=" + idProspecto + "&conceptoOportunidad=" + conceptoOportunidad + "&faseOportunidad=" + faseOportunidad + "&montoOportunidad=" + montoOportunidad + "&cierreEstimado=" + cierreEstimado + "&certezaOportunidad=" + certezaOportunidad + "&comentariosOportunidad=" + comentariosOportunidad + "&productosOportunidad=" + productosOportunidad + "&codigosOportunidad=" + codigosOportunidad + "&cantidadesOportunidad=" + cantidadesOportunidad + "&preciosOportunidad=" + preciosOportunidad + "&generarOportunidad=";
 
     if ($.trim(idAgente).length > 0 && $.trim(cierreEstimado).length > 0) {
       $.ajax({
@@ -1154,7 +1156,7 @@ $(document).ready(function() {
 
   })
   /**********CREAR NUEVA DEMOSTRACION************/
-  /**********CDESCARTAR PROSPECTO************/
+  /**********DESCARTAR PROSPECTO************/
   $("#descartarProspecto").click(function(){
       var idAgente = localStorage.getItem("idUsuario");
       var nombreAgente = localStorage.getItem("nombre");
@@ -1205,6 +1207,7 @@ $(document).ready(function() {
   $(".btnCalendario").click(function() {
 
     var idAgente = localStorage.idUsuario;
+    localStorage.setItem("pendientes","false");
     var fecha = $("#fechaEvento").attr("class");
     if (typeof fecha == 'undefined') {
 
@@ -1230,9 +1233,10 @@ $(document).ready(function() {
             window.location.href = "calendario.html";
           } else if (data == "failed") {
             //swal("Upss", "No hay eventos creados.", "info");
-            window.location.href = "calendario.html";
             var calendario = '[]';
             localStorage.miCalendario = calendario;
+            window.location.href = "calendario.html";
+
 
           }
         }
@@ -1329,34 +1333,458 @@ $(document).ready(function() {
               .then((willDelete) => {
                 if (willDelete) {
                   var idAgente = localStorage.idUsuario;
-                  var fecha = $("#fechaEvento").attr("class");
-                  if (typeof fecha == 'undefined') {
+                  if (localStorage.pendientes == "true") {
+                    var dataString = "idAgente=" + idAgente + "&listarPendientes=";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: dataString,
+                      crossDomain: true,
+                      cache: false,
+                      success: function(data) {
+                        if (data != "failed") {
+                          localStorage.misPendientes = data;
+                          window.location.href = "pendientes.html";
+                        } else if (data == "failed") {
+                          swal("Upss", "No hay eventos pendientes por finalizar.", "info");
 
-                    var fechaEvento = "";
+                        }
+                      }
+                    })
 
                   }else{
 
-                    var fechaEvento = $("#fechaEvento").val();
-                  }
+                    var fecha = $("#fechaEvento").attr("class");
+                    if (typeof fecha == 'undefined') {
 
-                  var dataString = "idAgente=" + idAgente + "&fechaEvento=" + fechaEvento + "&listarCalendario=";
-                  $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: dataString,
-                    crossDomain: true,
-                    cache: false,
-                    success: function(data) {
-                      if (data != "failed") {
-                        localStorage.miCalendario = data;
-                        window.location.href = "calendario.html";
-                      } else if (data == "failed") {
-                        //swal("Upss", "No hay eventos creados.", "info");
-                        window.location.href = "calendario.html";
+                      var fechaEvento = "";
 
-                      }
+                    }else{
+
+                      var fechaEvento = $("#fechaEvento").val();
                     }
-                  })
+
+                    var dataString = "idAgente=" + idAgente + "&fechaEvento=" + fechaEvento + "&listarCalendario=";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: dataString,
+                      crossDomain: true,
+                      cache: false,
+                      success: function(data) {
+                        if (data != "failed") {
+                          localStorage.miCalendario = data;
+                          window.location.href = "calendario.html";
+                        } else if (data == "failed") {
+                          //swal("Upss", "No hay eventos creados.", "info");
+                          var calendario = '[]';
+                          localStorage.miCalendario = calendario;
+                          window.location.href = "calendario.html";
+
+                        }
+                      }
+                    })
+                  }
+                }
+              });
+            } else if (data == "failed") {
+              swal("Upss", "No se pudo editar el recordatorio.", "info");
+
+            }
+          }
+        })
+      } else {
+        swal("Ha Ocurrido un Error", "", "error");
+      }
+      return false;
+
+  })
+  /**********EDITAR VISITA************/
+  /**********EDITAR CITA************/
+  $("#editarCita").click(function(){
+      var idEvento = $("#idEventoRecordatorio").val();
+      var idProspecto = $("#idProspectoEdicion").val();
+      var nombreProspecto = $("#nombreProspectoRecordatorioEdicion").val();
+      var lugar = $("#lugarRecordatorioEdicion").val();
+      var lat = $("#latRecordatorioEdicion").val();
+      var long = $("#longRecordatorioEdicion").val();
+      var idAgente = localStorage.idUsuario;
+      var titulo = $("#tituloRecordatorioEdicion").val();
+      var fecha = $("#fechaRecordatorioEdicion").val();
+      var hora = $("#horaRecordatorioEdicion").val();
+      var descripcion = $("#descripcionRecordatorioEdicion").val();
+
+      var dataString = "idAgente=" + idAgente + "&idProspecto=" + idProspecto + "&idEvento=" + idEvento + "&titulo=" + titulo + "&fecha=" + fecha + "&hora=" + hora + "&descripcion=" + descripcion + "&nombreProspecto=" + nombreProspecto + "&lugar=" + lugar + "&lat=" + lat + "&long=" + long + "&editarCita=";
+      if ($.trim(idAgente).length > 0) {
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: dataString,
+          crossDomain: true,
+          cache: false,
+          success: function(data) {
+            if (data != "failed") {
+              swal({
+                title: "Cita Actualizada Correctamente",
+                text: "",
+                icon: "success",
+                button: true,
+                dangerMode: false,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                  var idAgente = localStorage.idUsuario;
+                  if (localStorage.pendientes == "true") {
+                    var dataString = "idAgente=" + idAgente + "&listarPendientes=";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: dataString,
+                      crossDomain: true,
+                      cache: false,
+                      success: function(data) {
+                        if (data != "failed") {
+                          localStorage.misPendientes = data;
+                          window.location.href = "pendientes.html";
+                        } else if (data == "failed") {
+                          swal("Upss", "No hay eventos pendientes por finalizar.", "info");
+
+                        }
+                      }
+                    })
+
+                  }else{
+
+                    var fecha = $("#fechaEvento").attr("class");
+                    if (typeof fecha == 'undefined') {
+
+                      var fechaEvento = "";
+
+                    }else{
+
+                      var fechaEvento = $("#fechaEvento").val();
+                    }
+
+                    var dataString = "idAgente=" + idAgente + "&fechaEvento=" + fechaEvento + "&listarCalendario=";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: dataString,
+                      crossDomain: true,
+                      cache: false,
+                      success: function(data) {
+                        if (data != "failed") {
+                          localStorage.miCalendario = data;
+                          window.location.href = "calendario.html";
+                        } else if (data == "failed") {
+                          //swal("Upss", "No hay eventos creados.", "info");
+                          var calendario = '[]';
+                          localStorage.miCalendario = calendario;
+                          window.location.href = "calendario.html";
+
+                        }
+                      }
+                    })
+                  }
+                }
+              });
+            } else if (data == "failed") {
+              swal("Upss", "No se pudo editar el recordatorio.", "info");
+
+            }
+          }
+        })
+      } else {
+        swal("Ha Ocurrido un Error", "", "error");
+      }
+      return false;
+
+  })
+  /**********EDITAR CITA************/
+  /**********EDITAR LLAMADA************/
+  $("#editarLlamada").click(function(){
+      var idEvento = $("#idEventoRecordatorio").val();
+      var idProspecto = $("#idProspectoEdicion").val();
+      var nombreProspecto = $("#nombreProspectoRecordatorioEdicion").val();
+      var idAgente = localStorage.idUsuario;
+      var titulo = $("#tituloRecordatorioEdicion").val();
+      var fecha = $("#fechaRecordatorioEdicion").val();
+      var hora = $("#horaRecordatorioEdicion").val();
+      var descripcion = $("#descripcionRecordatorioEdicion").val();
+
+      var dataString = "idAgente=" + idAgente + "&idProspecto=" + idProspecto + "&idEvento=" + idEvento + "&titulo=" + titulo + "&fecha=" + fecha + "&hora=" + hora + "&descripcion=" + descripcion + "&nombreProspecto=" + nombreProspecto + "&editarLlamada=";
+      if ($.trim(idAgente).length > 0) {
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: dataString,
+          crossDomain: true,
+          cache: false,
+          success: function(data) {
+            if (data != "failed") {
+              swal({
+                title: "Lllamada Actualizada Correctamente",
+                text: "",
+                icon: "success",
+                button: true,
+                dangerMode: false,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                  var idAgente = localStorage.idUsuario;
+                  if (localStorage.pendientes == "true") {
+                    var dataString = "idAgente=" + idAgente + "&listarPendientes=";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: dataString,
+                      crossDomain: true,
+                      cache: false,
+                      success: function(data) {
+                        if (data != "failed") {
+                          localStorage.misPendientes = data;
+                          window.location.href = "pendientes.html";
+                        } else if (data == "failed") {
+                          swal("Upss", "No hay eventos pendientes por finalizar.", "info");
+
+                        }
+                      }
+                    })
+
+                  }else{
+
+                    var fecha = $("#fechaEvento").attr("class");
+                    if (typeof fecha == 'undefined') {
+
+                      var fechaEvento = "";
+
+                    }else{
+
+                      var fechaEvento = $("#fechaEvento").val();
+                    }
+
+                    var dataString = "idAgente=" + idAgente + "&fechaEvento=" + fechaEvento + "&listarCalendario=";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: dataString,
+                      crossDomain: true,
+                      cache: false,
+                      success: function(data) {
+                        if (data != "failed") {
+                          localStorage.miCalendario = data;
+                          window.location.href = "calendario.html";
+                        } else if (data == "failed") {
+                          //swal("Upss", "No hay eventos creados.", "info");
+                          var calendario = '[]';
+                          localStorage.miCalendario = calendario;
+                          window.location.href = "calendario.html";
+
+                        }
+                      }
+                    })
+                  }
+                }
+              });
+            } else if (data == "failed") {
+              swal("Upss", "No se pudo editar el recordatorio.", "info");
+
+            }
+          }
+        })
+      } else {
+        swal("Ha Ocurrido un Error", "", "error");
+      }
+      return false;
+
+  })
+  /**********EDITAR LLAMADA************/
+  /**********EDITAR RECORDATORIOS************/
+  $("#editarRecordatorio").click(function(){
+      var idEvento = $("#idEventoRecordatorio").val();
+      var idProspecto = $("#idProspectoEdicion").val();
+      var nombreProspecto = $("#nombreProspectoRecordatorioEdicion").val();
+      var idAgente = localStorage.idUsuario;
+      var titulo = $("#tituloRecordatorioEdicion").val();
+      var fecha = $("#fechaRecordatorioEdicion").val();
+      var hora = $("#horaRecordatorioEdicion").val();
+      var descripcion = $("#descripcionRecordatorioEdicion").val();
+
+      var dataString = "idAgente=" + idAgente + "&idProspecto=" + idProspecto + "&idEvento=" + idEvento + "&titulo=" + titulo + "&fecha=" + fecha + "&hora=" + hora + "&descripcion=" + descripcion + "&nombreProspecto=" + nombreProspecto + "&editarRecordatorio=";
+      if ($.trim(idAgente).length > 0) {
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: dataString,
+          crossDomain: true,
+          cache: false,
+          success: function(data) {
+            if (data != "failed") {
+              swal({
+                title: "Recordatorio Actualizado Correctamente",
+                text: "",
+                icon: "success",
+                button: true,
+                dangerMode: false,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                  var idAgente = localStorage.idUsuario;
+                  if (localStorage.pendientes == "true") {
+                    var dataString = "idAgente=" + idAgente + "&listarPendientes=";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: dataString,
+                      crossDomain: true,
+                      cache: false,
+                      success: function(data) {
+                        if (data != "failed") {
+                          localStorage.misPendientes = data;
+                          window.location.href = "pendientes.html";
+                        } else if (data == "failed") {
+                          swal("Upss", "No hay eventos pendientes por finalizar.", "info");
+
+                        }
+                      }
+                    })
+
+                  }else{
+
+                    var fecha = $("#fechaEvento").attr("class");
+                    if (typeof fecha == 'undefined') {
+
+                      var fechaEvento = "";
+
+                    }else{
+
+                      var fechaEvento = $("#fechaEvento").val();
+                    }
+
+                    var dataString = "idAgente=" + idAgente + "&fechaEvento=" + fechaEvento + "&listarCalendario=";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: dataString,
+                      crossDomain: true,
+                      cache: false,
+                      success: function(data) {
+                        if (data != "failed") {
+                          localStorage.miCalendario = data;
+                          window.location.href = "calendario.html";
+                        } else if (data == "failed") {
+                          //swal("Upss", "No hay eventos creados.", "info");
+                          var calendario = '[]';
+                          localStorage.miCalendario = calendario;
+                          window.location.href = "calendario.html";
+
+                        }
+                      }
+                    })
+                  }
+                }
+              });
+            } else if (data == "failed") {
+              swal("Upss", "No se pudo editar el recordatorio.", "info");
+
+            }
+          }
+        })
+      } else {
+        swal("Ha Ocurrido un Error", "", "error");
+      }
+      return false;
+
+  })
+  /**********EDITAR RECORDATORIOS************/
+  /**********EDITAR DEMOSTRACIONES************/
+  $("#editarDemostracion").click(function(){
+      var idEvento = $("#idEventoRecordatorio").val();
+      var idProspecto = $("#idProspectoEdicion").val();
+      var nombreProspecto = $("#nombreProspectoRecordatorioEdicion").val();
+      var lugar = $("#lugarRecordatorioEdicion").val();
+      var lat = $("#latRecordatorioEdicion").val();
+      var long = $("#longRecordatorioEdicion").val();
+      var idAgente = localStorage.idUsuario;
+      var titulo = $("#tituloRecordatorioEdicion").val();
+      var fecha = $("#fechaRecordatorioEdicion").val();
+      var hora = $("#horaRecordatorioEdicion").val();
+      var descripcion = $("#descripcionRecordatorioEdicion").val();
+      var productos = $("#productosRecordatorioEdicion").val();
+
+
+      var dataString = "idAgente=" + idAgente + "&idProspecto=" + idProspecto + "&idEvento=" + idEvento + "&titulo=" + titulo + "&fecha=" + fecha + "&hora=" + hora + "&descripcion=" + descripcion + "&nombreProspecto=" + nombreProspecto + "&lugar=" + lugar + "&lat=" + lat + "&long=" + long + "&productos=" + productos + "&editarDemostracion=";
+      if ($.trim(idAgente).length > 0) {
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: dataString,
+          crossDomain: true,
+          cache: false,
+          success: function(data) {
+            if (data != "failed") {
+              swal({
+                title: "Demostracion Actualizada Correctamente",
+                text: "",
+                icon: "success",
+                button: true,
+                dangerMode: false,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                  var idAgente = localStorage.idUsuario;
+                  if (localStorage.pendientes == "true") {
+                    var dataString = "idAgente=" + idAgente + "&listarPendientes=";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: dataString,
+                      crossDomain: true,
+                      cache: false,
+                      success: function(data) {
+                        if (data != "failed") {
+                          localStorage.misPendientes = data;
+                          window.location.href = "pendientes.html";
+                        } else if (data == "failed") {
+                          swal("Upss", "No hay eventos pendientes por finalizar.", "info");
+
+                        }
+                      }
+                    })
+
+                  }else{
+
+                    var fecha = $("#fechaEvento").attr("class");
+                    if (typeof fecha == 'undefined') {
+
+                      var fechaEvento = "";
+
+                    }else{
+
+                      var fechaEvento = $("#fechaEvento").val();
+                    }
+
+                    var dataString = "idAgente=" + idAgente + "&fechaEvento=" + fechaEvento + "&listarCalendario=";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: dataString,
+                      crossDomain: true,
+                      cache: false,
+                      success: function(data) {
+                        if (data != "failed") {
+                          localStorage.miCalendario = data;
+                          window.location.href = "calendario.html";
+                        } else if (data == "failed") {
+                          //swal("Upss", "No hay eventos creados.", "info");
+                          var calendario = '[]';
+                          localStorage.miCalendario = calendario;
+                          window.location.href = "calendario.html";
+
+                        }
+                      }
+                    })
+                  }
 
                 }
               });
@@ -1371,10 +1799,224 @@ $(document).ready(function() {
       }
       return false;
 
+  });
+  /**********EDITAR DEMOSTRACIONES************/
+  $("#finalizar").click(function(){
+      window.location.href ="finalizacionEvento.html";
+      })
+  /**********FINALIZAR EVENTO************/
+  $("#finalizarEvento").click(function(){
+      var idEvento = $("#idEventoFinalizacion").val();
+      var idProspecto = $("#idProspectoFinalizacion").val();
+      var nombreProspecto = $("#nombreProspectoFinalizacion").val();
+      var idAgente = localStorage.idUsuario;
+      var nombreAgente = localStorage.nombre;
+      var detalleEvento = $("#detalleEventoFinalizacion").val();
 
+      var evento = localStorage.getItem("evento");
 
-  })
-  /**********EDITAR VISITA************/
+      switch (evento) {
+        case 'citas':
+          var nombreEvento = "Cita";
+          var alertaTitulo = "Cita Finalizada Exitosamente";
+          break;
+        case 'llamada':
+          var nombreEvento = "Llamada";
+          var alertaTitulo = "Llamada Finalizada Exitosamente";
+          break;
+        case 'visitas':
+          var nombreEvento = "Visita";
+          var alertaTitulo = "Visita Finalizada Exitosamente";
+          break;
+        case 'recordatorios':
+          var nombreEvento = "Recordatorio";
+          var alertaTitulo = "Recordatorio Finalizado Exitosamente";
+          break;
+        case 'demostraciones':
+          var nombreEvento = "Demostracion";
+          var alertaTitulo = "Demostracion Finalizada Exitosamente";
+          break;
+
+      }
+
+      var dataString = "idAgente=" + idAgente + "&idProspecto=" + idProspecto + "&idEvento=" + idEvento + "&detalleEvento=" + detalleEvento + "&nombreEvento=" + nombreEvento + "&evento=" + evento + "&nombreAgente=" + nombreAgente + "&nombreProspecto=" + nombreProspecto + "&finalizarEvento=";
+      if ($.trim(idAgente).length > 0) {
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: dataString,
+          crossDomain: true,
+          cache: false,
+          success: function(data) {
+            if (data != "failed") {
+              swal({
+                title: ""+alertaTitulo+"",
+                text: "",
+                icon: "success",
+                button: true,
+                dangerMode: false,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                  var idAgente = localStorage.idUsuario;
+                  if (localStorage.pendientes == "true") {
+                    var dataString = "idAgente=" + idAgente + "&listarPendientes=";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: dataString,
+                      crossDomain: true,
+                      cache: false,
+                      success: function(data) {
+                        if (data != "failed") {
+                          localStorage.misPendientes = data;
+                          window.location.href = "pendientes.html";
+                        } else if (data == "failed") {
+                          swal("Upss", "No hay eventos pendientes por finalizar.", "info");
+
+                        }
+                      }
+                    })
+
+                  }else{
+
+                    var fecha = $("#fechaEvento").attr("class");
+                    if (typeof fecha == 'undefined') {
+
+                      var fechaEvento = "";
+
+                    }else{
+
+                      var fechaEvento = $("#fechaEvento").val();
+                    }
+
+                    var dataString = "idAgente=" + idAgente + "&fechaEvento=" + fechaEvento + "&listarCalendario=";
+                    $.ajax({
+                      type: "POST",
+                      url: url,
+                      data: dataString,
+                      crossDomain: true,
+                      cache: false,
+                      success: function(data) {
+                        if (data != "failed") {
+                          localStorage.miCalendario = data;
+                          window.location.href = "calendario.html";
+                        } else if (data == "failed") {
+                          //swal("Upss", "No hay eventos creados.", "info");
+                          var calendario = '[]';
+                          localStorage.miCalendario = calendario;
+                          window.location.href = "calendario.html";
+
+                        }
+                      }
+                    })
+                  }
+
+                }
+              });
+            } else if (data == "failed") {
+              swal("Upss", "No se pudo finalizar el evento.", "info");
+
+            }
+          }
+        })
+      } else {
+        swal("Ha Ocurrido un Error", "", "error");
+      }
+      return false;
+
+  });
+  /**********FINALIZAR EVENTO************/
+  /***********MOSTRAR PENDIENTES***************/
+  $(".btnPendientes").click(function() {
+
+    var idAgente = localStorage.idUsuario;
+    localStorage.setItem("pendientes","true");
+
+    var dataString = "idAgente=" + idAgente + "&listarPendientes=";
+
+    if ($.trim(idAgente).length > 0) {
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        success: function(data) {
+          if (data != "failed") {
+            localStorage.misPendientes = data;
+            window.location.href = "pendientes.html";
+          } else if (data == "failed") {
+            swal("Upss", "No hay eventos pendientes por finalizar.", "info");
+
+          }
+        }
+      })
+    } else {
+      swal("Ha Ocurrido un Error", "", "error");
+    }
+    return false;
+
+  });
+  /**********MOSTRAR PENDIENTES****************/
+  /**********OBTENER DETALLES DE VENTA********/
+  $('body').on('click', '#contenedorVentas a', function(){
+      var idVenta = $(this).attr("idVenta");
+      var dataString = "idVenta=" + idVenta + "&obtenerDetalleVenta=";
+
+      if ($.trim(idVenta).length > 0) {
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: dataString,
+          crossDomain: true,
+          cache: false,
+          success: function(data) {
+            if (data != "failed") {
+              localStorage.detalleVenta = data;
+              window.location.href = "detalleVenta.html";
+            } else if (data == "failed") {
+              swal("Upss", "No se pudo obtener los datos de la venta.", "info");
+
+            }
+          }
+        })
+      } else {
+        swal("Ha Ocurrido un Error", "", "error");
+      }
+      return false;
+
+  });
+  /**********OBTENER DETALLES DE VENTA********/
+  /**********OBTENER LISTA DE PRECIOS ESPECIALES********/
+  $("#btnMostrarListaPrecios").click(function(){
+    var idAgente = localStorage.idUsuario;
+    var dataString = "idAgente=" + idAgente + "&obtenerListaPrecios=";
+
+    if ($.trim(idAgente).length > 0) {
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        success: function(data) {
+          if (data != "failed") {
+            localStorage.preciosEspeciales = data;
+            window.location.href = "listaPrecios.html";
+          } else if (data == "failed") {
+            swal("Upss", "No se pudo obtener la lista de precios.", "info");
+
+          }
+        }
+      })
+    } else {
+      swal("Ha Ocurrido un Error", "", "error");
+    }
+    return false;
+
+  });
+  /**********OBTENER LISTA DE PRECIOS ESPECIALES********/
   /******SALIR DE LA APLICACION************/
   $(".btnSalir").click(function() {
     swal({
@@ -1418,6 +2060,14 @@ $(document).ready(function() {
         localStorage.removeItem('listarCertezas');
         localStorage.removeItem('seguimientos');
         localStorage.removeItem('detalleEvento');
+        localStorage.removeItem('miCalendario');
+        localStorage.removeItem('sliderData');
+        localStorage.removeItem('pendientes');
+        localStorage.removeItem('misPendientes');
+        localStorage.removeItem('idEvento');
+        localStorage.removeItem('evento');
+        localStorage.removeItem('detalleVenta');
+        localStorage.removeItem('preciosEspeciales');
         window.location.href = "login.html";
       } else{
 

@@ -13,6 +13,9 @@
         <link rel="stylesheet" href="css/footer.css">
         <link rel="stylesheet" href="css/estilosVistas.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/calendario.css">
+
+        <link rel="stylesheet" href="https://anandchowdhary.github.io/ionicons-3-cdn/icons.css" integrity="sha384-+iqgM+tGle5wS+uPwXzIjZS5v6VkqCUV7YQ/e/clzRHAxYbzpUJ+nldylmtBWCP0" crossorigin="anonymous">
         <!--ESTILOS DE APLICACACIÓN-->
         <script type="text/javascript">
          var url = window.location.pathname;
@@ -44,7 +47,7 @@
               <li><a href="prospectos.html" class="btnProspectos"><i class="fas fa-users"></i>Prospectos</a></li>
               <li><a href="oportunidades.html" class="btnOportunidades"><i class="fas fa-handshake"></i>Oportunidades</a></li>
               <li><a href="clientes.html" class="btnClientes"><i class="fas fa-bookmark"></i>Cartera de Clientes</a></li>
-              <li><a  class="btnCalendario" id="verMiCalendario"><i class="fas fa-calendar"></i>Mi calendario</a></li>
+              <li><a  class="btnpendientes" id="verMipendientes"><i class="fas fa-calendar"></i>Mi pendientes</a></li>
               <li><a href="directorio.html" class="btnDirectorio"><i class="fas fa-address-book"></i>Directorio</a></li>
               <!--<li><a href="metas.html" class="btnMetas"><i class="fas fa-trophy"></i>Mis Metas</a></li>-->
               <li><a class="btnPendientes" id="verPendientes"><i class="fas fa-thumbtack"></i>Pendientes</a></li>
@@ -66,23 +69,43 @@
         </div>
         <div class="container">
           <div class="regresar">
-            <a href="javascript: history.go(-1)" ><i class="fas fa-chevron-left icono-regresar fa-2x"></i></a>
+            <a href="inicio.html" ><i class="fas fa-chevron-left icono-regresar fa-2x"></i></a>
           </div>
           <div class="nombreVista">
                 <h3 id="titulos"><i class="fas fa-thumbtack"></i>Mis Pendientes</h3>
           </div>
         </div>
-        <div class="contenedoresGenerales" id="formularioRecordatorios">
-          <table id="pendingTable">
-              <thead>
-                <tr>
-                  <th>Titulo</th>
-                  <th>Tiempo</th>
-                </tr>
-              </thead>
-              <tbody id="pendiente" >
-              </tbody>
-          </table>
+        <div class="">
+          <div class="mobile-wrapper">
+
+               <!--======= Today =======-->
+
+               <section class="today-box" id="today-box">
+                  <span class="breadcrumb">Hoy</span>
+                  <h3 class="date-title" id="fechaActual"></h3>
+
+                  <div class="plus-icon">
+                     <i class="ion ion-ios-calendar"></i>
+                  </div>
+
+               </section>
+
+               <!--======= Upcoming Events =======-->
+               <section class="upcoming-events">
+                  <div class="container-eventos">
+                     <h3>
+                        Mis Pendientes
+
+                     </h3>
+
+                     <div class="events-wrapper">
+
+                     </div>
+
+                  </div>
+               </section>
+            </div>
+
         </div>
         <!--LIBRERIAS DE JAVASCRIPT PARA FUNCIONAMIENTO DE APLICACIÓN-->
         <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
@@ -94,44 +117,70 @@
         <script type="text/javascript" src="js/all.min.js"></script>
         <script type="text/javascript" src="js/sweetalert.min.js"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
-              var json = localStorage.getItem("rp_data");
+          $(document).ready(function(){
+            var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            var fecha =new Date();
+            $("#fechaActual").html(fecha.getDate() + " de " + meses[fecha.getMonth()] + " de " + fecha.getFullYear())
 
-              var recordatorio = JSON.parse(json);
+            /********MOSTRAR EVENTOS**********/
+            var json = localStorage.misPendientes;
+            var pendientes = JSON.parse(json);
 
-              $("#pendiente").html("");
-              $("#fila").html("");
-              for (x = 0; x < recordatorio.data.length; x++) {
+            $(".events-wrapper").html("");
 
-                var fila = `<tr id="fila"><td>`+recordario.data[x][0]+`</td><td>`+recordario.data[x][1]+`</td></tr>`;
+            for (x = 0; x < pendientes.length; x++) {
 
-                $("#pendiente").append(fila);
+              var evento = pendientes[x]["evento"];
+              switch (evento) {
+                case 'citas':
+                  var iconoEvento = '<i class="ion ion-ios-calendar"></i>';
+                  break;
+                case 'llamada':
+                  var iconoEvento = '<i class="ion ion-ios-call-outline"></i>';
+                  break;
+                case 'visitas':
+                  var iconoEvento = '<i class="ion ion-ios-map-outline"></i>';
+                  break;
+                case 'recordatorios':
+                  var iconoEvento = '<i class="ion ion-ios-alarm-outline"></i>';
+                  break;
+                case 'demostraciones':
+                  var iconoEvento = ' <i class="ion ion-ios-color-fill-outline"></i>';
+                  break;
 
               }
 
-              var divVacio = `<div class="contenedorVacio">
-              </div>`;
-              $("#pendiente").append(divVacio);
+              if (pendientes[x]["finalizada"] != 1) {
+                  var estatus = '<i class="fas fa-flag-checkered fa-2x" style="color:#FF6347;margin-left:-70px"></i>';
+              }else{
+                  var estatus = '<i class="fas fa-flag-checkered fa-2x" style="color:#008B8B;margin-left:-70px"></i>';
+              }
+              if (pendientes[x]["finalizada"] != 1) {
+                var filaEvento = `<a idEvento="`+pendientes[x]["id"]+`" evento="`+pendientes[x]["evento"]+`"><div class="event active">
+                   `+iconoEvento+`
+                   <h4 class="event__point">`+pendientes[x]["hora"]+`</h4>
+                   <span class="event__duration">`+estatus+`</span>
+                   <p class="event__description">
+                      `+pendientes[x]["asunto"]+`
+                   </p>
 
+                </div></a>`;
+              }else{
+                var filaEvento = `<div class="event active">
+                   `+iconoEvento+`
+                   <h4 class="event__point">`+pendientes[x]["hora"]+`</h4>
+                   <span class="event__duration">`+estatus+`</span>
+                   <p class="event__description">
+                      `+pendientes[x]["asunto"]+`
+                   </p>
 
-            });
+                </div>`;
+              }
+              $(".events-wrapper").append(filaEvento);
+            }
+
+          })
         </script>
-        <style media="screen">
-          table {
-              font-family: arial, sans-serif;
-              border-collapse: collapse;
-              width: 100%;
-            }
 
-            td, th {
-              border: 1px solid #dddddd;
-              text-align: left;
-              padding: 8px;
-            }
-
-            tr:nth-child(even) {
-              background-color: #dddddd;
-            }
-        </style>
     </body>
 </html>

@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="css/footer.css">
         <link rel="stylesheet" href="css/estilosVistas.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/calendario.css">
+        <link rel="stylesheet" href="https://anandchowdhary.github.io/ionicons-3-cdn/icons.css" integrity="sha384-+iqgM+tGle5wS+uPwXzIjZS5v6VkqCUV7YQ/e/clzRHAxYbzpUJ+nldylmtBWCP0" crossorigin="anonymous">
         <!--ESTILOS DE APLICACACIÓN-->
         <script type="text/javascript">
          var url = window.location.pathname;
@@ -44,7 +46,7 @@
               <li><a href="prospectos.html" class="btnProspectos"><i class="fas fa-users"></i>Prospectos</a></li>
               <li><a href="oportunidades.html" class="btnOportunidades"><i class="fas fa-handshake"></i>Oportunidades</a></li>
               <li><a href="clientes.html" class="btnClientes"><i class="fas fa-bookmark"></i>Cartera de Clientes</a></li>
-              <li><a  class="btnCalendario" id="verMiCalendario"><i class="fas fa-calendar"></i>Mi calendario</a></li>
+              <li><a  class="btnagenda" id="verMiagenda"><i class="fas fa-calendar"></i>Mi agenda</a></li>
               <li><a href="directorio.html" class="btnDirectorio"><i class="fas fa-address-book"></i>Directorio</a></li>
               <!--<li><a href="metas.html" class="btnMetas"><i class="fas fa-trophy"></i>Mis Metas</a></li>-->
               <li><a class="btnPendientes" id="verPendientes"><i class="fas fa-thumbtack"></i>Pendientes</a></li>
@@ -69,22 +71,36 @@
             <a href="javascript: history.go(-1)" ><i class="fas fa-chevron-left icono-regresar fa-2x"></i></a>
           </div>
           <div class="nombreVista">
-                <h3 id="titulos"><i class="fas fa-address-book"></i>Directorio</h3>
+
           </div>
         </div>
-        <div class="contenedoresGenerales" id="contenedorDirectorio">
-          <table>
-            <thead>
-              <th>Nombre</th>
-              <th>Telefono</th>
-              <th>Celular</th>
-              <th>Correo</th>
-            </thead>
-            <tbody id="tablaDirectorio">
+        <div class="">
+          <div class="mobile-wrapper">
 
-            </tbody>
+               <!--======= Today =======-->
 
-          </table>
+               <section class="today-box" id="today-box">
+                  <span class="breadcrumb"></span>
+                  <h3 class="" id="fechaActual">Directorio</h3>
+
+                  <div class="plus-icon">
+                     <i class="ion ion-ios-address"></i>
+                  </div>
+
+               </section>
+
+               <!--======= Upcoming Events =======-->
+               <section class="upcoming-events">
+                  <div class="container-eventos">
+
+
+                     <div class="events-wrapper">
+
+                     </div>
+
+                  </div>
+               </section>
+            </div>
 
         </div>
         <!--LIBRERIAS DE JAVASCRIPT PARA FUNCIONAMIENTO DE APLICACIÓN-->
@@ -98,52 +114,32 @@
         <script type="text/javascript" src="js/sweetalert.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
+              /********MOSTRAR EVENTOS**********/
               var json = localStorage.listaGeneralProspectos;
-              var detalle = JSON.parse(json);
-              $("#tablaDirectorio").html("");
-              $("#fila").html("");
-              for (x = 0; x < detalle.length; x++) {
+              var agenda = JSON.parse(json);
 
-                var fila = `<tr id="fila"><td>`+detalle[x]["nombreCompleto"]+`</td><td>`+detalle[x]["telefono"]+`</td><td>`+detalle[x]["celular"]+`</td><td>`+detalle[x]["correo"]+`</td></tr>`;
+              $(".events-wrapper").html("");
 
-                $("#tablaDirectorio").append(fila);
+              for (x = 0; x < agenda.length; x++) {
 
+                var filaAgenda = `<div class="event active">
+
+                   <h4 class="event__point">`+agenda[x]["nombreCompleto"]+`</h4>
+                   <p class="event__description">
+                      `+agenda[x]["celular"]+`<br>
+                      `+agenda[x]["telefono"]+`<br>
+                      `+agenda[x]["correo"]+`
+                   </p>
+
+
+                </div>`;
+                $(".events-wrapper").append(filaAgenda);
               }
 
-              var divVacio = `<div class="contenedorVacio">
-              </div>`;
-              $("#tablaDirectorio").append(divVacio);
 
 
             });
         </script>
-        <style media="screen">
-          table {
-              font-family: arial, sans-serif;
-              border-collapse: collapse;
-              width: 100%;
-            }
-            th{
-              border: 1px solid #dddddd;
-              text-align: left;
-              padding: 8px;
-              background: #008B8B;
-              color: white;
-
-            }
-            td {
-              border: 1px solid #dddddd;
-              text-align: left;
-              padding: 8px;
-            }
-
-            tr:nth-child(even) {
-              background-color: #dddddd;
-            }
-            tr:hover{
-                background: #008B8B;
-                color: white;
-            }
-        </style>
+        
     </body>
 </html>

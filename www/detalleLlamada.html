@@ -72,7 +72,21 @@
                 <h3 id="titulos"><i class="fas fa-info-circle fa-1x"></i>Detalle Llamada</h3>
           </div>
         </div>
-        <div class="contenedoresGenerales" id="contenedorVentas">
+        <div class="contenedoresGenerales" id="formularioRecordatorios">
+          <form>
+            <input type="hidden" class="perfil" id="idEventoRecordatorio" value="" disabled>
+            <input type="hidden" class="perfil" id="idProspectoEdicion" value="" disabled>
+            <span>Contacto: </span> <input type="text" class="perfil" id="nombreProspectoRecordatorioEdicion" value="" disabled>
+            <span>Titulo: </span> <input type="text" class="perfil" id="tituloRecordatorioEdicion" value="">
+            <span>Fecha: </span><input type="date" class="perfil" id="fechaRecordatorioEdicion" placeholder="">
+            <span>Hora: </span><input type="time" class="perfil" id="horaRecordatorioEdicion" placeholder="">
+            <span>Descripcion: </span><textarea class="comentariosGenerales" id="descripcionRecordatorioEdicion" rows="10" cols="50"></textarea>
+
+            <div class="contenedor-botones">
+              <button type="button" class="buttonGeneral" id="editarLlamada" onclick="edit_reminder()"><i class="fas fa-bell fa-2x"></i></button>
+              <button type="button" class="buttonUbicacion" id="finalizar" ><i class="fas fa-calendar-check fa-2x"></i></button>
+            </div>
+          </form>
 
         </div>
 
@@ -87,33 +101,20 @@
         <script type="text/javascript" src="js/sweetalert.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                  var json = localStorage.ventasRealizadas;
-                  var types = JSON.parse(json);
+              var json = localStorage.detalleEvento;
+              var detalle = JSON.parse(json);
 
-                  $("#contenedorVentas").html("");
+              for (x = 0; x < detalle.length; x++) {
+                  $("#idEventoRecordatorio").val(detalle[x]["id"]);
+                  $("#nombreProspectoRecordatorioEdicion").val(detalle[x]["nombreCompleto"]);
+                  $("#tituloRecordatorioEdicion").val(detalle[x]["titulo"]);
+                  $("#fechaRecordatorioEdicion").val(detalle[x]["fecha"]);
+                  $("#horaRecordatorioEdicion").val(detalle[x]["hora"]);
+                  $("#descripcionRecordatorioEdicion").val(detalle[x]["descripcion"]);
+                  $("#idProspectoEdicion").val(detalle[x]["idProspecto"]);
 
-                  for (x = 0; x < types.length; x++) {
 
-                    var filaVentas = `<a class="detalleProspecto" idVenta="`+types[x]["id"]+`"><div class="filaGeneral">
-                      <div>
-
-                        <i class="fas fa-wallet fa-3x iconos-contenedor"></i>
-                      </div>
-                      <div class="conceptoVenta">
-                        <h3>`+types[x]["concepto"]+`</h3>
-                      </div>
-                      <div class="montoVenta">
-                        <h4><i class="fas fa-dollar-sign fa-1x iconos"></i> `+types[x]["montoTotal"]+`</h4>
-                        <h5>`+types[x]["cerradoDia"]+`      `+types[x]["estatusPagos"]+` </h5>
-                      </div>
-
-                    </div></a>`;
-                    $("#contenedorVentas").append(filaVentas);
-                  }
-                  var divVacio = `<div class="contenedorVacio">
-                  </div>`;
-                  $("#contenedorVentas").append(divVacio);
-
+              }
 
             })
         </script>

@@ -98,9 +98,9 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
+apply from: "../cordova-plugin-badge/crmapp-badge.gradle"
 apply from: "../cordova-plugin-firebase-lib/crmapp-build.gradle"
 apply from: "../cordova-support-google-services/crmapp-build.gradle"
-apply from: "../cordova-plugin-badge/crmapp-badge.gradle"
 apply from: "../cordova-plugin-local-notification/crmapp-localnotification.gradle"
 apply from: "../phonegap-plugin-barcodescanner/crmapp-barcodescanner.gradle"
 // PLUGIN GRADLE EXTENSIONS END

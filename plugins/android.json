@@ -13,10 +13,13 @@
     "cordova-plugin-androidx-adapter": {
       "PACKAGE_NAME": "com.sfdk.crmapp"
     },
-    "cordova-plugin-firebase-lib": {
+    "cordova-plugin-device": {
       "PACKAGE_NAME": "com.sfdk.crmapp"
     },
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-firebase-lib": {
       "PACKAGE_NAME": "com.sfdk.crmapp"
     },
     "cordova-plugin-firebase-messaging": {
@@ -25,31 +28,28 @@
       "ANDROIDX_CORE_VERSION": "1.0.+",
       "PACKAGE_NAME": "com.sfdk.crmapp"
     },
-    "cordova-plugin-local-notification": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-vibration": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
     "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "com.sfdk.crmapp"
     },
     "cordova-plugin-globalization": {
       "PACKAGE_NAME": "com.sfdk.crmapp"
     },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
     "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.sfdk.crmapp"
     },
     "phonegap-plugin-barcodescanner": {
@@ -58,13 +58,13 @@
     }
   },
   "dependent_plugins": {
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
     "cordova-support-android-plugin": {
       "PACKAGE_NAME": "com.sfdk.crmapp"
     },
     "cordova-support-google-services": {
-      "PACKAGE_NAME": "com.sfdk.crmapp"
-    },
-    "cordova-plugin-badge": {
       "PACKAGE_NAME": "com.sfdk.crmapp"
     }
   }

@@ -197,6 +197,10 @@
 /*funcion agregar recordatorio*/
 /*FUNCION EDITAR UN RECORDATORIO********/
 function scheduleEdit(id,title,message,schedule_time){
+  cordova.plugins.notification.local.clear(id, function() {
+    alert("Eliminado");
+  });
+  /*
   cordova.plugins.notification.local.schedule({
     id: id,
     title: title,
@@ -205,32 +209,32 @@ function scheduleEdit(id,title,message,schedule_time){
     at: schedule_time,
     text: message
 });
-
-var array = [id,title,message,schedule_time];
+*/
+//var array = [id,title,message,schedule_time];
 
 var evento = localStorage.getItem("evento");
 switch (evento) {
   case 'citas':
-    infoCitas.data[infoCitas.data.length] = array;
+    //infoCitas.data[infoCitas.data.length] = array;
     localStorage.setItem("rp_data_citas",JSON.stringify(infoCitas));
 
     break;
   case 'llamada':
-    infoLlamadas.data[infoLlamadas.data.length] = array;
+    //infoLlamadas.data[infoLlamadas.data.length] = array;
     localStorage.setItem("rp_data_llamadas",JSON.stringify(infoLlamadas));
 
     break;
   case 'visitas':
-    infoVisitas.data[infoVisitas.data.length] = array;
+    //infoVisitas.data[infoVisitas.data.length] = array;
     localStorage.setItem("rp_data_visitas",JSON.stringify(infoVisitas));
       alert(JSON.stringify(infoVisitas));
     break;
   case 'recordatorios':
-    infoRecordatorios.data[infoRecordatorios.data.length] = array;
+    //infoRecordatorios.data[infoRecordatorios.data.length] = array;
     localStorage.setItem("rp_data_recordatorios",JSON.stringify(infoRecordatorios));
     break;
   case 'demostraciones':
-    infoDemostraciones.data[infoDemostraciones.data.length] = array;
+    //infoDemostraciones.data[infoDemostraciones.data.length] = array;
     localStorage.setItem("rp_data_demostraciones",JSON.stringify(infoDemostraciones));
     break;
 

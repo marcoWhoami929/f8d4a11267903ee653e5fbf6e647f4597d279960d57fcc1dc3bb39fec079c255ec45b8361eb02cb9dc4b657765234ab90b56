@@ -159,14 +159,22 @@ function main(){
                       var datosCotizacion = JSON.parse(json);
 
                       for (i = 0; i < datosCotizacion.length; i++) {
+
                         var concepto = $("#conceptoOportunidad").val(datosCotizacion[i]["concepto"]);
+
                         var monto = $("#montoOportunidad").val(datosCotizacion[i]["monto"]);
                         var productos = datosCotizacion[i]["productos"];
                         var codigos = datosCotizacion[i]["codigos"];
+                        var precios = datosCotizacion[i]["precios"];
+                        var cantidades = datosCotizacion[i]["cantidades"];
                         var product = document.getElementById("productosOportunidad");
                         product.setAttribute("value",productos);
                         var codigo = document.getElementById("codigosOportunidad");
                         codigo.setAttribute("value",codigos);
+                        var precio = document.getElementById("preciosOportunidad");
+                        precio.setAttribute("value",precios);
+                        var cantidad = document.getElementById("cantidadesOportunidad");
+                        cantidad.setAttribute("value",cantidades);
 
                         var separador = ",";
                         var arregloProductos = productos.split(separador);
