@@ -106,18 +106,38 @@
 
                   for (x = 0; x < types.length; x++) {
 
-                    var filaProspecto = `<a class="detalleProspecto" idProspecto="`+types[x]["id"]+`"><div class="filaGeneral">
-                      <div>
-                        <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
-                      </div>
-                      <div class="nombreProspecto">
-                        <h4>`+types[x]["nombreCompleto"]+`</h4>
-                      </div>
-                      <div class="tallerProspecto">
-                        <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
-                      </div>
+                    if (types[x]["habilitado"] == 1) {
 
-                    </div></a>`;
+                      var filaProspecto = `<a class="detalleProspecto" idProspecto="`+types[x]["id"]+`"><div class="filaGeneral">
+                        <div>
+                          <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
+                        </div>
+                        <div class="nombreProspecto">
+                          <h4>`+types[x]["nombreCompleto"]+`</h4>
+                        </div>
+                        <div class="tallerProspecto">
+                          <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                        </div>
+
+                      </div></a>`;
+
+                    }else{
+
+                      var filaProspecto = `<div class="filaGeneral">
+                        <div>
+                          <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
+                        </div>
+                        <div class="nombreProspecto">
+                          <h4>`+types[x]["nombreCompleto"]+`</h4>
+                        </div>
+                        <div class="tallerProspecto">
+                          <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                        </div>
+
+                      </div>`;
+                    }
+
+
                     $("#contenedorProspectos").append(filaProspecto);
                   }
                   var divVacio = `<div class="contenedorVacio">

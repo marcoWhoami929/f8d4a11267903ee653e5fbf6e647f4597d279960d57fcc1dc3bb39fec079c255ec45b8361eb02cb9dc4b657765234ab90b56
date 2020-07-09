@@ -313,6 +313,7 @@ input:-moz-placeholder {
   margin-left: 20px;
   margin-bottom: 10px;
 }
+
 /**ESTILOS BUSCADOR*/
 .filaGeneral{
     margin-top: 20px;
@@ -380,13 +381,14 @@ input:-moz-placeholder {
   margin-left: 80px;
   font-size: 22px;
 }
-.conceptoVenta h3{
+.conceptoVenta h5{
   margin-top: -20px;
-  color: #008B8B;
+  margin-bottom: -20px;
+  color: #00000;
   font-weight: bold;
 }
 .montoVenta h4{
-  margin-top: -20px;
+  margin-top: -30px;
   color: #008B8B;
   font-weight: bold;
 }

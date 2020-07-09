@@ -156,18 +156,34 @@ $(document).ready(function() {
             $("#contenedorProspectos").html("");
             for (x = 0; x < types.length; x++) {
 
-              var filaProspecto = `<a class="detalleProspecto" idProspecto="`+types[x]["id"]+`"><div class="filaGeneral">
-              <div>
-              <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
-              </div>
-              <div class="nombreProspecto">
-              <h4>`+types[x]["nombreCompleto"]+`</h4>
-              </div>
-              <div class="tallerProspecto">
-              <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
-              </div>
+              if (types[x]["habilitado"] == 1) {
+                var filaProspecto = `<a class="detalleProspecto" idProspecto="`+types[x]["id"]+`"><div class="filaGeneral">
+                <div>
+                <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
+                </div>
+                <div class="nombreProspecto">
+                <h4>`+types[x]["nombreCompleto"]+`</h4>
+                </div>
+                <div class="tallerProspecto">
+                <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                </div>
 
-              </div></a>`;
+                </div></a>`;
+              }else{
+                var filaProspecto = `<div class="filaGeneral">
+                <div>
+                <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
+                </div>
+                <div class="nombreProspecto">
+                <h4>`+types[x]["nombreCompleto"]+`</h4>
+                </div>
+                <div class="tallerProspecto">
+                <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                </div>
+
+                </div>`;
+              }
+
               $("#contenedorProspectos").append(filaProspecto);
 
             }
@@ -188,19 +204,34 @@ $(document).ready(function() {
       $("#contenedorProspectos").html("");
 
       for (x = 0; x < types.length; x++) {
+        if (types[x]["habilitado"] == 1) {
+          var filaProspecto = `<a class="detalleProspecto" idProspecto="`+types[x]["id"]+`"><div class="filaGeneral">
+          <div>
+          <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
+          </div>
+          <div class="nombreProspecto">
+          <h4>`+types[x]["nombreCompleto"]+`</h4>
+          </div>
+          <div class="tallerProspecto">
+          <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+          </div>
 
-        var filaProspecto = `<a class="detalleProspecto" idProspecto="`+types[x]["id"]+`"><div class="filaGeneral">
-        <div>
-        <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
-        </div>
-        <div class="nombreProspecto">
-        <h4>`+types[x]["nombreCompleto"]+`</h4>
-        </div>
-        <div class="tallerProspecto">
-        <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
-        </div>
+          </div></a>`;
+        }else{
+          var filaProspecto = `<div class="filaGeneral">
+          <div>
+          <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
+          </div>
+          <div class="nombreProspecto">
+          <h4>`+types[x]["nombreCompleto"]+`</h4>
+          </div>
+          <div class="tallerProspecto">
+          <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+          </div>
 
-        </div></a>`;
+          </div>`;
+        }
+
         $("#contenedorProspectos").append(filaProspecto);
       }
     }
@@ -817,7 +848,7 @@ $(document).ready(function() {
 
         } else if (data == "failed") {
 
-              swal("Upss", "No hay Ventas Concretadas Aún.", "info");
+              swal("Upss", "No hay Ventas Concretadas.", "info");
 
         }
       }

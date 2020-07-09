@@ -179,12 +179,14 @@ function main(){
                         var separador = ",";
                         var arregloProductos = productos.split(separador);
                         var arregloCodigos = codigos.split(separador);
+                        var arregloPrecios = precios.split(separador);
+                        var arregloCantidades = cantidades.split(separador);
 
                         $("#tablaProductos").html("");
                         $("#fila").html("");
                         for (var x=0; x < arregloProductos.length; x++) {
 
-                          var fila = `<tr id="fila"><td>`+arregloCodigos[x]+`</td><td>`+arregloProductos[x]+`</td></tr>`;
+                          var fila = `<tr id="fila"><td>`+arregloCodigos[x]+`</td><td>`+arregloProductos[x]+`</td><td>`+arregloCantidades[x]+`</td><td>`+arregloPrecios[x]+`</td></tr>`;
                             $("#tablaProductos").append(fila);
                          }
 
