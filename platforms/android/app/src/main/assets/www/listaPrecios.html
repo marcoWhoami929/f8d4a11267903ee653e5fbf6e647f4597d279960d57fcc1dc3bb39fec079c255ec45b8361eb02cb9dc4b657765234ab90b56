@@ -57,13 +57,13 @@
           </nav>
         </header>
         <div class="navbar">
-          <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-1x"></i></a>
-          <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-1x"></i></a>
-          <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-1x"></i></a>
+          <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-sm distancia"></i></a>
+          <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-sm distancia"></i></a>
+          <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-sm distancia"></i></a>
           <a href="inicio.html" class="home"><i class="fas fa-home fa-2x icono-home"></i></a>
-          <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-1x"></i></a>
-          <a href="llamadas.html"><i class="fas fa-phone fa-1x"></i></a>
-          <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-1x"></i></a>
+          <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-sm distancia"></i></a>
+          <a href="llamadas.html"><i class="fas fa-phone fa-sm distancia"></i></a>
+          <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-sm distancia"></i></a>
 
         </div>
         <div class="container">
@@ -74,6 +74,18 @@
 
           </div>
         </div>
+        <div class="buscador-precios">
+          <div class="flexsearch">
+              <div class="flexsearch--wrapper">
+                <form class="flexsearch--form" action="listaPrecios.html" method="post" id="buscadorPrecios">
+                  <div class="flexsearch--input-wrapper">
+                    <input class="flexsearch--input" type="search" placeholder="Buscar producto.." id="datosProductoBusqueda">
+                  </div>
+                </form>
+              </div>
+          </div>
+        </div>
+
         <div class="">
           <div class="mobile-wrapper">
 
@@ -88,20 +100,25 @@
                   </div>
 
                </section>
+               <br>
+               <br>
                <small>*Precios sin iva.</small>
-               <table>
-                 <thead>
-                   <th>Codigo</th>
-                   <th>Producto</th>
-                   <th>Precio Distribuidor</th>
-                   <th>Precio Especial</th>
-                   <th>%</th>
-                 </thead>
-                 <tbody id="tablaPrecios">
+               <div class="containerPrecios">
+                 <table>
+                   <thead>
+                     <th>Codigo</th>
+                     <th>Producto</th>
+                     <th>Precio Publico</th>
+                     <th>Precio Especial</th>
+                     <th>%</th>
+                   </thead>
+                   <tbody id="tablaPrecios">
 
-                 </tbody>
+                   </tbody>
 
-               </table>
+                 </table>
+               </div>
+
 
             </div>
 
@@ -127,7 +144,7 @@
             $("#fila").html("");
             for (x = 0; x < producto.length; x++) {
 
-              var fila = `<tr id="fila"><td>`+producto[x]["codigo"]+`</td><td>`+producto[x]["producto"]+`</td><td>`+producto[x]["precioDistribuidor"]+`</td><td>`+producto[x]["precioEspecial"]+`</td><td>`+producto[x]["descuento"]+`</td></tr>`;
+              var fila = `<tr id="fila"><td>`+producto[x]["codigo"]+`</td><td>`+producto[x]["producto"]+`</td><td>`+producto[x]["precioPublico"]+`</td><td>`+producto[x]["precioEspecial"]+`</td><td>`+producto[x]["descuento"]+`</td></tr>`;
 
               $("#tablaPrecios").append(fila);
 
@@ -135,7 +152,7 @@
 
             var divVacio = `<div class="contenedorVacio">
             </div>`;
-            $("#tablaDirectorio").append(divVacio);
+            $("#tablaPrecios").append(divVacio);
 
 
           });
@@ -144,7 +161,9 @@
           table {
               font-family: arial, sans-serif;
               border-collapse: collapse;
-              width: 100%;
+              width: 100px;
+
+
             }
             th{
               border: 1px solid #dddddd;
@@ -152,6 +171,7 @@
               padding: 8px;
               background: #008B8B;
               color: white;
+
 
             }
             td {
@@ -166,6 +186,10 @@
             tr:hover{
                 background: #008B8B;
                 color: white;
+            }
+            .containerPrecios{
+              width: 100%;
+              overflow-x: scroll;
             }
         </style>
     </body>

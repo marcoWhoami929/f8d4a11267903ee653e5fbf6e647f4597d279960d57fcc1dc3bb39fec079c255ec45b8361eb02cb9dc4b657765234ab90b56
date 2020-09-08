@@ -55,13 +55,13 @@
           </nav>
         </header>
         <div class="navbar">
-          <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-1x"></i></a>
-          <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-1x"></i></a>
-          <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-1x"></i></a>
+          <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-sm distancia"></i></a>
+          <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-sm distancia"></i></a>
+          <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-sm distancia"></i></a>
           <a href="inicio.html" class="home"><i class="fas fa-home fa-2x icono-home"></i></a>
-          <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-1x"></i></a>
-          <a href="llamadas.html"><i class="fas fa-phone fa-1x"></i></a>
-          <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-1x"></i></a>
+          <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-sm distancia"></i></a>
+          <a href="llamadas.html"><i class="fas fa-phone fa-sm distancia"></i></a>
+          <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-sm distancia"></i></a>
 
         </div>
         <div class="container">
@@ -98,6 +98,13 @@
               <center><h3>Descartar</h3></center>
             </div>
           </div></a>
+          <a  href="speech.html" class="btnSpeech" id="btnSpeech"><div class="box box-4" style="margin-left:5px">
+            <center><i class="fas fa-comments-dollar iconos fa-4x"></i></center>
+
+            <div class="contenedor-box">
+              <center><h3>Speech</h3></center>
+            </div>
+          </div></a>
         </div>
         <div class="contenedorVacio">
         </div>
@@ -125,6 +132,11 @@
               }else{
 
                   document.getElementById("btnConvertirVenta").style.display = "none";
+              }
+              if (localStorage.idUsuario == 2 || localStorage.idUsuario == 3 || localStorage.idUsuario == 4) {
+
+              }else{
+                  document.getElementById("btnSpeech").style.display = "none";
               }
           })
         </script>

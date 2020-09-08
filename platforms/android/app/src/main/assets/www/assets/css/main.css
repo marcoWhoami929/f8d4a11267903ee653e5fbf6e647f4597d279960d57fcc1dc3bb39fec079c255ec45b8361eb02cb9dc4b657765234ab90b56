@@ -561,6 +561,11 @@ h1 {
     font-size: 2rem;
     color: #009688
 }
+#sinProductos {
+    font-size: 2rem;
+    color: #009688;
+    margin-left: -50px;
+}
 
 .note {
     margin: 1rem

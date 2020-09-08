@@ -99,3 +99,19 @@ section {
 
 }
 /*************MENU LATERAL***********/
+@media screen and (max-width: 320px) and (max-height: 490px) {
+	header {
+		width:100%;
+		position: sticky;
+
+		z-index: 1001;
+	}
+	header nav {
+		width:50%;
+		padding-top: 50px;
+		margin:0px auto;
+		background:#008B8B;
+	  max-height: 350px;
+	 	overflow:scroll;
+	}
+ }

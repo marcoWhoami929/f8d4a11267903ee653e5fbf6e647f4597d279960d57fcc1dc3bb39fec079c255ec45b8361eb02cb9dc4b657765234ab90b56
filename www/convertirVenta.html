@@ -55,13 +55,13 @@
           </nav>
         </header>
         <div class="navbar">
-          <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-1x"></i></a>
-          <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-1x"></i></a>
-          <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-1x"></i></a>
+          <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-sm distancia"></i></a>
+          <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-sm distancia"></i></a>
+          <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-sm distancia"></i></a>
           <a href="inicio.html" class="home"><i class="fas fa-home fa-2x icono-home"></i></a>
-          <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-1x"></i></a>
-          <a href="llamadas.html"><i class="fas fa-phone fa-1x"></i></a>
-          <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-1x"></i></a>
+          <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-sm distancia"></i></a>
+          <a href="llamadas.html"><i class="fas fa-phone fa-sm distancia"></i></a>
+          <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-sm distancia"></i></a>
 
         </div>
         <div class="container">
@@ -82,6 +82,21 @@
                 <span>Cerrado el: </span> <input type="text" class="perfil" id="fechaVenta" value="" disabled>
                 <span>Monto: </span><input type="text" class="perfil" id="montoVenta" placeholder="$" disabled>
                 <span>Comisión: </span><input type="text" class="perfil" id="comisionVenta" placeholder="0" disabled>
+                <span>Serie Factura: </span>
+                <div class="box-select">
+                <select class="perfil" name="serieVenta" id="serieVenta">
+                    <option value="">Elegir</option>
+                    <option value="FACD">FACD</option>
+                    <option value="FAND">FAND</option>
+                    <option value="FAPB">FAPB</option>
+                    <option value="FASM">FASM</option>
+                    <option value="FACP">FACP</option>
+                    <option value="FASG">FASG</option>
+                    <option value="FARF">FARF</option>
+                    <option value="FATR">FATR</option>
+                </select>
+              </div>
+                <span>Folio Factura: </span><input type="text" class="perfil" id="folioVenta" placeholder="Folio" >
                 <span>Observaciones: </span><textarea class="comentariosGenerales" id="observacionesVenta" rows="10" cols="50"></textarea>
                 <div class="contenedor-botones">
                   <button type="button" class="buttonGeneral" id="btnCerrarVenta"><i class="fas fa-dollar-sign fa-2x"></i></button>

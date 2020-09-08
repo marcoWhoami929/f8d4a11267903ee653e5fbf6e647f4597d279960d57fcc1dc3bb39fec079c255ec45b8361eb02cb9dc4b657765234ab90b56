@@ -52,7 +52,8 @@ function main(){
   			localStorage.setItem("longitudAgente",coordenadas.longitude);
 
   		}else{
-
+        localStorage.setItem("latitudAgente",coordenadas.latitude);
+  			localStorage.setItem("longitudAgente",coordenadas.longitude);
 
   		}
   			$latitud.innerText = coordenadas.latitude;

@@ -5,7 +5,7 @@
   margin: 0;
   height: 50px;
   z-index: 10001;
-  position: fixed;
+  position: absolute;
 }
 .contenedor-perfil{
   width: 100%;
@@ -13,7 +13,7 @@
   margin-top: -80px;
   height: 150px;
   z-index: -1;
-  position: fixed;
+  position: absolute;
 }
 #titulos{
   color:white;
@@ -25,6 +25,7 @@
   font-size: 16px;
   font-weight: bold;
 }
+
 .contenedorInicio {
   margin-top: 80px;
   display: grid;
@@ -42,7 +43,7 @@
   text-decoration: none;
 }
 .contenedorInicioTablero {
-  margin-top: 220px;
+  margin-top: 200px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 200px 200px 200px;
@@ -51,7 +52,7 @@
     "box-1 box-2"
     "box-3 box-4"
     "box-5 box-6";
-    max-height: 500px;
+    max-height: 800px;
     overflow: scroll;
 }
 .contenedorInicioTablero a{
@@ -136,13 +137,38 @@
   border: 1px solid 024959;
   background:white;
   margin-top: 0px;
-  margin-left: 5px;
+  margin-left: 0px;
   z-index: -1;
   margin-right: 5px;
 
+
+}
+.distancia{
+  margin-left: -5px;
 }
 
 .icono-home{
+  color: #008B8B;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+.home-detalle{
+  display:block;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 1px solid 024959;
+  background:white;
+  margin-top: 0px;
+  margin-left: 0px;
+  z-index: -1;
+  margin-right: 5px;
+
+
+}
+
+
+.icono-home-detalle{
   color: #008B8B;
   margin-top: -10px;
   margin-left: -10px;
@@ -155,7 +181,9 @@
 .iconos:hover{
   color: #0cafa9;
 }
-
+.textAgente{
+  color: #008B8B;
+}
 .contenedor-box{
   background:white;
   height:80px;
@@ -177,6 +205,15 @@
   height: 80px;
   position: fixed;
   z-index: 0;
+
+}
+.buscador-precios{
+  width: 100%;
+  background: #BEBEBE;
+  margin-top:160px;
+  height: 80px;
+  position: absolute;
+  z-index: 1;
 
 }
 /**ESTILOS BUSCADOR*/
@@ -292,6 +329,13 @@ input:-moz-placeholder {
   overflow: scroll;
   max-height: 500px;
   margin-top: 50px;
+
+}
+.contenedorSpeech{
+  overflow: scroll;
+  max-height: 500px;
+  margin-top: 50px;
+  margin-bottom: 80px;
 
 }
 #detallesProspecto{
@@ -423,7 +467,7 @@ input:-moz-placeholder {
   margin-top: 70px;
   z-index: -1;
   color: white;
-  position: fixed;
+  position: absolute;
 }
 .user-data h3{
   margin-top: 10px;
@@ -483,3 +527,99 @@ input:-moz-placeholder {
 /**ESTILOS INPUTS*****/
 
 /***********ESTILOS Propectos******/
+@media screen and (max-width: 320px) and (max-height: 490px) {
+  .buscador{
+    width: 100%;
+    background: #BEBEBE;
+    margin-top:50px;
+    height: 50px;
+    position: fixed;
+    z-index: 0;
+
+  }
+  .buscador-precios{
+    width: 100%;
+    background: #BEBEBE;
+    margin-top:160px;
+    height: 50px;
+    position: absolute;
+    z-index: 1;
+
+  }
+  .flexsearch--input {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 30px;
+    padding: 0 46px 0 10px;
+    border-color: #888;
+    border-radius: 35px;
+    /* (height/2) + border-width */
+    border-style: solid;
+    border-width: 5px;
+    margin-top: 3px;
+    color: #333;
+    font-size: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+
+  }
+  .contenedorProspectos{
+    overflow: scroll;
+    max-height: 480px;
+    margin-top: 100px;
+
+  }
+  .contenedoresGenerales{
+    overflow: scroll;
+    max-height: 500px;
+    margin-top: 50px;
+
+  }
+  .contenedor-perfil{
+    width: 100%;
+    background: #008B8B;
+    margin-top: -80px;
+    height: 150px;
+    z-index: -1;
+    position: absolute;
+  }
+  .container{
+    width: 100%;
+    background: #008B8B;
+    margin: 0;
+    height: 50px;
+    z-index: 10001;
+    position: absolute;
+  }
+
+  #detallesProspecto{
+    overflow: scroll;
+    max-height: 480px;
+    margin-top: 130px;
+  }
+  .user-data{
+    background:#c4c3d0;
+    width: 100%;
+    height: 50px;
+    margin-top: 70px;
+    z-index: -1;
+    color: white;
+    position: absolute;
+  }
+  #titulos{
+    color:white;
+    font-size: 17px;
+    font-weight: bold;
+  }
+  #subtitulos{
+    color:white;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  #fechaEvento{
+    width: 40%;
+  }
+
+ }

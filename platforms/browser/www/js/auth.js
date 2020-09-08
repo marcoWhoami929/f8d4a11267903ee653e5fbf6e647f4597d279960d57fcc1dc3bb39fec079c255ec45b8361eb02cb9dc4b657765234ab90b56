@@ -157,6 +157,29 @@ $(document).ready(function() {
             for (x = 0; x < types.length; x++) {
 
               if (types[x]["habilitado"] == 1) {
+
+                var agentes = [
+                  {"id":2,"agente":"Orlando Briones"},
+                  {"id":3,"agente":"Gerónimo Bautista"},
+                  {"id":4,"agente":"Jonathan González Sánchez"},
+                  {"id":5,"agente":"San Manuel"},
+                  {"id":6,"agente":"Reforma"},
+                  {"id":7,"agente":"Capu"},
+                  {"id":8,"agente":"Santiago"},
+                  {"id":9,"agente":"Las Torres"}];
+
+                Array.prototype.findBy = function(column,value){
+                  for (var i = 0; i < this.length; i++) {
+                    var object = this[i];
+                    if (column in object && object[column]=== value) {
+                      return object["agente"];
+                    }
+                  }
+                  return null;
+                }
+                var agente = types[x]["idAgente"]*1;
+                var agenteVenta = agentes.findBy('id', agente);
+
                 var filaProspecto = `<a class="detalleProspecto" idProspecto="`+types[x]["id"]+`"><div class="filaGeneral">
                 <div>
                 <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
@@ -166,10 +189,34 @@ $(document).ready(function() {
                 </div>
                 <div class="tallerProspecto">
                 <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                  <h5 class="textAgente"> `+agenteVenta+`</h5>
                 </div>
 
                 </div></a>`;
               }else{
+
+                var agentes = [
+                  {"id":2,"agente":"Orlando Briones"},
+                  {"id":3,"agente":"Gerónimo Bautista"},
+                  {"id":4,"agente":"Jonathan González Sánchez"},
+                  {"id":5,"agente":"San Manuel"},
+                  {"id":6,"agente":"Reforma"},
+                  {"id":7,"agente":"Capu"},
+                  {"id":8,"agente":"Santiago"},
+                  {"id":9,"agente":"Las Torres"}];
+
+                Array.prototype.findBy = function(column,value){
+                  for (var i = 0; i < this.length; i++) {
+                    var object = this[i];
+                    if (column in object && object[column]=== value) {
+                      return object["agente"];
+                    }
+                  }
+                  return null;
+                }
+                var agente = types[x]["idAgente"]*1;
+                var agenteVenta = agentes.findBy('id', agente);
+
                 var filaProspecto = `<div class="filaGeneral">
                 <div>
                 <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
@@ -179,6 +226,7 @@ $(document).ready(function() {
                 </div>
                 <div class="tallerProspecto">
                 <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                  <h5 class="textAgente"> `+agenteVenta+`</h5>
                 </div>
 
                 </div>`;
@@ -205,6 +253,28 @@ $(document).ready(function() {
 
       for (x = 0; x < types.length; x++) {
         if (types[x]["habilitado"] == 1) {
+          var agentes = [
+            {"id":2,"agente":"Orlando Briones"},
+            {"id":3,"agente":"Gerónimo Bautista"},
+            {"id":4,"agente":"Jonathan González Sánchez"},
+            {"id":5,"agente":"San Manuel"},
+            {"id":6,"agente":"Reforma"},
+            {"id":7,"agente":"Capu"},
+            {"id":8,"agente":"Santiago"},
+            {"id":9,"agente":"Las Torres"}];
+
+          Array.prototype.findBy = function(column,value){
+            for (var i = 0; i < this.length; i++) {
+              var object = this[i];
+              if (column in object && object[column]=== value) {
+                return object["agente"];
+              }
+            }
+            return null;
+          }
+          var agente = types[x]["idAgente"]*1;
+          var agenteVenta = agentes.findBy('id', agente);
+
           var filaProspecto = `<a class="detalleProspecto" idProspecto="`+types[x]["id"]+`"><div class="filaGeneral">
           <div>
           <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
@@ -214,10 +284,33 @@ $(document).ready(function() {
           </div>
           <div class="tallerProspecto">
           <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+            <h5 class="textAgente"> `+agenteVenta+`</h5>
           </div>
 
           </div></a>`;
         }else{
+          var agentes = [
+            {"id":2,"agente":"Orlando Briones"},
+            {"id":3,"agente":"Gerónimo Bautista"},
+            {"id":4,"agente":"Jonathan González Sánchez"},
+            {"id":5,"agente":"San Manuel"},
+            {"id":6,"agente":"Reforma"},
+            {"id":7,"agente":"Capu"},
+            {"id":8,"agente":"Santiago"},
+            {"id":9,"agente":"Las Torres"}];
+
+          Array.prototype.findBy = function(column,value){
+            for (var i = 0; i < this.length; i++) {
+              var object = this[i];
+              if (column in object && object[column]=== value) {
+                return object["agente"];
+              }
+            }
+            return null;
+          }
+          var agente = types[x]["idAgente"]*1;
+          var agenteVenta = agentes.findBy('id', agente);
+
           var filaProspecto = `<div class="filaGeneral">
           <div>
           <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
@@ -227,6 +320,7 @@ $(document).ready(function() {
           </div>
           <div class="tallerProspecto">
           <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+            <h5 class="textAgente"> `+agenteVenta+`</h5>
           </div>
 
           </div>`;
@@ -767,10 +861,12 @@ $(document).ready(function() {
     var fechaVenta = $("#fechaVenta").val();
     var montoVenta = $("#montoVenta").val();
     var comisionVenta = $("#comisionVenta").val();
+    var serieVenta = $("#serieVenta").val();
+    var folioVenta = $("#folioVenta").val();
     var observacionesVenta = $("#observacionesVenta").val();
 
 
-    var dataString = "idAgente=" + idAgente + "&idOportunidad=" + idOportunidad + "&idOportunidadVenta=" + idOportunidadVenta + "&conceptoVenta=" + conceptoVenta + "&fechaVenta=" + fechaVenta + "&montoVenta=" + montoVenta + "&comisionVenta=" + comisionVenta +  "&observacionesVenta=" + observacionesVenta + "&cerrarVenta=";
+    var dataString = "idAgente=" + idAgente + "&idOportunidad=" + idOportunidad + "&idOportunidadVenta=" + idOportunidadVenta + "&conceptoVenta=" + conceptoVenta + "&fechaVenta=" + fechaVenta + "&montoVenta=" + montoVenta + "&comisionVenta=" + comisionVenta + "&serieVenta=" + serieVenta + "&folioVenta=" + folioVenta + "&observacionesVenta=" + observacionesVenta + "&cerrarVenta=";
 
     if ($.trim(idAgente).length > 0) {
       $.ajax({
@@ -804,7 +900,7 @@ $(document).ready(function() {
                       window.location.href = "acciones.html";
                     } else if (data == "failed") {
                       swal("Upss", "No hay oportunidades creadas.", "info");
-                      window.location.href = "acciones.html";
+                      window.location.href = "inicio.html";
                     }
                   }
                 })
@@ -1882,13 +1978,15 @@ $(document).ready(function() {
             if (data != "failed") {
               swal({
                 title: ""+alertaTitulo+"",
-                text: "",
+                text: "Deseas agregar un nuevo seguimiento",
                 icon: "success",
-                button: true,
-                dangerMode: false,
+
+                buttons: ["Nuevo Seguimiento", "Cerrar"],
+                dangerMode: true,
               })
               .then((willDelete) => {
                 if (willDelete) {
+
                   var idAgente = localStorage.idUsuario;
                   if (localStorage.pendientes == "true") {
                     var dataString = "idAgente=" + idAgente + "&listarPendientes=";
@@ -1943,6 +2041,8 @@ $(document).ready(function() {
                     })
                   }
 
+                }else{
+                   window.location.href = "nuevasAcciones.html";
                 }
               });
             } else if (data == "failed") {
@@ -2036,7 +2136,10 @@ $(document).ready(function() {
             localStorage.preciosEspeciales = data;
             window.location.href = "listaPrecios.html";
           } else if (data == "failed") {
-            swal("Upss", "No se pudo obtener la lista de precios.", "info");
+             window.open(`https://sanfranciscodekkerlab.com/crm/listaPrecios.pdf`, '_system');
+             //window.open(`../listaPrecios.pdf`, '_system');
+            //window.location.href = "listaPrecios.html";
+            //swal("Upss", "No se pudo obtener la lista de precios.", "info");
 
           }
         }
@@ -2048,6 +2151,258 @@ $(document).ready(function() {
 
   });
   /**********OBTENER LISTA DE PRECIOS ESPECIALES********/
+  /************BUSCADOR LISTA DE PRECIOS************/
+  $("#buscadorPrecios").keypress(function(e) {
+    if (e.which == 13) {
+      return false;
+    }
+  });
+  $('#datosProductoBusqueda').on('keyup', function (e) {
+    var nodos = document.getElementById('tablaPrecios');
+    while (nodos.firstChild) {
+      nodos.removeChild(nodos.firstChild);
+    }
+    e.preventDefault(); // se previene la acción por defecto
+    var search =  $("#datosProductoBusqueda").val();
+    localStorage.setItem("busqueda", search);
+    var busqueda = localStorage.getItem("busqueda");
+    var idAgente = localStorage.getItem("idUsuario");
+    var dataString = "search=" + busqueda + "&idAgente=" + idAgente + "&listarResultadosBusquedaPrecios=";
+
+    if ($.trim(busqueda).length > 0) {
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        beforeSend: function() {
+          var nodos = document.getElementById('tablaPrecios');
+          while (nodos.firstChild) {
+            nodos.removeChild(nodos.firstChild);
+          }
+        },
+        success: function(data) {
+
+          if (data != "failed") {
+            var json = data;
+            var types = JSON.parse(json);
+            $("#tablaPrecios").html("");
+            $("#fila").html("");
+            for (x = 0; x < types.length; x++) {
+
+              var fila = `<tr id="fila"><td>`+types[x]["codigo"]+`</td><td>`+types[x]["producto"]+`</td><td>`+types[x]["precioPublico"]+`</td><td>`+types[x]["precioEspecial"]+`</td><td>`+types[x]["descuento"]+`</td></tr>`;
+
+              $("#tablaPrecios").append(fila);
+
+            }
+
+            var divVacio = `<div class="contenedorVacio">
+            </div>`;
+            $("#tablaPrecios").append(divVacio);
+
+          } else if (data == "failed") {
+
+          }
+        }
+      })
+    } else {
+      var nodos = document.getElementById('tablaPrecios');
+      while (nodos.firstChild) {
+        nodos.removeChild(nodos.firstChild);
+      }
+      var json = localStorage.preciosEspeciales;
+      var types = JSON.parse(json);
+      $("#tablaPrecios").html("");
+      $("#fila").html("");
+      for (x = 0; x < types.length; x++) {
+
+        var fila = `<tr id="fila"><td>`+types[x]["codigo"]+`</td><td>`+types[x]["producto"]+`</td><td>`+types[x]["precioPublico"]+`</td><td>`+types[x]["precioEspecial"]+`</td><td>`+types[x]["descuento"]+`</td></tr>`;
+
+        $("#tablaPrecios").append(fila);
+
+      }
+
+      var divVacio = `<div class="contenedorVacio">
+      </div>`;
+      $("#tablaPrecios").append(divVacio);
+    }
+    return false;
+  });
+  /***********BUSCADOR LISTA DE PRECIOS************/
+  /**********GENERAR SPEECH********/
+  $("#btnSpeech").click(function(){
+    var idAgente = localStorage.idUsuario;
+    var idProspecto = localStorage.idProspecto;
+    var dataString = "idAgente=" + idAgente +  "&idProspecto=" + idProspecto + "&obtenerSpeech=";
+
+    if ($.trim(idAgente).length > 0) {
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        success: function(data) {
+          if (data != "failed") {
+            localStorage.datosSpeech = data;
+            window.location.href = "speech.html";
+          } else if (data == "failed") {
+            window.location.href = "speech.html";
+            localStorage.removeItem("datosSpeech");
+            localStorage.removeItem("idSpeech");
+
+          }
+        }
+      })
+    } else {
+      swal("Ha Ocurrido un Error", "", "error");
+    }
+    return false;
+
+  });
+  $("#generarSpeech").click(function(){
+    var idAgente = localStorage.idUsuario;
+    var idProspecto = localStorage.idProspecto;
+    var productosCalidad = $("#productosCalidad").val();
+
+    var problemasCalidad = $("#problemasCalidad").val();
+    var asesoramientoCalidad = $("#asesoramientoCalidad").val();
+    var entregasServicio = $("#entregasServicio").val();
+    var igualadoServicio = $("#igualadoServicio").val();
+    var atencionServicio = $("#atencionServicio").val();
+    var productosFueraPrecio = $("#productosFueraPrecio").val();
+    var preciosFueraPrecio = $("#preciosFueraPrecio").val();
+    var canalizado = $("#canalizado").val();
+    var canalizadoCon = $("#canalizadoCon").val();
+    var dataString = "idAgente=" + idAgente +  "&idProspecto=" + idProspecto +   "&productosCalidad=" + productosCalidad +  "&problemasCalidad=" + problemasCalidad +  "&asesoramientoCalidad=" + asesoramientoCalidad + "&entregasServicio=" + entregasServicio + "&igualadoServicio=" + igualadoServicio +  "&atencionServicio=" + atencionServicio + "&productosFueraPrecio=" + productosFueraPrecio + "&preciosFueraPrecio=" + preciosFueraPrecio + "&canalizado=" + canalizado + "&canalizadoCon=" + canalizadoCon + "&generarSpeech=";
+
+    if ($.trim(idAgente).length > 0) {
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        success: function(data) {
+          if (data != "failed") {
+
+            var idAgente = localStorage.idUsuario;
+            var idProspecto = localStorage.idProspecto;
+            var dataString = "idAgente=" + idAgente +  "&idProspecto=" + idProspecto + "&obtenerSpeech=";
+            $.ajax({
+              type: "POST",
+              url: url,
+              data: dataString,
+              crossDomain: true,
+              cache: false,
+              success: function(data) {
+                if (data != "failed") {
+                  localStorage.datosSpeech = data;
+                  window.location.href = "speech.html";
+                } else if (data == "failed") {
+                  window.location.href = "speech.html";
+
+                }
+              }
+            })
+          } else if (data == "failed") {
+            window.location.href = "speech.html";
+
+          }
+        }
+      })
+    } else {
+      swal("Ha Ocurrido un Error", "", "error");
+    }
+    return false;
+
+  });
+  /**********GENERAR SPEECH********/
+    /**********ACTUALIZAR SPEECH********/
+  $("#actualizarSpeech").click(function(){
+    var idAgente = localStorage.idUsuario;
+    var idSpeech = localStorage.idSpeech;
+    var idProspecto = localStorage.idProspecto;
+    var productosCalidad = $("#productosCalidad").val();
+
+    var problemasCalidad = $("#problemasCalidad").val();
+    var asesoramientoCalidad = $("#asesoramientoCalidad").val();
+    var entregasServicio = $("#entregasServicio").val();
+    var igualadoServicio = $("#igualadoServicio").val();
+    var atencionServicio = $("#atencionServicio").val();
+    var productosFueraPrecio = $("#productosFueraPrecio").val();
+    var preciosFueraPrecio = $("#preciosFueraPrecio").val();
+    var canalizado = $("#canalizado").val();
+    var canalizadoCon = $("#canalizadoCon").val();
+    var dataString = "idAgente=" + idAgente +  "&idProspecto=" + idProspecto + "&idSpeech=" + idSpeech +  "&productosCalidad=" + productosCalidad +  "&problemasCalidad=" + problemasCalidad +  "&asesoramientoCalidad=" + asesoramientoCalidad + "&entregasServicio=" + entregasServicio + "&igualadoServicio=" + igualadoServicio +  "&atencionServicio=" + atencionServicio + "&productosFueraPrecio=" + productosFueraPrecio + "&preciosFueraPrecio=" + preciosFueraPrecio + "&canalizado=" + canalizado + "&canalizadoCon=" + canalizadoCon + "&actualizarSpeech=";
+
+    if ($.trim(idAgente).length > 0) {
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        success: function(data) {
+          if (data != "failed") {
+
+            var idAgente = localStorage.idUsuario;
+            var idProspecto = localStorage.idProspecto;
+            var dataString = "idAgente=" + idAgente +  "&idProspecto=" + idProspecto + "&obtenerSpeech=";
+            $.ajax({
+              type: "POST",
+              url: url,
+              data: dataString,
+              crossDomain: true,
+              cache: false,
+              success: function(data) {
+                if (data != "failed") {
+                  localStorage.datosSpeech = data;
+                  window.location.href = "speech.html";
+                } else if (data == "failed") {
+                  window.location.href = "speech.html";
+
+                }
+              }
+            })
+          } else if (data == "failed") {
+            window.location.href = "speech.html";
+
+          }
+        }
+      })
+    } else {
+      swal("Ha Ocurrido un Error", "", "error");
+    }
+    return false;
+
+  });
+  /**********ACTUALIZAR SPEECH********/
+  /**********SERVICIO POSTVENTA********/
+  $("#btnServicioPostVenta").click(function(){
+
+    var prospectoId = $(this).attr('prospectoId');
+    var json = localStorage.detalleVenta;
+    var detalle = JSON.parse(json);
+
+    for (x = 0; x < detalle.length; x++) {
+        var idVenta = detalle[x]["id"];
+        var nombreProspecto = detalle[x]["nombreCompleto"];
+    }
+
+    var titulo = "Porfavor copie el siguiente link para enviarlo a ";
+    var subtitulo = " y pueda contestar la encuesta de satisfacción.";
+    $("#tituloPostVenta").html(titulo);
+    $("#nombre").html(nombreProspecto);
+    $("#subtituloPostVenta").html(subtitulo);
+
+    var link = "https://sanfranciscodekkerlab.com/postventa?keyUser="+prospectoId+"&keySale="+idVenta;
+    $("#linkPostventa").html(link);
+
+  });
+
+  /**********SERVICIO POSTVENTA********/
   /******SALIR DE LA APLICACION************/
   $(".btnSalir").click(function() {
     swal({
@@ -2072,6 +2427,7 @@ $(document).ready(function() {
         localStorage.removeItem('listaFaseProspectos');
         localStorage.removeItem('listaTitulosProspectos');
         localStorage.removeItem('listaOrigenProspectos');
+        localStorage.removeItem('prospectoId');
         //localStorage.removeItem('listaGeneralProspectos');
         localStorage.removeItem('latitudProspecto');
         localStorage.removeItem('longitudProspecto');

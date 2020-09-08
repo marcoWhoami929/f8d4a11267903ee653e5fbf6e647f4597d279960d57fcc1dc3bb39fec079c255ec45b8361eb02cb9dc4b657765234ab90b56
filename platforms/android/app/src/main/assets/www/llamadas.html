@@ -55,13 +55,13 @@
     </nav>
   </header>
   <div class="navbar">
-    <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-1x"></i></a>
-    <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-1x"></i></a>
-    <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-1x"></i></a>
+    <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-sm distancia"></i></a>
+    <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-sm distancia"></i></a>
+    <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-sm distancia"></i></a>
     <a href="inicio.html" class="home"><i class="fas fa-home fa-2x icono-home"></i></a>
-    <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-1x"></i></a>
-    <a href="llamadas.html"><i class="fas fa-phone fa-1x"></i></a>
-    <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-1x"></i></a>
+    <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-sm distancia"></i></a>
+    <a href="llamadas.html"><i class="fas fa-phone fa-sm distancia"></i></a>
+    <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-sm distancia"></i></a>
 
   </div>
   <div class="container">
@@ -97,6 +97,27 @@
       if (types[x]["telefono"] == "") {
 
       }else{
+        var agentes = [
+          {"id":2,"agente":"Orlando Briones"},
+          {"id":3,"agente":"Gerónimo Bautista"},
+          {"id":4,"agente":"Jonathan González Sánchez"},
+          {"id":5,"agente":"San Manuel"},
+          {"id":6,"agente":"Reforma"},
+          {"id":7,"agente":"Capu"},
+          {"id":8,"agente":"Santiago"},
+          {"id":9,"agente":"Las Torres"}];
+
+        Array.prototype.findBy = function(column,value){
+          for (var i = 0; i < this.length; i++) {
+            var object = this[i];
+            if (column in object && object[column]=== value) {
+              return object["agente"];
+            }
+          }
+          return null;
+        }
+        var agente = types[x]["idAgente"]*1;
+        var agenteVenta = agentes.findBy('id', agente);
 
         var telefono = types[x]["telefono"];
         var filaProspecto = `<div  class="filaGeneral">
@@ -108,7 +129,7 @@
         </div>
         <div class="tallerProspecto">
         <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
-
+        <h5 class="textAgente"> `+agenteVenta+`</h5>
         </div>
 
         </div>`;

@@ -47,6 +47,8 @@
       "cordova-plugin-globalization": {},
       "cordova-plugin-network-information": {}
     },
-    "platforms": []
+    "platforms": [
+      "android"
+    ]
   }
 }

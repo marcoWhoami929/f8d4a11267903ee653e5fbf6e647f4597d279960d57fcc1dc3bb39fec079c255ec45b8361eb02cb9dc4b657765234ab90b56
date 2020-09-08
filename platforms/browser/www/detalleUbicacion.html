@@ -55,13 +55,13 @@
     </nav>
   </header>
   <div class="navbar">
-    <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-1x"></i></a>
-    <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-1x"></i></a>
-    <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-1x"></i></a>
+    <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-sm distancia"></i></a>
+    <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-sm distancia"></i></a>
+    <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-sm distancia"></i></a>
     <a href="inicio.html" class="home"><i class="fas fa-home fa-2x icono-home"></i></a>
-    <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-1x"></i></a>
-    <a href="llamadas.html"><i class="fas fa-phone fa-1x"></i></a>
-    <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-1x"></i></a>
+    <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-sm distancia"></i></a>
+    <a href="llamadas.html"><i class="fas fa-phone fa-sm distancia"></i></a>
+    <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-sm distancia"></i></a>
 
   </div>
   <div class="container">
@@ -126,7 +126,7 @@
 
     var directionsService = new google.maps.DirectionsService;
     var directionsRenderer = new google.maps.DirectionsRenderer({
-      draggable: true,
+      draggable: false,
       map: map,
       panel: document.getElementById('right-panel')
     });
@@ -154,7 +154,6 @@
     service.route({
       origin: origin,
       destination: destination,
-
       travelMode: 'DRIVING',
       avoidTolls: true
     }, function(response, status) {

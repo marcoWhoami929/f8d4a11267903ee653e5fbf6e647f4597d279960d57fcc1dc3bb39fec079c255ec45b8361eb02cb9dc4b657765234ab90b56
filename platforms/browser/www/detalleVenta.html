@@ -57,13 +57,13 @@
     </nav>
   </header>
   <div class="navbar">
-    <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-1x"></i></a>
-    <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-1x"></i></a>
-    <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-1x"></i></a>
-    <a href="inicio.html" class="home-venta"><i class="fas fa-home fa-2x icono-home-venta"></i></a>
-    <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-1x"></i></a>
-    <a href="llamadas.html"><i class="fas fa-phone fa-1x"></i></a>
-    <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-1x"></i></a>
+    <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-sm distancia"></i></a>
+    <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-sm distancia"></i></a>
+    <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-sm distancia"></i></a>
+    <a href="inicio.html" class="home-detalle"><i class="fas fa-home fa-2x icono-home-detalle"></i></a>
+    <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-sm distancia"></i></a>
+    <a href="llamadas.html"><i class="fas fa-phone fa-sm distancia"></i></a>
+    <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-sm distancia"></i></a>
 
   </div>
   <div class="container">
@@ -102,7 +102,7 @@
       <div class="row section">
 
         <div class="col-2">
-          <h1 >Nota de Venta</h1>
+          <h1 >Detalle de Venta</h1>
 
         </div><!--.col-->
 
@@ -171,8 +171,60 @@
         </div>
 
       </div><!--.row-->
+      <div class="row section" style="margin-top:1rem">
+        <div class="col-1">
+          <table style='width:100%'>
+            <thead >
+              <tr class="invoice_detail">
+                <th width="25%" style="text-align">SERIE FACTURA</th>
+                <th width="25%">FOLIO FACTURA </th>
+                <th width="50%">ESTATUS</th>
 
-      <div class="invoicelist-body">
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="invoice_detail">
+                <td width="25%" style="text-align"><span id="serieFactura"></span></td>
+                <td width="25%"><span id="folioFactura"></span></td>
+                <td width="50%"><span id="estatusFactura"></span></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div><!--.row-->
+      <div class="row section" style="margin-top:1rem;display:none"  id="seccionCancelacion">
+        <div class="col-1">
+          <table style='width:100%'>
+            <thead >
+              <tr class="invoice_detail">
+                <th width="100%" style="text-align">Fecha Cancelación</th>
+
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="invoice_detail">
+                <td width="100%" style="text-align"><span id="fechaCancelacion"></span></td>
+
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div><!--.row-->
+      <div id="productosNoEncontrados" style="display:none">
+        <table>
+
+          <tr>
+            <td ><strong><i class="fas fa-search-dollar fa-3x" style="margin-left:20px;"></i></strong></td>
+            <td id="sinProductos" >Upps !Al parecer no hay productos!</td>
+          </tr>
+        </table>
+      </div>
+      <div class="invoicelist-body" id="invoicelist-body">
         <table>
           <thead contenteditable>
             <th width="10%">Código</th>
@@ -185,9 +237,9 @@
           </tbody>
         </table>
 
-      </div><!--.invoice-body-->
+      </div>
 
-      <div class="invoicelist-footer">
+      <div class="invoicelist-footer" id="invoicelist-footer">
         <table>
 
           <tr>
@@ -196,6 +248,15 @@
           </tr>
         </table>
       </div>
+      <div class="col-lg-12" id="contenedorPostVenta">
+        <button type="button" class="buttonGeneral"  id="btnServicioPostVenta">PostVenta</button>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 contenedor-url-postventa">
+          <span style="font-weight:bold;font-size:16px" id="tituloPostVenta"></span><span id="nombre"></span><span style="font-weight:bold;font-size:16px" id="subtituloPostVenta"></span>
+          <p id="linkPostventa"></p>
+          <button type="button" class="buttonClipboard" onclick="copiarPortapapeles('linkPostventa')"><i class="far fa-clipboard"></i></button>
+      </div>
+
 
     </div>
 
@@ -211,6 +272,7 @@
       $(document).ready(function(){
             var json = localStorage.detalleVenta;
             var detalle = JSON.parse(json);
+
             for (x = 0; x < detalle.length; x++) {
 
                 $("#detalleFechaVenta").val(detalle[x]["cerradoDia"]);
@@ -220,31 +282,101 @@
                 $("#detalleCelular").html(detalle[x]["celular"]);
                 $("#detalleDomicilio").html(detalle[x]["domicilio"]);
                 $("#detalleConcepto").html(detalle[x]["concepto"]);
-                $("#detalleAgente").html(localStorage.getItem("nombre"));
+                var agentes = [
+                  {"id":2,"agente":"Orlando Briones"},
+                  {"id":3,"agente":"Gerónimo Bautista"},
+                  {"id":4,"agente":"Jonathan González Sánchez"},
+                  {"id":5,"agente":"San Manuel"},
+                  {"id":6,"agente":"Reforma"},
+                  {"id":7,"agente":"Capu"},
+                  {"id":8,"agente":"Santiago"},
+                  {"id":9,"agente":"Las Torres"}];
+
+                Array.prototype.findBy = function(column,value){
+                  for (var i = 0; i < this.length; i++) {
+                    var object = this[i];
+                    if (column in object && object[column]=== value) {
+                      return object["agente"];
+                    }
+                  }
+                  return null;
+                }
+                var agente = detalle[x]["idAgente"]*1;
+                var agenteVenta = agentes.findBy('id', agente);
+
+                $("#detalleAgente").html(agenteVenta);
                 $("#detalleObservaciones").html(detalle[x]["observaciones"]);
+
                 $("#detalleTotal").html(detalle[x]["montoTotal"]);
+                var postVenta = document.getElementById("btnServicioPostVenta");
+                postVenta.setAttribute("prospectoId",detalle[x]["prospectoId"]);
 
-                var productos = detalle[x]["productos"];
-                var codigos = detalle[x]["codigos"];
-                var cantidades = detalle[x]["cantidades"];
-                var precios = detalle[x]["precios"];
-                var separador = ",";
-                var arregloProductos = productos.split(separador);
-                var arregloCodigos = codigos.split(separador);
-                var arregloCantidades = cantidades.split(separador);
-                var arregloPrecios = precios.split(separador);
+                if (detalle[x]["productos"] == "") {
 
-                $("#productosDetalle").html("");
-                $("#fila").html("");
-                for (var x=0; x < arregloProductos.length; x++) {
+                  document.getElementById("invoicelist-body").style.display = "none";
 
-                  var fila = `<tr id="fila"><td>`+arregloCodigos[x]+`</td><td>`+arregloProductos[x]+`</td><td>`+arregloCantidades[x]+`</td><td>`+arregloPrecios[x]+`</td></tr>`;
-                    $("#productosDetalle").append(fila);
-                 }
+                  document.getElementById("productosNoEncontrados").style.display = "";
+
+                }else{
+                  document.getElementById("productosNoEncontrados").style.display = "none";
+                  var productos = detalle[x]["productos"];
+                  var codigos = detalle[x]["codigos"];
+                  var cantidades = detalle[x]["cantidades"];
+                  var precios = detalle[x]["precios"];
+                  var separador = ",";
+                  var arregloProductos = productos.split(separador);
+                  var arregloCodigos = codigos.split(separador);
+                  var arregloCantidades = cantidades.split(separador);
+                  var arregloPrecios = precios.split(separador);
+
+                  $("#productosDetalle").html("");
+                  $("#fila").html("");
+                  for (var x=0; x < arregloProductos.length; x++) {
+
+                    var fila = `<tr id="fila"><td>`+arregloCodigos[x]+`</td><td>`+arregloProductos[x]+`</td><td>`+arregloCantidades[x]+`</td><td>`+arregloPrecios[x]+`</td></tr>`;
+                      $("#productosDetalle").append(fila);
+                   }
+
+                }
+
+                if (detalle[x]["cancelado"] == 1) {
+                  $("#serieFactura").html(detalle[x]["serie"]);
+                  $("#folioFactura").html(detalle[x]["folio"]);
+                  $("#estatusFactura").html(detalle[x]["estatus"]);
+                  var estatus =  document.getElementById("estatusFactura");
+                  estatus.setAttribute("style","color:red");
+                  var seccion =  document.getElementById("seccionCancelacion");
+                  seccion.style.display = "";
+                  $("#fechaCancelacion").html(detalle[x]["fechaCancelacion"]);
+
+
+                }else{
+
+                  $("#serieFactura").html(detalle[x]["serie"]);
+                  $("#folioFactura").html(detalle[x]["folio"]);
+                  $("#estatusFactura").html(detalle[x]["estatus"]);
+
+                }
+
+
+
 
             }
 
       })
+      /**
+       * COPIAR AL PORTAPAPELES
+       */
+       function copiarPortapapeles(id){
+         var aux = document.createElement("input");
+         var url = document.getElementById(id).innerHTML;
+         var url = url.replace("amp;","");
+         aux.setAttribute("value",url);
+         document.body.appendChild(aux);
+         aux.select();
+         document.execCommand("copy");
+         document.body.removeChild(aux);
+       }
   </script>
 </body>
 </html>
