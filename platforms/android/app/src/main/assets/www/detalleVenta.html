@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+  <!--ESTILOS DE APLICACACIÓN-->
+  <link rel="stylesheet" href="css/lateral.css">
+  <!--<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">-->
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/estilosVistas.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!--ESTILOS DE APLICACACIÓN-->
+  <script type="text/javascript">
+  var url = window.location.pathname;
+  var filename = url.substring(url.lastIndexOf('/') + 1);
+  if (localStorage.login == "true" && filename == 'login.html') {
+    window.location.href = "inicio.html";
+  } else if (localStorage.login == null) {
+    window.location.href = "login.html";
+  } else if (localStorage.login == "false" && filename != 'login.html') {
+    window.location.href = "login.html";
+  }
+  </script>
+
+  <title>CRM-APP</title>
+</head>
+<body>
+  <header>
+    <div class="menu_bar">
+      <a href="#" class="bt-menu"><img src="img/logo.png" width="10%"><span><i class="fas fa-bars fa-1x"></i></span></a>
+    </div>
+
+    <nav>
+      <ul style="background:white;">
+        <li><center><i class="fas fa-user-circle fa-5x" style="color:#024959"></i></center></li>
+        <li><a><h3 class="color-principal" id="nombreAgente"></h3></a></li>
+      </ul>
+      <ul>
+        <li><a href="inicio.html"><i class="fas fa-home"></i>Inicio</a></li>
+        <li><a href="prospectos.html" class="btnProspectos"><i class="fas fa-users"></i>Prospectos</a></li>
+        <li><a href="oportunidades.html" class="btnOportunidades"><i class="fas fa-handshake"></i>Oportunidades</a></li>
+        <li><a href="clientes.html" class="btnClientes"><i class="fas fa-bookmark"></i>Cartera de Clientes</a></li>
+        <li><a  class="btnpendientes" id="verMipendientes"><i class="fas fa-calendar"></i>Mi pendientes</a></li>
+        <li><a href="directorio.html" class="btnDirectorio"><i class="fas fa-address-book"></i>Directorio</a></li>
+        <!--<li><a href="metas.html" class="btnMetas"><i class="fas fa-trophy"></i>Mis Metas</a></li>-->
+        <li><a class="btnPendientes" id="verPendientes"><i class="fas fa-thumbtack"></i>Pendientes</a></li>
+        <!--<li><a href="perfil.html" class="btnPerfil"><i class="fas fa-users-cog"></i>Mi Cuenta</a></li>-->
+        <li><a href="#" class="btnSalir"><i class="fas fa-power-off fa-2x" style="color:#024959;margin-top:-16px;margin-left:-14px"></i></a></li>
+        <li><a href="#"></a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="navbar">
+    <a href="nuevasAcciones.html"><i class="fas fa-calendar-plus fa-1x"></i></a>
+    <a href="mandarWhatsapp.html"><i class="fab fa-whatsapp fa-1x"></i></a>
+    <a href="seguimientos.html"><i class="fas fa-flag-checkered fa-1x"></i></a>
+    <a href="inicio.html" class="home-venta"><i class="fas fa-home fa-2x icono-home-venta"></i></a>
+    <a id="btnMostrarVentasRealizadas"><i class="fas fa-wallet fa-1x"></i></a>
+    <a href="llamadas.html"><i class="fas fa-phone fa-1x"></i></a>
+    <a id="btnMostrarListaPrecios"><i class="fas fa-search-dollar fa-1x"></i></a>
+
+  </div>
+  <div class="container">
+    <div class="regresar">
+      <a href="inicio.html" ><i class="fas fa-chevron-left icono-regresar fa-2x"></i></a>
+    </div>
+    <div class="nombreVista">
+
+    </div>
+  </div>
+    <div class="contenedorDetalleVenta">
+      <div class="logoholder text-center" >
+        <img src="assets/img/logo.png" width="50%">
+      </div><!--.logoholder-->
+
+      <div class="me">
+        <p >
+          <strong>PINTURAS Y COMPLEMENTOS DE PUEBLA S.A. DE C.V.</strong><br>
+          PCP970822467<br>
+          Régimen General de Ley Personas Morales<br>
+
+        </p>
+      </div><!--.me-->
+
+      <div class="info">
+        <p >
+          <strong>Matriz:</strong> Libertad 5973
+          Col.San Baltazar Campeche C.P 72550 Localidad Puebla
+          (Heroica Puebla) México
+           <br>
+
+        </p>
+      </div><!-- .info -->
+
+      <hr>
+      <div class="row section">
+
+        <div class="col-2">
+          <h1 >Nota de Venta</h1>
+
+        </div><!--.col-->
+
+        <div class="col-2 text-right details">
+          <p>
+            <strong>Fecha Venta:</strong> <input type="text" class="datePicker" id="detalleFechaVenta"  /><br>
+
+          </p>
+          <p>
+            <strong>Folio:</strong> <input type="text" disabled id="detalleFolio" /><br>
+          </p>
+        </div><!--.col-->
+
+
+
+        <div class="col-2">
+
+
+          <p class="client">
+            <strong>Cliente</strong><br>
+            <span id="detalleCliente"></span><br>
+            <span id="detalleTaller"></span><br>
+            <span id="detalleCelular"></span><br>
+          </p>
+        </div><!--.col-->
+
+
+        <div class="col-2">
+          <p  class="client">
+            <strong>Dirección</strong><br>
+            <span id="detalleDomicilio"></span><br>
+          </p>
+        </div><!--.col-->
+        <div class="col-12">
+
+
+          <p class="client">
+            <strong>Concepto</strong><br>
+            <span id="detalleConcepto"></span>
+          </p>
+        </div><!--.col-->
+
+
+      </div><!--.row-->
+
+      <div class="row section" style="margin-top:-1rem">
+        <div class="col-1">
+          <table style='width:100%'>
+            <thead >
+              <tr class="invoice_detail">
+                <th width="25%" style="text-align">Vendedor</th>
+                <th width="25%">Referencia </th>
+                <th width="50%">Observaciones</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="invoice_detail">
+                <td width="25%" style="text-align"><span id="detalleAgente"></span></td>
+                <td width="25%"> </td>
+                <td width="50%"><span id="detalleObservaciones"></span></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div><!--.row-->
+
+      <div class="invoicelist-body">
+        <table>
+          <thead contenteditable>
+            <th width="10%">Código</th>
+            <th width="50%">Descripción</th>
+            <th width="30%">Unidades</th>
+            <th width="10%">Total</th>
+          </thead>
+          <tbody id="productosDetalle">
+
+          </tbody>
+        </table>
+
+      </div><!--.invoice-body-->
+
+      <div class="invoicelist-footer">
+        <table>
+
+          <tr>
+            <td><strong>Total:</strong></td>
+            <td id="detalleTotal"></td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+
+  <!--LIBRERIAS DE JAVASCRIPT PARA FUNCIONAMIENTO DE APLICACIÓN-->
+  <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+  <!--<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>-->
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/functions.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/auth.js"></script>
+  <script type="text/javascript" src="js/all.min.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function(){
+            var json = localStorage.detalleVenta;
+            var detalle = JSON.parse(json);
+            for (x = 0; x < detalle.length; x++) {
+
+                $("#detalleFechaVenta").val(detalle[x]["cerradoDia"]);
+                $("#detalleFolio").val(detalle[x]["id"]);
+                $("#detalleCliente").html(detalle[x]["nombreCompleto"]);
+                $("#detalleTaller").html(detalle[x]["taller"]);
+                $("#detalleCelular").html(detalle[x]["celular"]);
+                $("#detalleDomicilio").html(detalle[x]["domicilio"]);
+                $("#detalleConcepto").html(detalle[x]["concepto"]);
+                $("#detalleAgente").html(localStorage.getItem("nombre"));
+                $("#detalleObservaciones").html(detalle[x]["observaciones"]);
+                $("#detalleTotal").html(detalle[x]["montoTotal"]);
+
+                var productos = detalle[x]["productos"];
+                var codigos = detalle[x]["codigos"];
+                var cantidades = detalle[x]["cantidades"];
+                var precios = detalle[x]["precios"];
+                var separador = ",";
+                var arregloProductos = productos.split(separador);
+                var arregloCodigos = codigos.split(separador);
+                var arregloCantidades = cantidades.split(separador);
+                var arregloPrecios = precios.split(separador);
+
+                $("#productosDetalle").html("");
+                $("#fila").html("");
+                for (var x=0; x < arregloProductos.length; x++) {
+
+                  var fila = `<tr id="fila"><td>`+arregloCodigos[x]+`</td><td>`+arregloProductos[x]+`</td><td>`+arregloCantidades[x]+`</td><td>`+arregloPrecios[x]+`</td></tr>`;
+                    $("#productosDetalle").append(fila);
+                 }
+
+            }
+
+      })
+  </script>
+</body>
+</html>

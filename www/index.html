@@ -6,10 +6,22 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <!--ESTILOS DE APLICACACIÓN-->
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
         <link rel="stylesheet" href="css/all.min.css">
+        <link rel="stylesheet" href="css/animate.css">
         <!--ESTILOS DE APLICACACIÓN-->
+        <script type="text/javascript">
+         var url = window.location.pathname;
+         var filename = url.substring(url.lastIndexOf('/') + 1);
+         if (localStorage.login == "true" && filename == 'login.html') {
+             window.location.href = "inicio.html";
+         } else if (localStorage.login == null) {
+             window.location.href = "login.html";
+         } else if (localStorage.login == "false" && filename != 'login.html') {
+             window.location.href = "login.html";
+         }
+         </script>
 
         <title>CRM-APP</title>
     </head>
@@ -25,6 +37,7 @@
               <a target="_blank" href="#add" data-role="button" data-theme="b" id="agregar">Nuevo recordatorio</a>
               <a target="_blank" href="#pending" data-role="button" data-theme="b" id="pendientes">Pendientes</a>
               <a target="_blank" href="#all" data-role="button" data-theme="b" id="todos">Todos</a>
+              <a target="_blank" href="inicio.html" data-role="button" data-theme="b">Inicio</a>
           </div>
         </div>
         <!--HOME-->
@@ -91,6 +104,7 @@
                 </tbody>
             </table>
           </div>
+
         </div>
         <!--VISUALIZAR RECORDATORIOS PENDIENTES-->
         <!--LIBRERIAS DE JAVASCRIPT PARA FUNCIONAMIENTO DE APLICACIÓN-->
@@ -99,6 +113,9 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/functions.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/auth.js"></script>
         <script type="text/javascript" src="js/all.min.js"></script>
+        <script type="text/javascript" src="js/sweetalert.min.js"></script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
     </body>
 </html>

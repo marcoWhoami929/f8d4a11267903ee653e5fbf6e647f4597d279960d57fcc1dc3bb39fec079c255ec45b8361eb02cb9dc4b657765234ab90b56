@@ -1,0 +1,485 @@
+/**************ESILOS INICIO**********/
+.container{
+  width: 100%;
+  background: #008B8B;
+  margin: 0;
+  height: 50px;
+  z-index: 10001;
+  position: fixed;
+}
+.contenedor-perfil{
+  width: 100%;
+  background: #008B8B;
+  margin-top: -80px;
+  height: 150px;
+  z-index: -1;
+  position: fixed;
+}
+#titulos{
+  color:white;
+  font-size: 23px;
+  font-weight: bold;
+}
+#subtitulos{
+  color:white;
+  font-size: 16px;
+  font-weight: bold;
+}
+.contenedorInicio {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 200px 200px 200px;
+  grid-gap: 10px;
+  grid-template-areas:
+    "box-1 box-2"
+    "box-3 box-4"
+    "box-5 box-6";
+    max-height: 500px;
+    overflow: scroll;
+}
+.contenedorInicio a{
+  text-decoration: none;
+}
+.contenedorInicioTablero {
+  margin-top: 220px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 200px 200px 200px;
+  grid-gap: 10px;
+  grid-template-areas:
+    "box-1 box-2"
+    "box-3 box-4"
+    "box-5 box-6";
+    max-height: 500px;
+    overflow: scroll;
+}
+.contenedorInicioTablero a{
+  text-decoration: none;
+}
+.box-1 {
+  grid-area: box-1;
+  margin-left: 5px;
+  background: #BEBEBE;
+  border: 1px solid #008B8B;
+
+}
+.box-1:hover{
+  border: 3px solid #0cafa9;
+}
+.box-2 {
+  grid-area: box-2;
+  margin-right: 5px;
+  background: #BEBEBE;
+  border: 1px solid #008B8B;
+}
+.box-2:hover{
+  border: 3px solid #0cafa9;
+}
+.box-3 {
+  grid-area: box-3;
+  margin-left: 5px;
+  background: #BEBEBE;
+  border: 1px solid #008B8B;
+}
+.box-3:hover{
+  border: 3px solid #0cafa9;
+}
+.box-4 {
+  grid-area: box-4;
+  margin-right: 5px;
+  background: #BEBEBE;
+  border: 1px solid #008B8B;
+}
+.box-4:hover{
+  border: 3px solid #0cafa9;
+}
+.box-5 {
+  grid-area: box-5;
+  margin-left: 5px;
+  background: #BEBEBE;
+  border: 1px solid #008B8B;
+}
+.box-5:hover{
+  border: 3px solid #0cafa9;
+}
+.box-6 {
+ grid-area: box-6;
+ margin-right: 5px;
+ background: #BEBEBE;
+ border: 1px solid #008B8B;
+}
+.box-6:hover{
+  border: 3px solid #0cafa9;
+}
+
+/***BOTON SALIR***/
+.btnSalir {
+  display:block;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  border: 1px solid 024959;
+  background:white;
+  margin-left: 70px;
+
+}
+.btnSalir:hover{
+  	background: #0cafa9;
+}
+
+.home{
+  display:block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid 024959;
+  background:white;
+  margin-top: 0px;
+  margin-left: 5px;
+  z-index: -1;
+  margin-right: 5px;
+
+}
+
+.icono-home{
+  color: #008B8B;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+/**BOTON SALIR***/
+.iconos{
+  color: #008B8B;
+  margin-top: 10px;
+}
+.iconos:hover{
+  color: #0cafa9;
+}
+
+.contenedor-box{
+  background:white;
+  height:80px;
+  width:100%;
+  margin-top:43px;
+}
+.contenedor-box h3{
+  padding-top: 20px;
+  color: #008B8B;
+  font-size: 25px;
+  font-weight: bold;
+}
+/**************ESILOS INICIO**********/
+/***********ESTILOS Propectos*******/
+.buscador{
+  width: 100%;
+  background: #BEBEBE;
+  margin-top:50px;
+  height: 80px;
+  position: fixed;
+  z-index: 0;
+
+}
+/**ESTILOS BUSCADOR*/
+
+.flexsearch--wrapper {
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  overflow: hidden;
+  background: transparent;
+  margin: 0;
+  position: relative;
+}
+
+.flexsearch--form {
+  overflow: hidden;
+  position: relative;
+}
+
+.flexsearch--input-wrapper {
+  padding: 0 66px 0 10px;
+  /* Right padding for submit button width */
+  overflow: hidden;
+}
+
+.flexsearch--input {
+  width: 100%;
+
+}
+.flexsearch {
+  padding: 0 25px 0 0px;
+  /* Padding for other horizontal elements */
+}
+
+.flexsearch--input {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 50px;
+  padding: 0 46px 0 10px;
+  border-color: #888;
+  border-radius: 35px;
+  /* (height/2) + border-width */
+  border-style: solid;
+  border-width: 5px;
+  margin-top: 15px;
+  color: #333;
+  font-size: 26px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+
+}
+
+.flexsearch--submit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: none;
+  margin-top: 20px;
+  /* margin-top + border-width */
+  margin-right: 5px;
+  /* border-width */
+  background: transparent;
+  color: #888;
+
+  font-size: 40px;
+  line-height: 60px;
+}
+
+.flexsearch--input:focus {
+  outline: none;
+  border-color: #0cafa9;
+}
+
+.flexsearch--input:focus.flexsearch--submit {
+  color: #333;
+}
+
+.flexsearch--submit:hover {
+  color: #0cafa9;
+  cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+  color: #888;
+}
+
+input:-moz-placeholder {
+  color: #888;
+}
+
+.h1 {
+  float: left;
+  margin: 25px;
+  color: #333;
+  font-size: 45px;
+  font-weight: bold;
+  line-height: 45px;
+  text-align: center;
+}
+.contenedorProspectos{
+  overflow: scroll;
+  max-height: 480px;
+  margin-top: 150px;
+
+}
+.contenedoresGenerales{
+  overflow: scroll;
+  max-height: 500px;
+  margin-top: 50px;
+
+}
+#detallesProspecto{
+  overflow: scroll;
+  max-height: 480px;
+  margin-top: 130px;
+}
+.contenedorMapa{
+  overflow: scroll;
+  max-height: 650px;
+  margin-top: 50px;
+}
+.contenedorVacio{
+  margin-top: 100px;
+  max-height: 80px;
+  width: 100%;
+}
+.contenedor-coordenadas{
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+/**ESTILOS BUSCADOR*/
+.filaGeneral{
+    margin-top: 20px;
+    margin-left: 15px;
+    width: 90%;
+    background:#c4c3d0;
+    height: 100px;
+    border-radius: 7px 7px 7px 7px;
+    -moz-border-radius: 7px 7px 7px 7px;
+    -webkit-border-radius: 7px 7px 7px 7px;
+    border: 0px solid #000000;
+    -webkit-box-shadow: -11px 7px 0px 0px rgba(0,0,0,0.48);
+    -moz-box-shadow: -11px 7px 0px 0px rgba(0,0,0,0.48);
+    box-shadow: -11px 7px 0px 0px rgba(0,0,0,0.48);
+}
+.filaGeneral:hover{
+
+  -webkit-box-shadow: -11px 7px 0px 0px rgba(2,73,89,1);
+  -moz-box-shadow: -11px 7px 0px 0px rgba(2,73,89,1);
+  box-shadow: -11px 7px 0px 0px rgba(2,73,89,1);
+
+}
+.iconos-contenedor{
+  margin-top: 10px;
+  margin-left: 20px;
+  color: #008B8B;
+}
+.nombreProspecto{
+  float: left;
+  margin-top: -40px;
+  margin-left: 80px;
+}
+.tallerProspecto{
+  float: left;
+  margin-top: -10px;
+  margin-left: 80px;
+}
+.conceptoOportunidad{
+  float: left;
+  margin-top: -30px;
+  margin-left: 80px;
+  font-size: 20px;
+
+}
+.montoOportunidad{
+  float: left;
+  margin-top: 0px;
+  margin-left: 80px;
+  font-size: 22px;
+}
+.montoOportunidad h4{
+  color: #008B8B;
+  font-weight: bold;
+}
+.conceptoVenta{
+  float: left;
+  margin-top: -30px;
+  margin-left: 80px;
+  font-size: 20px;
+
+}
+.montoVenta{
+  float: left;
+  margin-top: 0px;
+  margin-left: 80px;
+  font-size: 22px;
+}
+.conceptoVenta h5{
+  margin-top: -20px;
+  margin-bottom: -20px;
+  color: #00000;
+  font-weight: bold;
+}
+.montoVenta h4{
+  margin-top: -30px;
+  color: #008B8B;
+  font-weight: bold;
+}
+/****ESTILOS BOTON REGRESAR****/
+.regresar{
+  margin-left: 30px;
+  margin-top: 5px;
+
+}
+.icono-regresar{
+  color: #ffffff;
+
+}
+.icono-regresar:hover{
+  color: #0cafa9;
+}
+.nombreVista{
+  margin-top: -27px;
+  margin-left: 90px;
+}
+/****ESTILOS BOTON VER***/
+.user-perfil{
+  margin-top: 20px;
+}
+.icon-perfil {
+  color: white;
+}
+.user-data{
+  background:#c4c3d0;
+  width: 100%;
+  height: 50px;
+  margin-top: 70px;
+  z-index: -1;
+  color: white;
+  position: fixed;
+}
+.user-data h3{
+  margin-top: 10px;
+  margin-left: 20px;
+  color: #008B8B;
+}
+#datosPersonales{
+  margin-top: 150px;
+  z-index: -10;
+  max-height: 500px;
+  overflow: scroll;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+
+}
+#datosPersonales span{
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 20px;
+}
+#formularioRecordatorios{
+  margin-top: 80px;
+  z-index: -10;
+  max-height: 500px;
+  overflow: scroll;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+
+}
+#formularioRecordatorios span{
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 20px;
+}
+#datosGenerales{
+  margin-top: 50px;
+  z-index: -10;
+  max-height: 500px;
+  overflow: scroll;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+
+}
+#datosGenerales span{
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 20px;
+}
+.contenedor-botones{
+  margin-top: 0px;
+  margin-bottom: 100px;
+
+}
+/**ESTILOS INPUTS*****/
+
+/***********ESTILOS Propectos******/
