@@ -639,6 +639,7 @@ $(document).ready(function() {
 
     var idProspecto = $(this).attr('idProspecto');
     localStorage.setItem("idProspecto",idProspecto);
+    localStorage.setItem("sesionOportunidades","false");
     var dataString = "idProspecto=" + idProspecto + "&listaTitulosProspectos=";
     $.ajax({
       type: "POST",
@@ -978,13 +979,21 @@ $(document).ready(function() {
   /*********MOSTRAR OPORTUNIDADES*********************/
   /**********CREAR OPORTUNIDAD****************/
   $("#btnGenerarOportunidad").click(function() {
-
     var idAgente = localStorage.idUsuario;
+    if (localStorage.getItem("sesionOportunidades") == "true") {
+      var id = localStorage.idOportunidad;
+
+    }else{
+      var id = localStorage.idProspecto;
+      
+    }
+    /*
     if (localStorage.idProspecto == null) {
         var id = localStorage.idOportunidad;
     }else{
         var id = localStorage.idProspecto;
     }
+    */
     var idProspecto = id;
     var conceptoOportunidad = $("#conceptoOportunidad").val();
     var faseOportunidad = $("#faseOportunidad").val();
