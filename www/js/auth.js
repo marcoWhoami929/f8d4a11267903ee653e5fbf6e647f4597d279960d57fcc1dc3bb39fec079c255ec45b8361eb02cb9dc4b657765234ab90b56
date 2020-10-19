@@ -985,7 +985,7 @@ $(document).ready(function() {
 
     }else{
       var id = localStorage.idProspecto;
-      
+
     }
     /*
     if (localStorage.idProspecto == null) {

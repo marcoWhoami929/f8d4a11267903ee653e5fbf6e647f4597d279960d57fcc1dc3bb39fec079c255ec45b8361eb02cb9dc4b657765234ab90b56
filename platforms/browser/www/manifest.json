@@ -1,0 +1,12 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "CRM - APP",
+  "short_name": "CRM - APP",
+  "version": "com.sfdk.crmapp",
+  "description": "Dale seguimiento a tus prospectos con CRM-APP.",
+  "author": "Marco Antonio López Pérez",
+  "icons": [],
+  "orientation": "portrait",
+  "start_url": "inicio.html"
+}

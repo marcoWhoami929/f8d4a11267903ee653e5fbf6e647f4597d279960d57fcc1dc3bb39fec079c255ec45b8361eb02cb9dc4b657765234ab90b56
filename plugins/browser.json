@@ -1,19 +1,67 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-androidx": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
     },
-    "config_munge": {
-        "files": {}
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
     },
-    "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.sfdk.crmapp"
-        }
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
     },
-    "dependent_plugins": {
-        "cordova-support-google-services": {
-            "PACKAGE_NAME": "com.sfdk.crmapp"
-        }
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-firebase-lib": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-firebase-messaging": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
     }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-support-android-plugin": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    },
+    "cordova-support-google-services": {
+      "PACKAGE_NAME": "com.sfdk.crmapp"
+    }
+  }
 }
