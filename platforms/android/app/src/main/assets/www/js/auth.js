@@ -1,7 +1,7 @@
 $(document).ready(function() {
-  //var url = "https://sanfranciscodekkerlab.com/matriz/auth.php?callback=?";
-  var url = "http://192.168.1.245/blitz/authenticador.php?callback=?";
-  //var url = "https://sanfranciscodekkerlab.com/crm/authenticador.php?callback=?";
+  
+  //var url = "http://192.168.1.245/blitz/authenticador.php?callback=?";
+  var url = "https://sanfranciscodekkerlab.com/crm/authenticador.php?callback=?";
 
   //Login Function
   $("#login").click(function() {
