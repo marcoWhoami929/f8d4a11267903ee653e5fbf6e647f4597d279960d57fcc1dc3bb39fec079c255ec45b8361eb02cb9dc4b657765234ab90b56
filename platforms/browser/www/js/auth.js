@@ -1,7 +1,7 @@
 $(document).ready(function() {
   
   //var url = "http://192.168.1.245/blitz/authenticador.php?callback=?";
-  var url = "https://sanfranciscodekkerlab.com/crm/authenticador.php?callback=?";
+  var url = "http://localhost/crmv4/authenticador.php?callback=?";
 
   //Login Function
   $("#login").click(function() {
@@ -76,7 +76,8 @@ $(document).ready(function() {
   /***********MOSTRAR PROSPECTOS***************/
   $(".btnProspectos").click(function() {
 
-    var idAgente = localStorage.idUsuario;
+    var idAgente = localStorage.idUsuario *1;
+
     var dataString = "idAgente=" + idAgente + "&listaGeneralProspectos=";
     $.ajax({
       type: "POST",
@@ -163,7 +164,10 @@ $(document).ready(function() {
                   {"id":6,"agente":"Reforma"},
                   {"id":7,"agente":"Capu"},
                   {"id":8,"agente":"Santiago"},
-                  {"id":9,"agente":"Las Torres"}];
+                  {"id":9,"agente":"Las Torres"},
+                  {"id":11,"agente":"Ivan Herrera"},
+                  {"id":12,"agente":"Jesus Garcia"},
+                  {"id":13,"agente":"Mario Hernandez"}];
 
                 Array.prototype.findBy = function(column,value){
                   for (var i = 0; i < this.length; i++) {
@@ -200,7 +204,10 @@ $(document).ready(function() {
                   {"id":6,"agente":"Reforma"},
                   {"id":7,"agente":"Capu"},
                   {"id":8,"agente":"Santiago"},
-                  {"id":9,"agente":"Las Torres"}];
+                  {"id":9,"agente":"Las Torres"},
+                  {"id":11,"agente":"Ivan Herrera"},
+                  {"id":12,"agente":"Jesus Garcia"},
+                  {"id":13,"agente":"Mario Hernandez"}];
 
                 Array.prototype.findBy = function(column,value){
                   for (var i = 0; i < this.length; i++) {
@@ -285,7 +292,10 @@ $(document).ready(function() {
                   {"id":6,"agente":"Reforma"},
                   {"id":7,"agente":"Capu"},
                   {"id":8,"agente":"Santiago"},
-                  {"id":9,"agente":"Las Torres"}];
+                  {"id":9,"agente":"Las Torres"},
+                  {"id":11,"agente":"Ivan Herrera"},
+                  {"id":12,"agente":"Jesus Garcia"},
+                  {"id":13,"agente":"Mario Hernandez"}];
 
                 Array.prototype.findBy = function(column,value){
                   for (var i = 0; i < this.length; i++) {
@@ -376,7 +386,10 @@ $(document).ready(function() {
                   {"id":6,"agente":"Reforma"},
                   {"id":7,"agente":"Capu"},
                   {"id":8,"agente":"Santiago"},
-                  {"id":9,"agente":"Las Torres"}];
+                  {"id":9,"agente":"Las Torres"},
+                  {"id":11,"agente":"Ivan Herrera"},
+                  {"id":12,"agente":"Jesus Garcia"},
+                  {"id":13,"agente":"Mario Hernandez"}];
 
                 Array.prototype.findBy = function(column,value){
                   for (var i = 0; i < this.length; i++) {
@@ -468,7 +481,10 @@ $(document).ready(function() {
                   {"id":6,"agente":"Reforma"},
                   {"id":7,"agente":"Capu"},
                   {"id":8,"agente":"Santiago"},
-                  {"id":9,"agente":"Las Torres"}];
+                  {"id":9,"agente":"Las Torres"},
+                  {"id":11,"agente":"Ivan Herrera"},
+                  {"id":12,"agente":"Jesus Garcia"},
+                  {"id":13,"agente":"Mario Hernandez"}];
 
                 Array.prototype.findBy = function(column,value){
                   for (var i = 0; i < this.length; i++) {
@@ -505,7 +521,10 @@ $(document).ready(function() {
                   {"id":6,"agente":"Reforma"},
                   {"id":7,"agente":"Capu"},
                   {"id":8,"agente":"Santiago"},
-                  {"id":9,"agente":"Las Torres"}];
+                  {"id":9,"agente":"Las Torres"},
+                  {"id":11,"agente":"Ivan Herrera"},
+                  {"id":12,"agente":"Jesus Garcia"},
+                  {"id":13,"agente":"Mario Hernandez"}];
 
                 Array.prototype.findBy = function(column,value){
                   for (var i = 0; i < this.length; i++) {
@@ -563,7 +582,10 @@ $(document).ready(function() {
             {"id":6,"agente":"Reforma"},
             {"id":7,"agente":"Capu"},
             {"id":8,"agente":"Santiago"},
-            {"id":9,"agente":"Las Torres"}];
+            {"id":9,"agente":"Las Torres"},
+            {"id":11,"agente":"Ivan Herrera"},
+            {"id":12,"agente":"Jesus Garcia"},
+            {"id":13,"agente":"Mario Hernandez"}];
 
           Array.prototype.findBy = function(column,value){
             for (var i = 0; i < this.length; i++) {
@@ -599,7 +621,10 @@ $(document).ready(function() {
             {"id":6,"agente":"Reforma"},
             {"id":7,"agente":"Capu"},
             {"id":8,"agente":"Santiago"},
-            {"id":9,"agente":"Las Torres"}];
+            {"id":9,"agente":"Las Torres"},
+            {"id":11,"agente":"Ivan Herrera"},
+            {"id":12,"agente":"Jesus Garcia"},
+            {"id":13,"agente":"Mario Hernandez"}];
 
           Array.prototype.findBy = function(column,value){
             for (var i = 0; i < this.length; i++) {
@@ -1340,7 +1365,40 @@ $(document).ready(function() {
     })
   })
   /**********CREAR NUEVA LLAMADA************/
-  $("#nuevaLlamada").click(function(){
+  $('body').on('click', '.btnNuevaLlamada', function(){
+    var hoy = new Date();
+    var tipoLlamada = $("#tipoLlamada").val();
+    var numeroTelefono = $(this).attr("telefonoCliente");
+
+    if (tipoLlamada == "directa") {
+
+      var idProspecto = $(this).attr("idCliente");
+      var nombreProspecto = $(this).attr("nameProspecto");
+      var idAgente = $(this).attr("idAgenteVenta");
+      var titulo = "Lamada Realizada";
+      var fecha = hoy.getFullYear()+'-'+(hoy.getMonth()+1)+'-'+hoy.getDate();
+      var hora = hoy.getHours()+':'+hoy.getMinutes()+':'+hoy.getSeconds();
+      var descripcion = "Llamada Realizada a: "+nombreProspecto;
+
+      
+      
+      var dataString ="tipoLlamada=" + tipoLlamada + "&idAgente=" + idAgente + "&idProspecto=" + idProspecto + "&titulo=" + titulo + "&fecha=" + fecha + "&hora=" + hora + "&descripcion=" + descripcion + "&nombreProspecto=" + nombreProspecto + "&agendarNuevaLlamada=";
+      if ($.trim(idAgente).length > 0) {
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: dataString,
+          crossDomain: true,
+          cache: false,
+          success: function(data) {
+            location.href = "tel:"+numeroTelefono+"";
+          }
+        })
+      } else {
+        swal("Ha Ocurrido un Error", "", "error");
+      }
+
+    }else{
 
       var idProspecto = localStorage.getItem("idProspecto");
       var nombreProspecto = $("#nombreProspectoRecordatorio").val();
@@ -1350,7 +1408,7 @@ $(document).ready(function() {
       var hora = $("#horaRecordatorio").val();
       var descripcion = $("#descripcionRecordatorio").val();
 
-      var dataString = "idAgente=" + idAgente + "&idProspecto=" + idProspecto + "&titulo=" + titulo + "&fecha=" + fecha + "&hora=" + hora + "&descripcion=" + descripcion + "&nombreProspecto=" + nombreProspecto + "&agendarNuevaLlamada=";
+      var dataString = "tipoLlamada=" + tipoLlamada + "&idAgente=" + idAgente + "&idProspecto=" + idProspecto + "&titulo=" + titulo + "&fecha=" + fecha + "&hora=" + hora + "&descripcion=" + descripcion + "&nombreProspecto=" + nombreProspecto + "&agendarNuevaLlamada=";
       if ($.trim(idAgente).length > 0) {
         $.ajax({
           type: "POST",
@@ -1382,8 +1440,12 @@ $(document).ready(function() {
       } else {
         swal("Ha Ocurrido un Error", "", "error");
       }
-      return false;
 
+    }
+/*
+      
+      return false;
+*/
 
 
   })

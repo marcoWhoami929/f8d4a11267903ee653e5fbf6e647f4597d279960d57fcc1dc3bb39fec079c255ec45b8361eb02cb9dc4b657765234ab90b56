@@ -80,9 +80,10 @@
             <span>Fecha*: </span><input type="date" class="perfil" id="fechaRecordatorio" placeholder="">
             <span>Hora*: </span><input type="time" class="perfil" id="horaRecordatorio" placeholder="">
             <span>Descripcion: </span><textarea class="comentariosGenerales" id="descripcionRecordatorio" rows="10" cols="50"></textarea>
+            <input type="hidden" id="tipoLlamada" value="agendada">
 
             <div class="contenedor-botones">
-              <button type="button" class="buttonGeneral" id="nuevaLlamada" onclick="add_reminder()"><i class="fas fa-bell fa-2x"></i></button>
+              <button type="button" class="buttonGeneral btnNuevaLlamada" id="nuevaLlamada" onclick="add_reminder()"><i class="fas fa-bell fa-2x"></i></button>
 
             </div>
           </form>

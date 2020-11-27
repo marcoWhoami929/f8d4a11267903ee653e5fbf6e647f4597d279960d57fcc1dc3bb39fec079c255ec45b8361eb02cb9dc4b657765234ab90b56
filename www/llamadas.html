@@ -87,7 +87,9 @@
   <script type="text/javascript" src="js/all.min.js"></script>
   <script type="text/javascript" src="js/sweetalert.min.js"></script>
   <script type="text/javascript">
+    var idAgente = localStorage.getItem("idUsuario");
   $(document).ready(function(){
+    
     var json = localStorage.listaGeneralProspectos;
     var types = JSON.parse(json);
 
@@ -120,9 +122,14 @@
         var agenteVenta = agentes.findBy('id', agente);
 
         var telefono = types[x]["telefono"];
+        var idCliente = types[x]["id"];
         var filaProspecto = `<div  class="filaGeneral">
+        <input type="hidden" id="tipoLlamada" value="directa">
+        <input type="hidden" id="numeroTelefono" value="`+types[x]["telefono"]+`">
         <div>
-        <a href="tel:`+telefono+`"><i class="fas fa-phone-volume fa-3x iconos-contenedor"></i></a>
+        
+        <button type="button" class="btnNuevaLlamada" style="border:none;background-color: transparent !important;" idAgenteVenta="`+idAgente+`" idCliente="`+idCliente+`" telefonoCliente="`+telefono+`" nameProspecto="`+types[x]["nombreCompleto"]+`"><i class="fas fa-phone-volume fa-3x iconos-contenedor"></i></button>
+
         </div>
         <div class="nombreProspecto">
         <h4>`+types[x]["nombreCompleto"]+`</h4>
@@ -136,13 +143,12 @@
         $("#contenedoresGenerales").append(filaProspecto);
 
       }
-
     }
     var divVacio = `<div class="contenedorVacio">
     </div>`;
     $("#contenedoresGenerales").append(divVacio);
-
-  })
+  });
+  
   </script>
 </body>
 </html>
