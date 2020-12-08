@@ -117,6 +117,100 @@ $(document).ready(function() {
     return false;
 
   });
+  /************FILTRO DE CLIENTES************/
+
+  $('#filterClientes').on('change', function () {
+
+    var nodos = document.getElementById('contenedorClientes');
+    while (nodos.firstChild) {
+      nodos.removeChild(nodos.firstChild);
+    }
+
+    var filtroClientes =  $("#filterClientes").val();
+
+    localStorage.setItem("filtroClientes", filtroClientes);
+
+    var idAgenteClientes = localStorage.getItem("filtroClientes");
+    var dataString = "filtroClientes=" + idAgenteClientes + "&mostrarResultados=";
+
+    if ($.trim(idAgenteClientes).length > 0) {
+
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        beforeSend: function() {
+          var nodos = document.getElementById('contenedorClientes');
+          while (nodos.firstChild) {
+            nodos.removeChild(nodos.firstChild);
+          }
+        },
+        success: function(data) {
+         // console.log(data);
+
+          if (data != "failed") {
+            var json = data;
+            var types = JSON.parse(json);
+
+            $("#contenedorClientes").html("");
+            for (x = 0; x < types.length; x++) {
+
+                var agentes = [
+                  {"id":2,"agente":"Orlando Briones"},
+                  {"id":3,"agente":"Gerónimo Bautista"},
+                  {"id":4,"agente":"Jonathan González Sánchez"},
+                  {"id":5,"agente":"San Manuel"},
+                  {"id":6,"agente":"Reforma"},
+                  {"id":7,"agente":"Capu"},
+                  {"id":8,"agente":"Santiago"},
+                  {"id":9,"agente":"Las Torres"},
+                  {"id":11,"agente":"Ivan Herrera"},
+                  {"id":12,"agente":"Jesus Garcia"},
+                  {"id":13,"agente":"Mario Hernandez"}];
+
+                Array.prototype.findBy = function(column,value){
+                  for (var i = 0; i < this.length; i++) {
+                    var object = this[i];
+                    if (column in object && object[column]=== value) {
+                      return object["agente"];
+                    }
+                  }
+                  return null;
+                }
+
+                var agente = types[x]["idAgente"]*1;
+                var agenteVenta = agentes.findBy('id', agente);
+
+                var filaCliente = `<a class="detalleProspecto" idCliente="`+types[x]["id"]+`"><div class="filaGeneral">
+                      <div>
+                        <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
+                      </div>
+                      <div class="nombreProspecto">
+                        <h4>`+types[x]["nombreCompleto"]+`</h4>
+                      </div>
+                      <div class="tallerProspecto">
+                        <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                        <h5 class="textAgente"> `+agenteVenta+`</h5>
+                      </div>
+
+                    </div></a>`;
+              
+
+              $("#contenedorClientes").append(filaCliente);
+
+            }
+
+          } else if (data == "failed") {
+
+          }
+        }
+      })
+
+    }
+
+  });
   /**********MOSTRAR PROSPECTOS****************/
   /************FILTRO DE PROSPECTOS************/
 
@@ -2828,6 +2922,7 @@ $(document).ready(function() {
         localStorage.removeItem('evento');
         localStorage.removeItem('detalleVenta');
         localStorage.removeItem('preciosEspeciales');
+        localStorage.removeItem('filtroClientes');
         window.location.href = "login.html";
       } else{
 

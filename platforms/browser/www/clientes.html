@@ -72,6 +72,24 @@
                 <h3 id="titulos"><i class="fas fa-bookmark"></i>Clientes</h3>
           </div>
         </div>
+        <div class="filtroClientes">
+          <div id="filtroClientesA" >
+            <select class="form-control" name="" id="filterClientes">
+              <option value="">Seleccionar Agente</option>
+              <option value="2">Orlando Briones</option>
+              <option value="3">Geronimo Baustista</option>
+              <option value="4">Jonathan Gonzalez Sanchez</option>
+              <option value="5">San Manuel</option>
+              <option value="6">Reforma</option>
+              <option value="7">Capu</option>
+              <option value="8">Santiago</option>
+              <option value="9">Las Torres</option>
+              <option value="11">Ivan Herrera</option>
+              <option value="12">Jesus Garcia</option>
+              <option value="13">Mario Hernandez</option>
+          </select>
+          </div>
+        </div>
         <div class="contenedoresGenerales" id="contenedorClientes">
         </div>
 
@@ -86,6 +104,15 @@
         <script type="text/javascript" src="js/sweetalert.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
+
+              var idAgenteP = localStorage.idUsuario *1;
+              if (idAgenteP == 11) {
+                div1 = document.getElementById("filtroClientesA");
+                div1.style.display = "";
+              }else{
+                div1 = document.getElementById("filtroClientesA");
+                div1.style.display = "none";
+              }
                   var json = localStorage.arregloClientes;
                   var types = JSON.parse(json);
 
@@ -100,7 +127,10 @@
                       {"id":6,"agente":"Reforma"},
                       {"id":7,"agente":"Capu"},
                       {"id":8,"agente":"Santiago"},
-                      {"id":9,"agente":"Las Torres"}];
+                      {"id":9,"agente":"Las Torres"},
+                      {"id":11,"agente":"Ivan Herrera"},
+                      {"id":12,"agente":"Jesus Garcia"},
+                      {"id":13,"agente":"Mario Hernandez"}];
 
                     Array.prototype.findBy = function(column,value){
                       for (var i = 0; i < this.length; i++) {

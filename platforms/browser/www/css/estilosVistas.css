@@ -226,6 +226,15 @@
   position: fixed;
   z-index: 0;
 }
+.filtroClientes{
+  width: 100%;
+  background: #008B8B;
+  margin-top:49px;
+  color: white;
+  height: 40px;
+  position: fixed;
+  z-index: 0;
+}
 .buscador-precios{
   width: 100%;
   background: #BEBEBE;
