@@ -211,7 +211,7 @@ $(document).ready(function() {
     }
 
   });
-  /**********MOSTRAR PROSPECTOS****************/
+  /**********FILTRO DE CLIENTES****************/
   /************FILTRO DE PROSPECTOS************/
 
   $('#filterProspectos').on('change', function () {
@@ -753,6 +753,233 @@ $(document).ready(function() {
     return false;
   });
   /***********BUSCADOR DE PROSPECTOS************/
+  /************BUSCADOR DE CLIENTES************/
+  $("#buscadorClient").keypress(function(e) {
+    if (e.which == 13) {
+      return false;
+    }
+  });
+  $('#datosBusquedaClientes').on('keyup', function (e) {
+    var nodos = document.getElementById('contenedorClientes');
+    while (nodos.firstChild) {
+      nodos.removeChild(nodos.firstChild);
+    }
+    e.preventDefault(); // se previene la acción por defecto
+    var search =  $("#datosBusquedaClientes").val();
+    localStorage.setItem("busquedaClientes", search);
+    var busqueda = localStorage.getItem("busquedaClientes");
+    var idAgente = localStorage.getItem("idUsuario");
+    var dataString = "search=" + busqueda + "&idAgente=" + idAgente + "&listarResultadosBusquedaClientes=";
+
+    if ($.trim(busqueda).length > 0) {
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        beforeSend: function() {
+          var nodos = document.getElementById('contenedorClientes');
+          while (nodos.firstChild) {
+            nodos.removeChild(nodos.firstChild);
+          }
+        },
+        success: function(data) {
+
+          if (data != "failed") {
+            var json = data;
+            var types = JSON.parse(json);
+            $("#contenedorClientes").html("");
+            for (x = 0; x < types.length; x++) {
+
+              if (types[x]["habilitado"] == 1) {
+
+                var agentes = [
+                      {"id":2,"agente":"Orlando Briones"},
+                      {"id":3,"agente":"Gerónimo Bautista"},
+                      {"id":4,"agente":"Jonathan González Sánchez"},
+                      {"id":5,"agente":"San Manuel"},
+                      {"id":6,"agente":"Reforma"},
+                      {"id":7,"agente":"Capu"},
+                      {"id":8,"agente":"Santiago"},
+                      {"id":9,"agente":"Las Torres"},
+                      {"id":11,"agente":"Ivan Herrera"},
+                      {"id":12,"agente":"Jesus Garcia"},
+                      {"id":13,"agente":"Mario Hernandez"}];
+
+                Array.prototype.findBy = function(column,value){
+                  for (var i = 0; i < this.length; i++) {
+                    var object = this[i];
+                    if (column in object && object[column]=== value) {
+                      return object["agente"];
+                    }
+                  }
+                  return null;
+                }
+                var agente = types[x]["idAgente"]*1;
+                var agenteVenta = agentes.findBy('id', agente);
+
+                var filaCliente = `<a class="detalleProspecto" idCliente="`+types[x]["id"]+`"><div class="filaGeneral">
+                      <div>
+                        <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
+                      </div>
+                      <div class="nombreProspecto">
+                        <h4>`+types[x]["nombreCompleto"]+`</h4>
+                      </div>
+                      <div class="tallerProspecto">
+                        <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                        <h5 class="textAgente"> `+agenteVenta+`</h5>
+                      </div>
+
+                    </div></a>`;
+              }else{
+
+                var agentes = [
+                  {"id":2,"agente":"Orlando Briones"},
+                  {"id":3,"agente":"Gerónimo Bautista"},
+                  {"id":4,"agente":"Jonathan González Sánchez"},
+                  {"id":5,"agente":"San Manuel"},
+                  {"id":6,"agente":"Reforma"},
+                  {"id":7,"agente":"Capu"},
+                  {"id":8,"agente":"Santiago"},
+                  {"id":9,"agente":"Las Torres"},
+                  {"id":11,"agente":"Ivan Herrera"},
+                  {"id":12,"agente":"Jesus Garcia"},
+                  {"id":13,"agente":"Mario Hernandez"}];
+
+                Array.prototype.findBy = function(column,value){
+                  for (var i = 0; i < this.length; i++) {
+                    var object = this[i];
+                    if (column in object && object[column]=== value) {
+                      return object["agente"];
+                    }
+                  }
+                  return null;
+                }
+                var agente = types[x]["idAgente"]*1;
+                var agenteVenta = agentes.findBy('id', agente);
+
+                var filaCliente = `<div class="filaGeneral">
+                      <div>
+                        <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
+                      </div>
+                      <div class="nombreProspecto">
+                        <h4>`+types[x]["nombreCompleto"]+`</h4>
+                      </div>
+                      <div class="tallerProspecto">
+                        <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                        <h5 class="textAgente"> `+agenteVenta+`</h5>
+                      </div>
+
+                    </div>`;
+              }
+
+              $("#contenedorClientes").append(filaCliente);
+
+            }
+
+          } else if (data == "failed") {
+
+          }
+        }
+      })
+    } else {
+      var nodos = document.getElementById('contenedorClientes');
+      while (nodos.firstChild) {
+        nodos.removeChild(nodos.firstChild);
+      }
+      var json = localStorage.arregloClientes;
+      var types = JSON.parse(json);
+
+      $("#contenedorClientes").html("");
+
+      for (x = 0; x < types.length; x++) {
+        if (types[x]["habilitado"] == 1) {
+          var agentes = [
+            {"id":2,"agente":"Orlando Briones"},
+            {"id":3,"agente":"Gerónimo Bautista"},
+            {"id":4,"agente":"Jonathan González Sánchez"},
+            {"id":5,"agente":"San Manuel"},
+            {"id":6,"agente":"Reforma"},
+            {"id":7,"agente":"Capu"},
+            {"id":8,"agente":"Santiago"},
+            {"id":9,"agente":"Las Torres"},
+            {"id":11,"agente":"Ivan Herrera"},
+            {"id":12,"agente":"Jesus Garcia"},
+            {"id":13,"agente":"Mario Hernandez"}];
+
+          Array.prototype.findBy = function(column,value){
+            for (var i = 0; i < this.length; i++) {
+              var object = this[i];
+              if (column in object && object[column]=== value) {
+                return object["agente"];
+              }
+            }
+            return null;
+          }
+          var agente = types[x]["idAgente"]*1;
+          var agenteVenta = agentes.findBy('id', agente);
+
+          var filaCliente = `<a class="detalleProspecto" idCliente="`+types[x]["id"]+`"><div class="filaGeneral">
+                      <div>
+                        <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
+                      </div>
+                      <div class="nombreProspecto">
+                        <h4>`+types[x]["nombreCompleto"]+`</h4>
+                      </div>
+                      <div class="tallerProspecto">
+                        <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                        <h5 class="textAgente"> `+agenteVenta+`</h5>
+                      </div>
+
+                    </div></a>`;
+        }else{
+          var agentes = [
+            {"id":2,"agente":"Orlando Briones"},
+            {"id":3,"agente":"Gerónimo Bautista"},
+            {"id":4,"agente":"Jonathan González Sánchez"},
+            {"id":5,"agente":"San Manuel"},
+            {"id":6,"agente":"Reforma"},
+            {"id":7,"agente":"Capu"},
+            {"id":8,"agente":"Santiago"},
+            {"id":9,"agente":"Las Torres"},
+            {"id":11,"agente":"Ivan Herrera"},
+            {"id":12,"agente":"Jesus Garcia"},
+            {"id":13,"agente":"Mario Hernandez"}];
+
+          Array.prototype.findBy = function(column,value){
+            for (var i = 0; i < this.length; i++) {
+              var object = this[i];
+              if (column in object && object[column]=== value) {
+                return object["agente"];
+              }
+            }
+            return null;
+          }
+          var agente = types[x]["idAgente"]*1;
+          var agenteVenta = agentes.findBy('id', agente);
+
+          var filaCliente = `<div class="filaGeneral">
+                      <div>
+                        <i class="fas fa-user-circle fa-3x iconos-contenedor"></i>
+                      </div>
+                      <div class="nombreProspecto">
+                        <h4>`+types[x]["nombreCompleto"]+`</h4>
+                      </div>
+                      <div class="tallerProspecto">
+                        <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                        <h5 class="textAgente"> `+agenteVenta+`</h5>
+                      </div>
+
+                    </div>`;
+        }
+
+        $("#contenedorClientes").append(filaCliente);
+      }
+    }
+    return false;
+  });
+  /***********BUSCADOR DE CLIENTES************/
   /***********DETALLE PROSPECTO***************/
   $('body').on('click', '#contenedorProspectos a', function(){
 

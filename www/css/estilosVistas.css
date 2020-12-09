@@ -207,7 +207,15 @@
   z-index: 0;
 
 }
+.buscadorClientes{
+  width: 100%;
+  background: #BEBEBE;
+  margin-top:50px;
+  height: 80px;
+  position: fixed;
+  z-index: 0;
 
+}
 .filtro{
   width: 100%;
   background: #008B8B;
@@ -229,7 +237,7 @@
 .filtroClientes{
   width: 100%;
   background: #008B8B;
-  margin-top:49px;
+  margin-top:130px;
   color: white;
   height: 40px;
   position: fixed;
@@ -351,6 +359,12 @@ input:-moz-placeholder {
   overflow: scroll;
   max-height: 480px;
   margin-top: 150px;
+
+}
+.contenedorClientes{
+  overflow: scroll;
+  max-height: 480px;
+  margin-top: 170px;
 
 }
 .contenedoresGenerales{
