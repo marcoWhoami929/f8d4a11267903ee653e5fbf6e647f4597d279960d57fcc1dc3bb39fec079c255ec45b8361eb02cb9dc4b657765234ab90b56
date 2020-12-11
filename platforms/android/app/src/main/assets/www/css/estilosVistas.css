@@ -216,6 +216,15 @@
   z-index: 0;
 
 }
+.buscadorClientesEventos{
+  width: 100%;
+  background: #BEBEBE;
+  margin-top:80px;
+  height: 80px;
+  position: fixed;
+  z-index: 0;
+
+}
 .filtro{
   width: 100%;
   background: #008B8B;
@@ -371,6 +380,12 @@ input:-moz-placeholder {
   overflow: scroll;
   max-height: 500px;
   margin-top: 80px;
+
+}
+.contenedoresGeneralesEventos{
+  overflow: scroll;
+  max-height: 500px;
+  margin-top: 140px;
 
 }
 .contenedorSpeech{
