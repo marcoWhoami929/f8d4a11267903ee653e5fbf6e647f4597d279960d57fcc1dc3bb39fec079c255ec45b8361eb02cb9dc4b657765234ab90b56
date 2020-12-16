@@ -73,8 +73,26 @@
     </div>
 
   </div>
+  <div class="filtroLlamadas">
+    <div id="filtroLlamadasA" >
+      <select class="form-control" name="" id="filterLlamadas">
+        <option value="">Seleccionar Agente</option>
+        <option value="2">Orlando Briones</option>
+        <option value="4">Jonathan Gonzalez Sanchez</option>
+        <option value="5">San Manuel</option>
+        <option value="6">Reforma</option>
+        <option value="7">Capu</option>
+        <option value="8">Santiago</option>
+        <option value="9">Las Torres</option>
+        <option value="11">Ivan Herrera</option>
+        <option value="12">Jesus Garcia</option>
+        <option value="13">Mario Hernandez</option>
+        <option value="14">Gabriel Andrade</option>
+    </select>
+    </div>
+  </div>
 
-  <div  class="contenedoresGenerales" id="contenedoresGenerales">
+  <div  class="contenedorLlamadas" id="contenedorLlamadas">
   </div>
 
   <!--LIBRERIAS DE JAVASCRIPT PARA FUNCIONAMIENTO DE APLICACIÓN-->
@@ -87,69 +105,101 @@
   <script type="text/javascript" src="js/all.min.js"></script>
   <script type="text/javascript" src="js/sweetalert.min.js"></script>
   <script type="text/javascript">
-    var idAgente = localStorage.getItem("idUsuario");
+  
   $(document).ready(function(){
-    
-    var json = localStorage.listaGeneralProspectos;
-    var types = JSON.parse(json);
-
-    $("#contenedoresGenerales").html("");
-
-    for (x = 0; x < types.length; x++) {
-      if (types[x]["telefono"] == "") {
-
-      }else{
-        var agentes = [
-                  {"id":2,"agente":"Orlando Briones"},
-                  {"id":4,"agente":"Jonathan González Sánchez"},
-                  {"id":5,"agente":"San Manuel"},
-                  {"id":6,"agente":"Reforma"},
-                  {"id":7,"agente":"Capu"},
-                  {"id":8,"agente":"Santiago"},
-                  {"id":9,"agente":"Las Torres"},
-                  {"id":11,"agente":"Ivan Herrera"},
-                  {"id":12,"agente":"Jesus Garcia"},
-                  {"id":13,"agente":"Mario Hernandez"},
-                  {"id":14,"agente":"Gabriel Andrade"}];
-
-        Array.prototype.findBy = function(column,value){
-          for (var i = 0; i < this.length; i++) {
-            var object = this[i];
-            if (column in object && object[column]=== value) {
-              return object["agente"];
-            }
-          }
-          return null;
-        }
-        var agente = types[x]["idAgente"]*1;
-        var agenteVenta = agentes.findBy('id', agente);
-
-        var telefono = types[x]["telefono"];
-        var idCliente = types[x]["id"];
-        var filaProspecto = `<div  class="filaGeneral">
-        <input type="hidden" id="tipoLlamada" value="directa">
-        <input type="hidden" id="numeroTelefono" value="`+types[x]["telefono"]+`">
-        <div>
-        
-        <button type="button" class="btnNuevaLlamada" style="border:none;background-color: transparent !important;" idAgenteVenta="`+idAgente+`" idCliente="`+idCliente+`" telefonoCliente="`+telefono+`" nameProspecto="`+types[x]["nombreCompleto"]+`"><i class="fas fa-phone-volume fa-3x iconos-contenedor"></i></button>
-
-        </div>
-        <div class="nombreProspecto">
-        <h4>`+types[x]["nombreCompleto"]+`</h4>
-        </div>
-        <div class="tallerProspecto">
-        <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
-        <h5 class="textAgente"> `+agenteVenta+`</h5>
-        </div>
-
-        </div>`;
-        $("#contenedoresGenerales").append(filaProspecto);
-
-      }
+    if (localStorage.getItem("filtroLlamadas")=== null) {
+      localStorage.setItem("filtroLlamadas",localStorage.idUsuario);
+      var filtroAplicado = localStorage.getItem("filtroLlamadas");
+    }else{
+      var filtroAplicado = localStorage.getItem("filtroLlamadas");
     }
-    var divVacio = `<div class="contenedorVacio">
-    </div>`;
-    $("#contenedoresGenerales").append(divVacio);
+
+    var idAgenteP = localStorage.idUsuario *1;
+      if (idAgenteP == 11) {
+        div1 = document.getElementById("filtroLlamadasA");
+        div1.style.display = "";
+        $("#filterLlamadas option[value="+ filtroAplicado +"]").attr("selected",true);
+      }else{
+
+        div1 = document.getElementById("filtroLlamadasA");
+        div1.style.display = "none";
+      }
+
+      var dataString = "idAgente=" + idAgenteP + "&listaGeneralProspectos=";
+    $.ajax({
+      type: "POST",
+      url: "https://sanfranciscodekkerlab.com/crm/authenticador.php?callback=?",
+      data: dataString,
+      crossDomain: true,
+      cache: false,
+      success: function(data) {
+        if (data != "failed") {  
+          //var json = data;
+        
+          var types = JSON.parse(data);    
+            $("#contenedorLlamadas").html("");
+            for (x = 0; x < types.length; x++) {
+              if (types[x]["telefono"] == "") {
+
+              }else{
+                var agentes = [
+                          {"id":2,"agente":"Orlando Briones"},
+                          {"id":4,"agente":"Jonathan González Sánchez"},
+                          {"id":5,"agente":"San Manuel"},
+                          {"id":6,"agente":"Reforma"},
+                          {"id":7,"agente":"Capu"},
+                          {"id":8,"agente":"Santiago"},
+                          {"id":9,"agente":"Las Torres"},
+                          {"id":11,"agente":"Ivan Herrera"},
+                          {"id":12,"agente":"Jesus Garcia"},
+                          {"id":13,"agente":"Mario Hernandez"},
+                          {"id":14,"agente":"Gabriel Andrade"}];
+
+                Array.prototype.findBy = function(column,value){
+                  for (var i = 0; i < this.length; i++) {
+                    var object = this[i];
+                    if (column in object && object[column]=== value) {
+                      return object["agente"];
+                    }
+                  }
+                  return null;
+                }
+                var agente = types[x]["idAgente"]*1;
+                var agenteVenta = agentes.findBy('id', agente);
+
+                var telefono = types[x]["telefono"];
+                var idCliente = types[x]["id"];
+                var filaProspecto = `<div  class="filaGeneral">
+                <input type="hidden" id="tipoLlamada" value="directa">
+                <input type="hidden" id="numeroTelefono" value="`+types[x]["telefono"]+`">
+                <div>
+                
+                <button type="button" class="btnNuevaLlamada" style="border:none;background-color: transparent !important;" idAgenteVenta="`+idAgenteP+`" idCliente="`+idCliente+`" telefonoCliente="`+telefono+`" nameProspecto="`+types[x]["nombreCompleto"]+`"><i class="fas fa-phone-volume fa-3x iconos-contenedor"></i></button>
+
+                </div>
+                <div class="nombreProspecto">
+                <h4>`+types[x]["nombreCompleto"]+`</h4>
+                </div>
+                <div class="tallerProspecto">
+                <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                <h5 class="textAgente"> `+agenteVenta+`</h5>
+                </div>
+
+                </div>`;
+                $("#contenedorLlamadas").append(filaProspecto);
+
+              }
+            }
+            var divVacio = `<div class="contenedorVacio">
+            </div>`;
+            $("#contenedorLlamadas").append(divVacio);
+          
+
+        }
+      }
+    })
+   
+
   });
   
   </script>

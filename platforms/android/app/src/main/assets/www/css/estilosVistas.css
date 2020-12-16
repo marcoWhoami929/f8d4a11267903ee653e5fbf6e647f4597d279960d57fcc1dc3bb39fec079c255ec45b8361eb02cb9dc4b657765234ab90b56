@@ -252,6 +252,15 @@
   position: fixed;
   z-index: 0;
 }
+.filtroLlamadas{
+  width: 100%;
+  background: #008B8B;
+  margin-top:50px;
+  color: white;
+  height: 40px;
+  position: fixed;
+  z-index: 0;
+}
 .buscador-precios{
   width: 100%;
   background: #BEBEBE;
@@ -386,6 +395,12 @@ input:-moz-placeholder {
   overflow: scroll;
   max-height: 500px;
   margin-top: 140px;
+
+}
+.contenedorLlamadas{
+  overflow: scroll;
+  max-height: 480px;
+  margin-top: 100px;
 
 }
 .contenedorSpeech{

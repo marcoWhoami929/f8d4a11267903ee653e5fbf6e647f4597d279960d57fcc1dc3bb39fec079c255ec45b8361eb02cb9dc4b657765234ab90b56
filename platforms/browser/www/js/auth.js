@@ -434,7 +434,127 @@ $(document).ready(function() {
     return false;
   });
   /***********FILTRO DE CONTACTOS EVENTOS************/
-  /***********FILTRO DE CONTACTOS EVENTOS************/
+  /************FILTRO DE LLAMADAS************/
+
+  $('#filterLlamadas').on('change', function () {
+
+    var nodos = document.getElementById('contenedorLlamadas');
+    while (nodos.firstChild) {
+      nodos.removeChild(nodos.firstChild);
+    }
+
+    var filtroLlamadas =  $("#filterLlamadas").val();
+
+    localStorage.setItem("filtroLlamadas", filtroLlamadas);
+
+    var idAgenteLlamada = localStorage.getItem("filtroLlamadas");
+    var dataString = "filtroLlamadas=" + idAgenteLlamada + "&mostrarFiltroClientesLlamada=";
+
+    if ($.trim(idAgenteLlamada).length > 0) {
+
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        beforeSend: function() {
+          var nodos = document.getElementById('contenedorLlamadas');
+          while (nodos.firstChild) {
+            nodos.removeChild(nodos.firstChild);
+          }
+        },
+        success: function(data) {
+         // console.log(data);
+
+          if (data != "failed") {
+            if (localStorage.getItem("filtroLlamadas")=== null) {
+              localStorage.setItem("filtroLlamadas",localStorage.idUsuario);
+              var filtroAplicado = localStorage.getItem("filtroLlamadas");
+            }else{
+              var filtroAplicado = localStorage.getItem("filtroLlamadas");
+            }
+            $("#filterLlamadas option[value="+ filtroAplicado +"]").attr("selected",true);
+            var idAgenteP = localStorage.idUsuario *1;
+            if (idAgenteP == 11) {
+              div1 = document.getElementById("filtroLlamadasA");
+              div1.style.display = "";
+            }else{
+              div1 = document.getElementById("filtroLlamadasA");
+              div1.style.display = "none";
+            }
+            var json = data;
+            var types = JSON.parse(json);
+
+            $("#contenedorLlamadas").html("");
+            for (x = 0; x < types.length; x++) {
+
+              if (types[x]["telefono"] == "") {
+
+              }else{
+                var agentes = [
+                  {"id":2,"agente":"Orlando Briones"},
+                  {"id":4,"agente":"Jonathan González Sánchez"},
+                  {"id":5,"agente":"San Manuel"},
+                  {"id":6,"agente":"Reforma"},
+                  {"id":7,"agente":"Capu"},
+                  {"id":8,"agente":"Santiago"},
+                  {"id":9,"agente":"Las Torres"},
+                  {"id":11,"agente":"Ivan Herrera"},
+                  {"id":12,"agente":"Jesus Garcia"},
+                  {"id":13,"agente":"Mario Hernandez"},
+                  {"id":14,"agente":"Gabriel Andrade"}];
+
+                Array.prototype.findBy = function(column,value){
+                  for (var i = 0; i < this.length; i++) {
+                    var object = this[i];
+                    if (column in object && object[column]=== value) {
+                      return object["agente"];
+                    }
+                  }
+                  return null;
+                }
+
+                var agente = types[x]["idAgente"]*1;
+                var agenteVenta = agentes.findBy('id', agente);
+        
+                var telefono = types[x]["telefono"];
+                var idCliente = types[x]["id"];
+                var filaProspecto = `<div  class="filaGeneral">
+                <input type="hidden" id="tipoLlamada" value="directa">
+                <input type="hidden" id="numeroTelefono" value="`+types[x]["telefono"]+`">
+                <div>
+                
+                <button type="button" class="btnNuevaLlamada" style="border:none;background-color: transparent !important;" idAgenteVenta="`+idAgenteP+`" idCliente="`+idCliente+`" telefonoCliente="`+telefono+`" nameProspecto="`+types[x]["nombreCompleto"]+`"><i class="fas fa-phone-volume fa-3x iconos-contenedor"></i></button>
+        
+                </div>
+                <div class="nombreProspecto">
+                <h4>`+types[x]["nombreCompleto"]+`</h4>
+                </div>
+                <div class="tallerProspecto">
+                <h5><i class="fas fa-map-marked-alt fa-1x iconos"></i> `+types[x]["taller"]+`</h5>
+                <h5 class="textAgente"> `+agenteVenta+`</h5>
+                </div>
+        
+                </div>`;
+              
+
+                $("#contenedorLlamadas").append(filaProspecto);
+
+              }
+
+            }
+
+          } else if (data == "failed") {
+
+          }
+        }
+      })
+
+    }
+
+  });
+  /**********FILTRO DE LLAMADAS****************/
 
  window.cargarContactos = function() {
   var filtroAplicado = localStorage.getItem("filtro");
@@ -1586,7 +1706,83 @@ $(document).ready(function() {
       var idProspecto = $(this).attr('idCliente');
       localStorage.setItem("idOportunidad",idProspecto);
       localStorage.setItem("sesionOportunidades","true");
-      window.location.href = "acciones.html";
+
+      var dataString = "idProspecto=" + idProspecto + "&listaTitulosProspectos=";
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: dataString,
+      crossDomain: true,
+      cache: false,
+      beforeSend: function() {
+
+      },
+      success: function(data) {
+        if (data != "failed") {
+          localStorage.listaTitulosProspectos = data;
+        }
+      }
+    });
+    var dataString = "idProspecto=" + idProspecto + "&listaFaseProspectos=";
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: dataString,
+      crossDomain: true,
+      cache: false,
+      beforeSend: function() {
+
+      },
+      success: function(data) {
+        if (data != "failed") {
+
+          localStorage.listaFaseProspectos = data;
+        }
+      }
+    });
+    var dataString = "idProspecto=" + idProspecto + "&listaOrigenProspectos=";
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: dataString,
+      crossDomain: true,
+      cache: false,
+      beforeSend: function() {
+
+      },
+      success: function(data) {
+        if (data != "failed") {
+
+          localStorage.listaOrigenProspectos = data;
+        }
+      }
+    });
+
+    var dataString = "idProspecto=" + idProspecto + "&detalleProspecto=";
+    if ($.trim(idProspecto).length > 0) {
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        beforeSend: function() {
+
+        },
+        success: function(data) {
+          if (data != "failed") {
+            localStorage.detalleProspecto = data;
+            window.location.href = "edicionProspecto.html";
+          } else if (data == "failed") {
+            swal("Upss", "Tenemos problemas para obtener los datos del prospecto comunicate con el administrador.", "info");
+
+          }
+        }
+      })
+    } else {
+      swal("Ha Ocurrido un Error", "", "error");
+    }
+      return false;
     })
   $("#btnMostrarVentasRealizadas").click(function(){
     var idAgente = localStorage.getItem("idUsuario");
@@ -3296,6 +3492,8 @@ $(document).ready(function() {
         localStorage.removeItem('detalleVenta');
         localStorage.removeItem('preciosEspeciales');
         localStorage.removeItem('filtroClientes');
+        localStorage.removeItem('filtro');
+        localStorage.removeItem('filtroLlamadas');
         window.location.href = "login.html";
       } else{
 
