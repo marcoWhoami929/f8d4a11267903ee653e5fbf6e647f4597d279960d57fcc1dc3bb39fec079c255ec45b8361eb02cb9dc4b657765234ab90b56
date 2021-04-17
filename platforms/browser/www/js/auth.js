@@ -4,6 +4,18 @@ $(document).ready(function() {
   //var url = "http://localhost/crmapp/authenticador.php?callback=?";
   var url = "https://sanfranciscodekkerlab.com/crm/authenticador.php?callback=?";
 
+   var idUsuario = localStorage.getItem("idUsuario");
+                if (idUsuario == 15) {
+                  
+                  $('.btnOportunidades').hide();
+                  $('.btnCalendario').hide();
+                  $('.btnDirectorio').hide();
+                  $('.btnPendientes').hide();
+                  $('#editarProspecto').hide();
+                  $('#verUbicacionPerfil').hide();
+                  $('#obtenerUbicacion').hide();
+                  $('#nuevaAccionProspecto').hide();
+                }
   //Login Function
   $("#login").click(function() {
     var email = $("#email").val();
@@ -476,7 +488,7 @@ $(document).ready(function() {
             }
             $("#filterLlamadas option[value="+ filtroAplicado +"]").attr("selected",true);
             var idAgenteP = localStorage.idUsuario *1;
-            if (idAgenteP == 11) {
+            if (idAgenteP == 11 || idAgenteP == 15) {
               div1 = document.getElementById("filtroLlamadasA");
               div1.style.display = "";
             }else{
